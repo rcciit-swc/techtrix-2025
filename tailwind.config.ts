@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        kagitingan: ["Kagitingan", "sans-serif"],
+        alexandria: ["Alexandria", "sans-serif"]
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
