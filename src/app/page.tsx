@@ -1,11 +1,19 @@
-import React from 'react'
+import { HeroBg } from '@/components/Home/HeroBg';
+import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
+import React from 'react';
 
-const page = () => {
+const Page = () => {
   return (
-    <div>
-      <h1>Techtrix 2025</h1>
-    </div>
-  )
-}
+    <div className="relative w-full h-screen">
+      <div className="absolute inset-0 z-0">
+        <HeroBg />
+      </div>
 
-export default page;
+      <div className="relative z-10 flex justify-center items-center h-full">
+        <HeroGlobeText />
+      </div>
+    </div>
+  );
+};
+
+export default Page;
