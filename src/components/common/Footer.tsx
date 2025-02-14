@@ -25,7 +25,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center">
           {list.map((item) => (
             <Link key={item} href="">
-              <span className="hover:underline text-2xl font-bold">{item}</span>
+              <span className="hover:underline text-2xl font-bold font-kagitingan">{item}</span>
             </Link>
           ))}
         </div>
