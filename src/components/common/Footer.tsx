@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[url('https://s3-alpha-sig.figma.com/img/42c8/ad88/1017c056d7a1fba3474450df3754201e?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=FqWPFVNyWngDHFa4EXdRHRTaDprUVrYac5bGBS5MO-brHtQXZZD638v8dgtNUia1PKfeYjtHmpZAq~2ys92RJc0qOukf7v~WGRPhJxem5LsVncewqexjLjHE1z0qSiDPoDJ-JYZ5FHifDgTy1OsmsIV1iVKenqAJfT-9myFw6WECmEkDYoRCR-ZChGMpjSM7AS4mk4eOqI0CsJrO4CgrnULF43-~CBlUNDrb3OzEar0G0oNxg82PYoTo7aSt-s2jpEFHQKqke4q6JQl4oh-VoYRvooVQ87HBBHwJA0cocpwkqcSIerTs5DoDG9LhizNTNy5FcyexL5FLiffvYaThGQ__')] bg-cover bg-center filter blur-2xl opacity-40" />
       <div className="relative max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between mb-8">
-          <h1 className="text-2xl md:text-5xl font-bold text-center md:text-left font-">
+          <h1 className="text-2xl md:text-5xl font-bold text-center md:text-left font-kagitingan">
             Ready to be a part of Techtrix?
           </h1>
           <Link
