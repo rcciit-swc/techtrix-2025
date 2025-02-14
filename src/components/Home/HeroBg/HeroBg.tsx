@@ -16,14 +16,14 @@ const HeroBg = () => {
         </div>
 
         {/* Techtrix Logo (fixed at top-left) */}
-        <div className="absolute top-2 left-2 z-50 w-[300px] h-[200px] hidden lg:block">
+        {/* <div className="absolute top-2 left-2 z-50 w-[300px] h-[200px] hidden lg:block">
           <Image
             src="/assets/home/TechtrixLogo.png"
             alt="Techtrix Logo"
             fill
             className="object-contain"
           />
-        </div>
+        </div> */}
 
         {/* LeftHero Decorative Element with Shadow */}
         <div className="absolute top-0 left-0 h-full flex items-center">
