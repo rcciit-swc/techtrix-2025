@@ -12,16 +12,17 @@ export default function About() {
       <div className="relative z-10 min-h-screen container mx-auto px-6">
         <h1 className="text-4xl md:text-5xl font-bold text-white text-center pt-12 pb-16">ABOUT</h1>
         <div className="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-12">
-          <div className={`hidden w-full md:w-1/3 lg:flex justify-center ${styles.floatingIcon}`}>
+          {/* <div className={`hidden w-full md:w-1/3 lg:flex justify-center ${styles.floatingIcon}`}>
             <SVGIcon 
               iconName="stars" 
-              className="w-[200px] h-[200px] md:w-[500px] md:h-[500px]" 
+               
+              width={10000}
             />
-          </div>
+          </div> */}
           
 
-          <div className="w-full md:w-3/5 text-center lg:text-left">
-            <p className="text-white/90 text-lg md:text-2xl font-semibold leading-relaxed">
+          <div className="w-full text-center lg:text-left">
+            <p className="text-white/90 text-lg md:text-3xl font-semibold leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in arcu suscipit, 
               ultricies eros at, lacinia orci. Cras ultricies tristique finibus. Vestibulum 
               sollicitudin elementum urna, eget pharetra dui dapibus nec. Ut gravida, enim eget 
