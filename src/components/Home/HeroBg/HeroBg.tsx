@@ -5,7 +5,7 @@ const HeroBg = () => {
     <>
       <div className="relative h-screen w-full overflow-hidden">
         {/* Background */}
-        <div className="fixed inset-0">
+        <div className="inset-0">
           <Image
             src="/assets/home/star.svg"
             alt="Starfield Background"
