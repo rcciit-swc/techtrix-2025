@@ -3,6 +3,9 @@ import { lazy } from 'react';
 export const IconMap = {
   stars: lazy(() => import('./components/StarsSVG')),
   techtrixLogo: lazy(() => import('./components/TechtrixLogoEvents')),
+  box: lazy(() => import('./components/BoxSVG')),
+  logo: lazy(() => import('./components/LogoSVG')),
+  techtrix: lazy(() => import('./components/TechtrixSVG')),
   // leftHero: lazy(() => import('./components/LeftHeroSVG')),
   // rightHero: lazy(() => import('./components/RightHeroSVG')),
   // gotLogo: lazy(() => import('./components/GOTLogoSVG')),

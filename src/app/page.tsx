@@ -9,7 +9,7 @@ const Page = () => {
   return (
     <div>
       {/* <Events /> */}
-      <div className="relative w-full h-screen">
+      {/* <div className="relative w-full h-screen">
         <div className="absolute inset-0 z-0">
           <HeroBg />
         </div>
@@ -17,9 +17,10 @@ const Page = () => {
         <div className="relative z-10 flex justify-center items-center h-full">
           <HeroGlobeText />
         </div>
-      </div>
+      </div> */}
       <About />
-      <EventLanding />
+      {/* <EventLanding /> */}
+    
     </div>
     // <div>
     //   <EventLanding />
