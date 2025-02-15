@@ -10,7 +10,7 @@ const LogoSVG: FC<IIconProps> = (props) => {
   } = props;
   return (
     <svg width={width} height={height} className={className} viewBox="0 0 509 292" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-<rect width="508.095" height="291.758" rx="80.66" fill="url(#pattern0_543_256)" fill-opacity="0.51"/>
+<rect width="508.095" height="291.758" rx="80.66" fill="url(#pattern0_543_256)" fillOpacity="0.51"/>
 <defs>
 <pattern id="pattern0_543_256" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlinkHref="#image0_543_256" transform="matrix(0.00212 0 0 0.00364584 -0.03 -0.305048)"/>
