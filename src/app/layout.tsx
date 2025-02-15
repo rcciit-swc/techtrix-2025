@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { constructMetaData } from '@/utils/functions';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = constructMetaData({
   title: 'Techtrix 2025',
@@ -14,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`$antialiased`}>{children}</body>
+      <body className={`$antialiased`}>
+        {children}
+
+        <Toaster position="bottom-right" richColors duration={5000} />
+      </body>
     </html>
   );
 }

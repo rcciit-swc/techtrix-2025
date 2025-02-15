@@ -1,4 +1,6 @@
-const getUserData = async () => {
+import { supabase } from "./supabase-client";
+
+export const getUserData = async () => {
   try {
     //logic
     console.log('getUserData');
@@ -7,4 +9,3 @@ const getUserData = async () => {
   }
 };
 
-export { getUserData };
