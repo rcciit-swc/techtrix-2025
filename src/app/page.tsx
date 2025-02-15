@@ -17,10 +17,10 @@ const Page = () => {
         <div className="relative z-10 flex justify-center items-center h-full">
           <HeroGlobeText />
         </div>
-      </div>
+      </div> */}
       <About />
-      <EventLanding /> */}
-      <About />
+      {/* <EventLanding /> */}
+    
     </div>
     // <div>
     //   <EventLanding />

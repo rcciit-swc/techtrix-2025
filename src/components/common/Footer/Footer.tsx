@@ -31,8 +31,15 @@ export default function Footer() {
             Register Now
           </Link>
         </div>
-        <div className="flex justify-center my-6">
-          <SVGIcon iconName="logo" className="w-32 sm:w-56 h-32 sm:h-56" />
+        <div className="relative flex justify-center items-center">
+          <SVGIcon 
+            iconName="logo" 
+            className="block w-[380px] h-[380px]" 
+          />
+          <SVGIcon 
+            iconName="techtrix" 
+            className="absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-[100px] z-10" 
+          />
         </div>
         <div className="flex flex-wrap justify-center items-center gap-4 text-center">
           {list.map((item, index) => (

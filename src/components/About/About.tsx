@@ -10,9 +10,9 @@ export default function About() {
       </div>
 
       <div className="relative z-10 min-h-screen container mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl font-bold font-kagitingan text-white text-center pt-12 pb-16">ABOUT</h1>
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className={`hidden w-full h-[600px] md:w-1/2 md:flex justify-center`}>
+        <h1 className="text-4xl md:text-5xl font-bold font-kagitingan text-white text-center pt-12">ABOUT</h1>
+        <div className="flex flex-col lg:flex-row items-center justify-between">
+          <div className={`hidden w-full h-[600px] lg:w-1/2 lg:flex justify-center`}>
             {/* <Spline
               className="relative w-full h-full"
               scene="https://prod.spline.design/ipux7BeSvmPX34R1/scene.splinecode"
@@ -24,7 +24,7 @@ export default function About() {
           </div>
 
 
-          <div className="md:w-1/2 w-full text-center">
+          <div className="lg:w-1/2 w-full text-center">
             <p className="text-white/90 text-lg md:text-2xl font-semibold leading-relaxed font-alexandria">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in arcu suscipit,
               ultricies eros at, lacinia orci. Cras ultricies tristique finibus. Vestibulum

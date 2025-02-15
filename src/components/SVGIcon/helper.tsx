@@ -5,6 +5,7 @@ export const IconMap = {
   techtrixLogo: lazy(() => import('./components/TechtrixLogoEvents')),
   box: lazy(() => import('./components/BoxSVG')),
   logo: lazy(() => import('./components/LogoSVG')),
+  techtrix: lazy(() => import('./components/TechtrixSVG')),
   // leftHero: lazy(() => import('./components/LeftHeroSVG')),
   // rightHero: lazy(() => import('./components/RightHeroSVG')),
   // gotLogo: lazy(() => import('./components/GOTLogoSVG')),
