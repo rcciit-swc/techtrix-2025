@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { constructMetaData } from '@/utils/functions';
-import { Footer } from '@/components/common';
+import { Footer, Navbar } from '@/components/common';
 
 export const metadata: Metadata = constructMetaData({
   title: 'Techtrix 2025',
@@ -16,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`$antialiased`}>
+        <Navbar />
         {children}
         <Footer />
       </body>

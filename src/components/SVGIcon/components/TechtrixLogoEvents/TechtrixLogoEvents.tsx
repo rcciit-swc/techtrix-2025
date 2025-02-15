@@ -4,8 +4,8 @@ import { IIconProps } from '../../interfaces';
 const TechtrixLogoEvents: FC<IIconProps> = (props) => {
   return (
     <svg
-      width="250"
-      height="250"
+      width={props.width ?? "250"}
+      height={props.height ?? "250"}
       viewBox="0 0 337 337"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
