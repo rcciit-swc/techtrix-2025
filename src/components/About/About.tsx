@@ -13,10 +13,6 @@ export default function About() {
         <h1 className="text-4xl md:text-5xl font-bold font-kagitingan text-white text-center pt-12">ABOUT</h1>
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className={`hidden w-full h-[600px] lg:w-1/2 lg:flex justify-center`}>
-            {/* <Spline
-              className="relative w-full h-full"
-              scene="https://prod.spline.design/ipux7BeSvmPX34R1/scene.splinecode"
-            /> */}
             <Spline
               className="relative w-full min-h-full"
               scene="https://prod.spline.design/zhH6lHBVbRtifsW7/scene.splinecode"
