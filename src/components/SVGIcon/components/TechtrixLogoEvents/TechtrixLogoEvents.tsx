@@ -6,12 +6,12 @@ const TechtrixLogoEvents: FC<IIconProps> = (props) => {
     <svg
       width={props.width ?? "250"}
       height={props.height ?? "250"}
-      viewBox="0 0 337 337"
+      viewBox="0 0 250 250"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="337" height="337" fill="url(#pattern0_58_29)" />
+      <rect width="270" height="270" fill="url(#pattern0_58_29)" />
       <defs>
         <pattern
           id="pattern0_58_29"

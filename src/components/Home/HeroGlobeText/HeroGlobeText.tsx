@@ -20,7 +20,7 @@ const HeroGlobeText = () => {
           <ButtonLanding text="Explore" />
         </div>
       </div>
-      <div className="hidden lg:block md:h-[400px] lg:h-full lg:w-full">
+      <div className="hidden lg:block md:h-[400px] lg:h-[75%] lg:w-[80%]">
         <SplineGlobe />
       </div>
     </div>
