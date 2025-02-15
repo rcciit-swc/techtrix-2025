@@ -13,21 +13,12 @@ const HeroBg = () => {
             className="object-cover"
             quality={100}
           />
+          <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" />
         </div>
-
-        {/* Techtrix Logo (fixed at top-left) */}
-        {/* <div className="absolute top-2 left-2 z-50 w-[300px] h-[200px] hidden lg:block">
-          <Image
-            src="/assets/home/TechtrixLogo.png"
-            alt="Techtrix Logo"
-            fill
-            className="object-contain"
-          />
-        </div> */}
 
         {/* LeftHero Decorative Element with Shadow */}
         <div className="absolute top-0 left-0 h-full flex items-center">
-          <div className="relative w-[500px] h-[680px] lg:w-[700px] lg:h-[800px] rotate-[-30deg]">
+          <div className="relative w-[500px] h-[680px] md:w-[600px] md:h-[750px] lg:w-[700px] lg:h-[800px] rotate-[-30deg]">
             {/* Main Image */}
             <Image
               src="/assets/home/LeftHero.png"

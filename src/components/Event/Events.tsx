@@ -16,7 +16,7 @@ const Events = () => {
             minHeight: "100%",
           }}
         >
-          {/* <Spline scene="https://prod.spline.design/Xv3a7dgRxqGmUiAr/scene.splinecode" /> */}
+          <Spline scene="https://prod.spline.design/Xv3a7dgRxqGmUiAr/scene.splinecode" />
         </div>
       </div>
 
