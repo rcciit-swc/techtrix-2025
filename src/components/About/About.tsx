@@ -6,7 +6,7 @@ export default function About() {
   return (
     <main className="relative h-auto w-full bg-black overflow-hidden">
       <div className="absolute left-0 top-0 w-full h-full pointer-events-none">
-        <Spline className="w-full h-full opacity-65" scene="https://prod.spline.design/YwsksritFlzusrK3/scene.splinecode" />
+        {/* <Spline className="w-full h-full opacity-65" scene="https://prod.spline.design/YwsksritFlzusrK3/scene.splinecode" /> */}
       </div>
 
       <div className="relative z-10 min-h-screen container mx-auto px-6">
@@ -17,10 +17,10 @@ export default function About() {
               className="relative w-full h-full"
               scene="https://prod.spline.design/ipux7BeSvmPX34R1/scene.splinecode"
             /> */}
-            <Spline
+            {/* <Spline
               className="relative w-full min-h-full"
               scene="https://prod.spline.design/zhH6lHBVbRtifsW7/scene.splinecode"
-            />
+            /> */}
           </div>
 
 

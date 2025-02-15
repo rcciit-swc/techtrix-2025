@@ -10,37 +10,96 @@ type Props = {
 
 const Navbar = ({ className }: Props) => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-md bg-black/70' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-md bg-black/70' : 'bg-transparent'
+        }`}
     >
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Using a fixed small padding so the navbar remains compact */}
+      <div className="max-w-screen-2xl mx-auto relative px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between transition-all duration-300">
           <div className="flex-shrink-0">
-            {/* The logo is scaled larger (h-16) even though the navbar is small */}
             <SVGIcon
               iconName="techtrixLogo"
               className="transition-all duration-300 h-16 w-auto"
-              width={scrolled ? 100 : 160}
-              height={scrolled ? 100 : 160}
+              width={isMobile ? 100 : scrolled ? 100 : 160}
+              height={isMobile ? 100 : scrolled ? 100 : 160}
             />
           </div>
+          {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
             <NavLink href="/team">Team</NavLink>
             <NavLink href="/login">Login</NavLink>
           </div>
+          {/* Hamburger for Mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-white focus:outline-none"
+            >
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {mobileMenuOpen ? (
+                  // Close icon
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  // Hamburger icon
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+        {/* Mobile Menu - absolutely positioned so it doesn't push content */}
+        <div
+          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-black/90 p-4 rounded-b-lg overflow-hidden transform transition-all duration-300 origin-top ${mobileMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
+            }`}
+        >
+          <MobileNavLink href="/" onClick={() => setMobileMenuOpen(false)}>
+            Home
+          </MobileNavLink>
+          <MobileNavLink href="/events" onClick={() => setMobileMenuOpen(false)}>
+            Events
+          </MobileNavLink>
+          <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
+            Team
+          </MobileNavLink>
+          <MobileNavLink href="/login" onClick={() => setMobileMenuOpen(false)}>
+            Login
+          </MobileNavLink>
         </div>
       </div>
     </nav>
@@ -60,6 +119,24 @@ const NavLink = ({ href, children }: NavLinkProps) => {
     >
       <span className="relative z-10">{children}</span>
       <span className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 hover:opacity-100 animate-glitter"></span>
+    </Link>
+  );
+};
+
+type MobileNavLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  onClick: () => void;
+};
+
+const MobileNavLink = ({ href, children, onClick }: MobileNavLinkProps) => {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="block px-4 py-2 text-white text-lg font-semibold hover:bg-gray-800 transition-colors"
+    >
+      {children}
     </Link>
   );
 };
