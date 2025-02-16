@@ -1,11 +1,17 @@
 import Link from "next/link";
-import { FaInstagram, FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import SVGIcon from "../../SVGIcon";
 import styles from "./Footer.module.css";
 import React from "react";
 
 export default function Footer() {
-  const list = ["Events", "Team", "Sponsorship", "Contact Us"];
+  const list = [
+    { title: "Events", link: "/events" },
+    { title: "Team", link: "/team" },
+    { title: "Sponsorship", link: "https://drive.google.com/file/d/1UajjAiTHkHN2JItyHBcZBxWOVwAwtqIH/view?usp=sharing" },
+    // { title: "Contact Us", link: "/contact" }
+  ];
+  
   return (
     <footer className="relative bg-black text-white py-8 px-4 overflow-hidden">
       <SVGIcon
@@ -25,10 +31,10 @@ export default function Footer() {
             Ready to be a part of Techtrix?
           </h1>
           <Link
-            href=""
+            href="/"
             className="mt-4 md:mt-0 border border-white px-6 py-2 rounded-full hover:bg-gray-800 transition"
           >
-            Register Now
+            Coming Soon
           </Link>
         </div>
         <div className="relative flex justify-center items-center">
@@ -43,9 +49,9 @@ export default function Footer() {
         </div>
         <div className="flex flex-wrap justify-center items-center gap-4 text-center">
           {list.map((item, index) => (
-            <React.Fragment key={item}>
-              <Link href="">
-                <span className="hover:underline text-2xl font-bold font-kagitingan">{item}</span>
+            <React.Fragment key={item.title}>
+              <Link href={item.link} target="_blank" rel="noopener noreferrer">
+                <span className="hover:underline text-2xl font-bold font-kagitingan">{item.title}</span>
               </Link>
               {index !== list.length - 1 && (
                 <span className="text-2xl font-bold font-kagitingan"> | </span>
@@ -57,12 +63,14 @@ export default function Footer() {
           <p className="mb-4 text-xl font-semibold">Follow us</p>
           <div className="flex justify-center space-x-4">
             {[
-              { icon: <FaInstagram className="w-5 h-5" />, href: "" },
-              { icon: <FaFacebook className="w-5 h-5" />, href: "" },
-              { icon: <FaGoogle className="w-5 h-5" />, href: "" },
+              { icon: <FaInstagram className="w-5 h-5" />, href: "https://www.instagram.com/techtrix_official" },
+              { icon: <FaFacebook className="w-5 h-5" />, href: "https://www.facebook.com/techtrix.rcciit" },
+              { icon: <FaLinkedinIn className="w-5 h-5" />, href: "https://linkedin.com/company/techtrix-rcciit" },
             ].map((social, index) => (
               <Link
                 key={index}
+                target="_blank"
+                rel="noopener noreferrer"
                 href={social.href}
                 className="p-2 border border-white rounded-full hover:bg-gray-800 transition"
               >

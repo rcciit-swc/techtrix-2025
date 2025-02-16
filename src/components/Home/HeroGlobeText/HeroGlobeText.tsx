@@ -8,10 +8,10 @@ const SplineGlobe = dynamic(() => import('@/components/Home/SplineGlobe'), {
   loading: () => (
     <div className="flex justify-center items-center h-full w-fit mx-auto">
       <Image
-        src="/assets/Home/loader.gif"
+        src="/assets/Home/fallback1.png"
         alt="Loading..."
         width={100}
-        className="w-full h-full mx-auto flex justify-center items-center"
+        className="w-[600px] h-[600px] mx-auto flex justify-center items-center"
         quality={100}
         height={100}
       />
@@ -21,8 +21,8 @@ const SplineGlobe = dynamic(() => import('@/components/Home/SplineGlobe'), {
 
 const HeroGlobeText = () => {
   return (
-    <div className="flex flex-row justify-center w-full items-center h-full overflow-hidden">
-      <div className="flex flex-col justify-center items-start gap-3">
+    <div className="flex flex-row relative  justify-center w-full items-center h-full overflow-hidden">
+      <div className="  flex flex-col justify-center items-start gap-3">
           <Image src={'/assets/Home/rcc.svg'} alt=''  width={100} height={100} className='w-[250px]'/>
           <h1 className='text-white font-alexandria text-3xl'>presents</h1>
           {/* <Image src={'/assets/Home/tfyears.svg'} alt=''  width={100} height={100} /> */}
@@ -47,7 +47,7 @@ const HeroGlobeText = () => {
           <ButtonLanding text="Explore" />
         </div>
       </div> */}
-      <div className="hidden lg:block  lg:h-[60vh] lg:w-[40vw]">
+      <div className="hidden lg:block lg:w-[40%]">
         <SplineGlobe />
       </div>
     </div>

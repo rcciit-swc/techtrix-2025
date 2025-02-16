@@ -1,9 +1,10 @@
+import ComingSoon from '@/components/common/ComingSoon'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      
+    <div className='w-full'>
+      <ComingSoon />
     </div>
   )
 }

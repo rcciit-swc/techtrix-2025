@@ -20,7 +20,7 @@ const HeroSVG2: FC<IIconProps> = (props) => {
         height="683.847"
         transform="rotate(60.1426 52.0781 -48)"
         fill="url(#pattern0_95_73)"
-        fill-opacity="0.41"
+        fillOpacity="0.41"
       />
       <defs>
         <pattern

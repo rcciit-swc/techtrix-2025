@@ -17,12 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`$antialiased`}>
-        
         <Navbar />
         {children}
 
         <Toaster position="bottom-right" richColors duration={5000} />
-      
+
         <Footer />
       </body>
     </html>

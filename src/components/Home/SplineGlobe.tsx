@@ -2,15 +2,10 @@ import Spline from '@splinetool/react-spline/next';
 
 const SplineGlobe = () => {
   return (
-    <main className="min-w-[70vw] mx-auto flex justify-center h-[60vh] items-center">
+    <main className=" mx-auto flex justify-center  items-center">
       {' '}
       <Spline
-        scene="https://prod.spline.design/N5LrKJWEpHiokFlZ/scene.splinecode"
-        className="object-cover  mx-auto "
-        style={{
-          width: '60vw',
-          height: '70vh',
-        }}
+        scene="https://prod.spline.design/Qc5CbvazJ9TTIDsS/scene.splinecode" 
       />
 
     </main>
