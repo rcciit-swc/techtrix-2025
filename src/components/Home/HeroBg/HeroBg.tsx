@@ -12,7 +12,7 @@ const HeroBg = ({
         {/* Background */}
         <div className="inset-0">
           <Image
-            src="/assets/home/star.svg"
+            src="https://i.postimg.cc/d1PGRJfp/Mac-OS-X-Snow-Leopard.png"
             alt="Starfield Background"
             fill
             className="object-cover"

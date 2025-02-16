@@ -9,7 +9,7 @@ const EventLandingAsset = dynamic(() => import("@/components/Home/EventLanding/E
     <div className="w-screen h-full flex items-center justify-center">
       <Image
         alt="Loading..."
-        src="/assets/Home/board.png"
+        src="https://i.postimg.cc/qqZZmV0n/board.png"
         width={100}
         height={100}
         quality={100}
@@ -22,9 +22,9 @@ const EventHorizontal = () => {
   return (
 
       <div className="relative min-w-screen  flex flex-col items-center justify-center">
-        <Image src="/assets/home/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
+        <Image src="https://i.postimg.cc/8cC0BP8N/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
         <h1 className='text-7xl py-9 font-kagitingan'>Events</h1>
-          <Image src="/assets/home/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
+          <Image src="https://i.postimg.cc/8cC0BP8N/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
       
           <EventLandingAsset />
       <div className="absolute pb-40">

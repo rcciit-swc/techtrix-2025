@@ -8,7 +8,7 @@ const ComingSoon = () => {
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/assets/home/star.svg"
+          src="https://i.postimg.cc/d1PGRJfp/Mac-OS-X-Snow-Leopard.png"
           alt="Starfield Background"
           fill
           className="object-cover"

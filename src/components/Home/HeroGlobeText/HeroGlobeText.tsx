@@ -8,7 +8,7 @@ const SplineGlobe = dynamic(() => import('@/components/Home/SplineGlobe'), {
   loading: () => (
     <div className="flex justify-center items-center h-full w-fit mx-auto">
       <Image
-        src="/assets/Home/fallback1.png"
+        src="https://i.postimg.cc/W38ykqH5/fallback1.png"
         alt="Loading..."
         width={100}
         className="w-[600px] h-[600px] mx-auto flex justify-center items-center"

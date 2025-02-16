@@ -9,7 +9,7 @@ const EventLandingAsset = () => {
         <div className="w-screen h-full">
           <Image
             alt=""
-            src={"/assets/Home/board.png"}
+            src={"https://i.postimg.cc/qqZZmV0n/board.png"}
             width={100}
             height={100}
             quality={100}
