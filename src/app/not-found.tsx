@@ -1,11 +1,14 @@
-import React from 'react'
+import { HeroBg } from '@/components/Home/HeroBg';
+import React from 'react';
 
 const Page = () => {
   return (
-    <div>
-      
+    <div className="min-h-screen">
+      <div className="absolute inset-0 z-0">
+        <HeroBg showAssets={false} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
