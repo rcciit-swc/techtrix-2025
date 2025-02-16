@@ -7,19 +7,20 @@ import { useUser } from '@/lib/stores';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { supabase } from '@/utils/functions/supabase-client';
-import { logout } from '@/utils/functions/auth/logout';
 import { useEvents } from '@/lib/stores';
-import EventCard from '@/components/events/EventCard';
-import { EditProfileDialog } from '@/components/profile';
-import { EventDetailsDialog } from '@/components/profile';
-import type { events } from '@/lib/types';
-import { toast } from 'sonner';
-import ProfileSkeleton from './ProfileSkeleton';
-import { handleSaveChanges } from '@/utils/functions';
 
-export default function ProfilePage() {
+import { toast } from 'sonner';
+import { events } from '@/lib/types/events';
+import ProfileSkeleton from './ProfileSkeleton';
+import EventCard from './EventCard';
+import { handleSaveChanges } from '@/utils/functions';
+import { EventDetailsDialog } from './EventDetailDialog';
+import { EditProfileDialog } from './EditProfileDialog';
+
+export default function ProfileContent() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const { userData, userLoading, updateUserData, clearUserData } = useUser();
+  console.log(userData);
   const { eventsData, eventsLoading } = useEvents();
   const [profileImage, setProfileImage] = useState<string | undefined>(
     undefined

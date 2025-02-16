@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import SVGIcon from '../SVGIcon';
+import clsx from 'clsx';
+import { login } from '@/utils/functions/login';
 
 type Props = {
   className?: string;
@@ -47,7 +49,7 @@ const Navbar = ({ className }: Props) => {
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
             <NavLink href="/team">Team</NavLink>
-            <NavLink href="/login">Login</NavLink>
+            <NavLink asButton onClick={login}>Login</NavLink>
           </div>
           {/* Hamburger for Mobile */}
           <div className="md:hidden">
@@ -106,19 +108,33 @@ const Navbar = ({ className }: Props) => {
   );
 };
 
-type NavLinkProps = {
-  href: string;
+interface NavLinkProps {
+  href?: string;
   children: React.ReactNode;
-};
+  asButton?: boolean;
+  onClick?: () => void;
+}
+const NavLink = ({ href, children, asButton = false, onClick }: NavLinkProps) => {
+  const commonClasses =
+    "relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center";
 
-const NavLink = ({ href, children }: NavLinkProps) => {
+  const shimmerEffect = (
+    <span className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 hover:opacity-100 animate-glitter"></span>
+  );
+
+  if (asButton) {
+    return (
+      <button className={clsx(commonClasses)} onClick={onClick}>
+        <span className="relative z-10">{children}</span>
+        {shimmerEffect}
+      </button>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className="relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center"
-    >
+    <Link href={href!} className={clsx(commonClasses)}>
       <span className="relative z-10">{children}</span>
-      <span className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 hover:opacity-100 animate-glitter"></span>
+      {shimmerEffect}
     </Link>
   );
 };
