@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font Face Declarations */
 @font-face {
   font-family: "Kagitingan";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(../../public/fonts/Kagitingan-Bold.otf);
+  src: url("/fonts/Kagitingan-Bold.otf") format("opentype");
 }
 
 @font-face {
@@ -15,37 +16,15 @@
   font-style: normal;
   font-weight: 100;
   font-display: swap;
-  src: url(../../public/fonts/Alexandria-SemiBold.ttf);
+  src: url("/fonts/Alexandria-SemiBold.ttf") format("truetype");
 }
 
-body {
-  background-color: black;
-  color: white;
-}
-
-@keyframes glitter {
-  0% {
-    left: -100%;
-    opacity: 0;
-  }
-
-  50% {
-    left: 100%;
-    opacity: 1;
-  }
-
-  100% {
-    left: 100%;
-    opacity: 0;
-  }
-}
-
-.animate-glitter {
-  animation: glitter 1.5s ease-in-out infinite;
-}
-
+/* Global Styling */
 @layer base {
   :root {
+    --radius: 0.5rem;
+
+    /* Light Mode */
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -70,10 +49,10 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
   }
 
   .dark {
+    /* Dark Mode */
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
@@ -99,14 +78,85 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+    background-color: black;
+    color: white;
   }
+}
+
+/* Glitter Animation */
+@keyframes glitter {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  50% {
+    left: 100%;
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-glitter {
+  animation: glitter 1.5s ease-in-out infinite;
+}
+
+/* Global Scrollbar Styling */
+@layer base {
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #27272a; /* Approximate zinc-800 */
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #7e22ce; /* Purple-600 */
+    border-radius: 6px;
+    border: 3px solid #27272a;
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: #8b5cf6; /* Purple-500 */
+  }
+}
+
+/* Custom Scrollbar for Elements with .my-scrollbar */
+.my-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.my-scrollbar::-webkit-scrollbar-track {
+  background: #27272a;
+}
+
+.my-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #7e22ce;
+  border-radius: 6px;
+  border: 3px solid #27272a;
+}
+
+.my-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #8b5cf6;
+}
+
+/* Admin Button Styles */
+.adminButton {
+  background: radial-gradient(ellipse at center, #a383e6, #9158ff, #9158ff);
+  color: white;
+  transition: all 0.3s;
+}
+
+.adminButton:hover {
+  box-shadow: 0 4px 6px -1px rgba(63, 42, 103, 0.9);
 }
