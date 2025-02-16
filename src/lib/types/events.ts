@@ -75,7 +75,7 @@ export interface Link {
     setEventsData: () => void;
     postEvent: (eventsData: events) => void;
     getEventCategories: () => void;
-    // markEventAsRegistered: (eventId: string) => void;
+    markEventAsRegistered: (eventId: string) => void;
     updateRegisterStatus: (id: string, status: boolean) => void;
     updateEventsData: (id: string, data: any) => void;
     getApprovalDashboardData: (id?: string) => void;

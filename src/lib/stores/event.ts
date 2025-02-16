@@ -21,4 +21,10 @@ export const useEvents = create<EventsStoreType>((set) => ({
   updateEventsData: () => (id: string, data: any) =>
     updatePopulateEvents(set, id, data),
   getApprovalDashboardData: (id?: string) => populateApprovalDashboard(set, id),
+  markEventAsRegistered: (eventId: string) =>
+    set((state) => ({
+      eventsData: state.eventsData.map((event) =>
+        event.id === eventId ? { ...event, registered: true } : event
+      ),
+    })),
 }));
