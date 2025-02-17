@@ -2,9 +2,13 @@ import Spline from '@splinetool/react-spline/next';
 
 const SplineGlobe = () => {
   return (
-    <div className="w-full h-full min-h-[500px]">
-      <Spline scene="https://prod.spline.design/TYPEzqLpkaPu7jAe/scene.splinecode" />
-    </div>
+    <main className=" mx-auto flex justify-center  items-center">
+      {' '}
+      <Spline
+        scene="https://prod.spline.design/Qc5CbvazJ9TTIDsS/scene.splinecode" 
+      />
+
+    </main>
   );
 };
 
