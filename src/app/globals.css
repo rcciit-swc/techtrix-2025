@@ -110,3 +110,18 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+#glowPink {
+  color: #fff;
+  text-shadow: 
+    0 0 28px #ff4ea9;
+}
+
+
+#glowPurple {
+  color: #fff;
+  text-shadow: 
+    0 0 20px #DD00FF, 
+    0 0 80px #DD00FF;
+
+}
