@@ -3,6 +3,7 @@ import './globals.css';
 import { constructMetaData } from '@/utils/functions';
 import { Toaster } from 'sonner';
 import { Footer, Navbar } from '@/components/common';
+import ChatBot from '@/components/Chatbot/bot';
 
 export const metadata: Metadata = constructMetaData({
   title: 'Techtrix 2025',
@@ -21,7 +22,7 @@ export default function RootLayout({
         {children}
 
         <Toaster position="bottom-right" richColors duration={5000} />
-
+        <ChatBot />
         <Footer />
       </body>
     </html>
