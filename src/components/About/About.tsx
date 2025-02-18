@@ -1,18 +1,26 @@
-
-import Spline from "@splinetool/react-spline/next"
-import SVGIcon from "../SVGIcon"
+import Spline from '@splinetool/react-spline/next';
+import SVGIcon from '../SVGIcon';
 
 export default function About() {
   return (
-    <main className="relative h-auto w-full bg-black overflow-hidden">
+    <main className="relative h-fit w-full bg-black overflow-hidden">
       <div className="absolute left-0 top-0 w-full h-full pointer-events-none">
-        <Spline className="w-full h-full opacity-65" scene="https://prod.spline.design/YwsksritFlzusrK3/scene.splinecode" />
+        <Spline
+          className="w-full h-[50%] opacity-65"
+          scene="https://prod.spline.design/YwsksritFlzusrK3/scene.splinecode"
+        />
       </div>
 
       <div className="relative z-10 min-h-screen container mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl font-bold font-kagitingan text-white text-center pt-12">ABOUT</h1>
+        <h1 className="text-4xl md:text-7xl font-bold font-kagitingan text-white text-center pt-12">
+          ABOUT
+        </h1>
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className={`hidden w-full h-[600px] lg:w-1/2 lg:flex justify-center`}>
+            {/* <Spline
+              className="relative w-full h-full"
+              scene="https://prod.spline.design/ipux7BeSvmPX34R1/scene.splinecode"
+            /> */}
             <Spline
               className="relative w-full min-h-full"
               scene="https://prod.spline.design/zhH6lHBVbRtifsW7/scene.splinecode"
@@ -20,8 +28,8 @@ export default function About() {
           </div>
 
 
-          <div className="lg:w-1/2 w-full text-justify">
-            <p className="text-white/90 text-lg md:text-xl font-semibold leading-relaxed font-alexandria">
+          <div className="lg:w-1/2 w-full text-center">
+            <p className="text-white/90 text-lg md:text-2xl font-semibold leading-relaxed font-alexandria">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in arcu suscipit,
               ultricies eros at, lacinia orci. Cras ultricies tristique finibus. Vestibulum
               sollicitudin elementum urna, eget pharetra dui dapibus nec. Ut gravida, enim eget
@@ -38,5 +46,5 @@ export default function About() {
         </div>
       </div>
     </main>
-  )
+  );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { constructMetaData } from '@/utils/functions';
+import { Toaster } from 'sonner';
 import { Footer, Navbar } from '@/components/common';
 
 export const metadata: Metadata = constructMetaData({
@@ -18,6 +19,9 @@ export default function RootLayout({
       <body className={`$antialiased`}>
         <Navbar />
         {children}
+
+        <Toaster position="bottom-right" richColors duration={5000} />
+
         <Footer />
       </body>
     </html>
