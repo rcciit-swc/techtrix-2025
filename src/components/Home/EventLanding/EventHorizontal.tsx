@@ -12,10 +12,10 @@ const EventHorizontal = () => {
           <Image src="/assets/home/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
       
       <div>
-      <Spline
+      {/* <Spline
         scene="https://prod.spline.design/KEELmKSXO3Evqb00/scene.splinecode" 
         className='object-cover'
-      />
+      /> */}
         {/* <SVGIcon iconName="events" className='w-[100%] object-cover' /> */}
       </div>
       <div className="absolute pb-40">

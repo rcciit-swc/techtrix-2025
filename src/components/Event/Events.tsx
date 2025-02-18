@@ -1,7 +1,23 @@
 "use client"
-import Spline from "@splinetool/react-spline"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { getEventCategories } from "@/utils/functions"
+
+type CategoryType = {
+  id: string;
+  name: string;
+};
 
 const Events = () => {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  useEffect(() => {
+    const getFestEvents = async () => {
+      const data = await getEventCategories();
+      console.log(data);
+    }
+    getFestEvents();
+  }, [])
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-[#0a0a1a]">
       <div className="absolute w-full h-full top-0 left-0 z-0">
@@ -16,29 +32,26 @@ const Events = () => {
             minHeight: "100%",
           }}
         >
-          <Spline scene="https://prod.spline.design/Xv3a7dgRxqGmUiAr/scene.splinecode" />
+          {/* <Spline scene="https://prod.spline.design/Xv3a7dgRxqGmUiAr/scene.splinecode" /> */}
         </div>
       </div>
 
       {/* Content layer */}
       <div className="relative z-10 w-full h-full px-4 py-6">
         <div className="flex justify-between items-center mt-20 px-4 md:px-8">
-          <h2 className="text-white font-mono text-lg md:text-xl">OUT OF THE BOX</h2>
-          <h2 className="text-white font-mono text-lg md:text-xl">AUTOMATA</h2>
+          <Link href={`/categories`} className="text-white font-mono text-lg md:text-xl">OUT OF THE BOX</Link>
+          <Link href={`/categories`} className="text-white font-mono text-lg md:text-xl">AUTOMATA</Link>
         </div>
         <div className="flex flex-col items-center justify-center h-[calc(100%-6rem)]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mb-8 w-full max-w-4xl mx-auto px-4">
             <div className="text-center">
-              <div className="text-white font-mono text-xl md:text-2xl mb-2">GAMING</div>
-              
+              <Link href={`/categories`} className="text-white font-mono text-xl md:text-2xl mb-2">GAMING</Link>
             </div>
             <div className="text-center">
-              <div className="text-white font-mono text-xl md:text-2xl mb-2">ROBOTICS</div>
-             
+              <Link href={`/categories`} className="text-white font-mono text-xl md:text-2xl mb-2">ROBOTICS</Link>
             </div>
             <div className="text-center">
-              <div className="text-white font-mono text-xl md:text-2xl mb-2">FLAGSHIP</div>
-              
+              <Link href={`/categories`} className="text-white font-mono text-xl md:text-2xl mb-2">FLAGSHIP</Link>
             </div>
           </div>
           <div className="relative w-32 h-32 md:w-48 md:h-48 mb-8">
