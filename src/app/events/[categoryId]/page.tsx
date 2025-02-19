@@ -1,17 +1,14 @@
+"use client";
 import React from "react";
-import EventLayout from "../layout";
-import EventDetails from "@/components/Event/EventDetails";
 
-const Events = ({
-  params,
-}: {
-  params: { categoryId: string };
-}) => {
+import dynamic from "next/dynamic";
+
+const CarouselCards = dynamic(() => import("@/components/Event/CarouselCards"), { ssr: false });
+
+const Events = ({ params }: { params: { categoryId: string } }) => {
 
   return (
-    <EventLayout categoryId={params.categoryId}>
-      <EventDetails categoryId={params.categoryId} />
-    </EventLayout>
+    <CarouselCards />
   );
 };
 

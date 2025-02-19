@@ -18,7 +18,9 @@ const Page = () => {
         </div>
       </div>
       <About />
-      <EventLanding />
+      <div className="relative min-h-screen flex items-center justify-center">
+        <EventLanding />
+      </div>
     </div>
   );
 };
