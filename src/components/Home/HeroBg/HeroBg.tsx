@@ -12,13 +12,14 @@ const HeroBg = ({
         {/* Background */}
         <div className="inset-0">
           <Image
-            src="/assets/home/star.svg"
+            src="/assets/home/star2.svg"
             alt="Starfield Background"
             fill
             className="object-cover"
             quality={100}
           />
           <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" />
+
         </div>
         {showAssets && <div className="absolute top-0 left-0 h-full flex items-center">
           <SVGIcon

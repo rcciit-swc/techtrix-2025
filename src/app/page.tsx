@@ -4,6 +4,7 @@ import React from 'react';
 import { HeroBg } from '@/components/Home/HeroBg';
 import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
 import { EventLanding } from '@/components/Home/EventLanding';
+import Image from 'next/image';
 
 const Page = () => {
   return (
@@ -16,7 +17,9 @@ const Page = () => {
         <div className="relative z-10 flex justify-center items-center h-full">
           <HeroGlobeText />
         </div>
+        
       </div>
+
       <About />
       <EventLanding />
     </div>
