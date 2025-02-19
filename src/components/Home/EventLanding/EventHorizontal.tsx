@@ -1,5 +1,4 @@
 import React from 'react';
-import Spline from '@splinetool/react-spline';
 import SVGIcon from '@/components/SVGIcon';
 import Image from 'next/image';
 
@@ -11,13 +10,6 @@ const EventHorizontal = () => {
         <h1 className='text-7xl py-9 font-kagitingan'>Events</h1>
           <Image src="/assets/home/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
       
-      <div>
-      <Spline
-        scene="https://prod.spline.design/KEELmKSXO3Evqb00/scene.splinecode" 
-        className='object-cover'
-      />
-        {/* <SVGIcon iconName="events" className='w-[100%] object-cover' /> */}
-      </div>
       <div className="absolute pb-40">
         <div className="flex flex-row space-x-[55rem] pb-37">
           <div className="text-2xl font-kagitingan text-white">

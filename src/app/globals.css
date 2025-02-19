@@ -156,6 +156,10 @@
   color: white;
   transition: all 0.3s;
 }
+video {
+  will-change: transform;
+  animation-timing-function: linear;
+}
 
 .adminButton:hover {
   box-shadow: 0 4px 6px -1px rgba(63, 42, 103, 0.9);

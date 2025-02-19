@@ -1,5 +1,4 @@
 import React from 'react';
-import Spline from '@splinetool/react-spline';
 import SVGIcon from '@/components/SVGIcon';
 import EventHorizontal from './EventHorizontal';
 import EventVertical from './EventVertical';
