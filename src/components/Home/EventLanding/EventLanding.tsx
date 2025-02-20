@@ -1,10 +1,21 @@
 "use client"
 import { LayoutGrid } from "@/components/ui/layout-grid"
+import Image from "next/image"
 
 export default function LayoutGridDemo() {
   return (
     <div className="h-screen py-20 w-full flex flex-col items-center justify-center">
-      <h1 className="font-kagitingan text-5xl text-white">EVENTS</h1>
+            <div className="inset-0">
+              <Image
+                src="/assets/home/star2.svg"
+                alt="Starfield Background"
+                fill
+                className="object-cover"
+                quality={100}
+              />
+              {/* <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" /> */}
+            </div>
+      <h1 className="font-kagitingan text-5xl text-white z-[10]">EVENTS</h1>
       <LayoutGrid cards={cards} />
     </div>
   )

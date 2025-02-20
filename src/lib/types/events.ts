@@ -66,6 +66,8 @@ export interface Link {
     eventCategories: eventCategories[];
     eventCategoriesLoading: boolean;
     eventsData: events[];
+    eventData: any;
+    eventDetailsLoading: boolean;
     eventsLoading: boolean;
     approvalDashboardData: EventData[];
     approvalDashboardLoading: boolean;
@@ -75,6 +77,7 @@ export interface Link {
     setEventsData: () => void;
     postEvent: (eventsData: events) => void;
     getEventCategories: () => void;
+    getEventByID: (id: string) => void;
     markEventAsRegistered: (eventId: string) => void;
     updateRegisterStatus: (id: string, status: boolean) => void;
     updateEventsData: (id: string, data: any) => void;

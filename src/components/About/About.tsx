@@ -13,15 +13,15 @@ export default function About() {
           quality={100}
         />
       </div>
-      <div className="inset-0">
+      <div className="inset-0 bg-repeat-y">
         <Image
           src="/assets/home/star2.svg"
           alt="Starfield Background"
           fill
-          className="object-cover"
+          className="object-cover bg-repeat-y"
           quality={100}
         />
-        <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" />
+        {/* <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" /> */}
       </div>
       <div className="relative z-10 min-h-screen container mx-auto px-6">
         <h1 className="text-4xl md:text-7xl font-bold font-kagitingan text-white text-center pt-12">
