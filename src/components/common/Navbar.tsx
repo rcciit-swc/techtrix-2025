@@ -35,7 +35,7 @@ export const SignInButton = () => {
       }
     };
     readUserSession();
-  }, [userData]);
+  }, []);
 
   if (userLoading) {
     return <Skeleton className="w-10 h-10 rounded-full bg-gray-600" />;

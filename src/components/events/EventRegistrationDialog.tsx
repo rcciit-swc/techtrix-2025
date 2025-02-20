@@ -144,7 +144,6 @@ export function SoloEventRegistration({
   };
 
   const registerForSWCPaid = async () => {
-    console.log(soloLeadData);
     // Combine the registration data.
     const registrationParams = {
       userId: userData?.id!, // non-null assertion; adjust if necessary

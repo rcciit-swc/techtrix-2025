@@ -31,7 +31,6 @@ const ChatBot = () => {
       );
 
       const data = await response.json();
-      console.log(data);
       const botMessage = { name: 'TechFest Bot', message: data.response };
       setMessages((prevMessages) => [...prevMessages, botMessage] as any);
     } catch (error) {

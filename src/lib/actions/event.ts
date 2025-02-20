@@ -71,7 +71,6 @@ export const populateEventDetailsByID = async (set: any, id: string) => {
   try {
     set({ eventsLoading: true });
     const eventData = await getEventByID(id);
-    console.log(eventData);
     if (!eventData) {
       set({ eventData: {}, eventDetailsLoading: false });
     } else {

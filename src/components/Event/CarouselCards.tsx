@@ -19,13 +19,17 @@ const slides: string[] = [
 
 const CarouselCards = () => {
   return (
-    <section className="bg-black min-h-screen flex flex-col items-center justify-center p-4 gap-10">
+    <section className="bg-black min-h-screen w-full flex flex-col items-center justify-center p-4 gap-10">
       <h1 className="font-kagitingan text-5xl text-white">FLAGSHIP</h1>
-      <div className="w-full max-w-4xl">
+      <div className="w-full">
         <Swiper
           effect="coverflow"
           grabCursor={true}
           loop={true}
+          autoplay={true}
+          pagination={{
+            clickable: true,
+          }}
           centeredSlides={true}
           coverflowEffect={{
             rotate: 50,
@@ -38,10 +42,10 @@ const CarouselCards = () => {
             0: { slidesPerView: 1, spaceBetween: 10 },
             640: { slidesPerView: 1, spaceBetween: 20 },
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
           }}
           modules={[EffectCoverflow, Pagination]}
-          className="mySwiper"
+          className="mySwiper w-full"
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index} className="bg-center bg-cover rounded-lg">

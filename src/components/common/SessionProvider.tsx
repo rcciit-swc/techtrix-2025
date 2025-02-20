@@ -8,7 +8,13 @@ const SessionProvider = () => {
   const setUser = useUser((state) => state.setUserData);
   const setEvents = useEvents((state) => state.setEventsData);
   useEffect(() => {
-    setUser();
+    const readUserSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data?.session?.user.user_metadata?.avatar_url) {
+        setUser();
+      }
+    };
+    readUserSession();
     setEvents();
   }, [setUser]);
 

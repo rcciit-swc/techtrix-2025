@@ -17,7 +17,6 @@ export const getEventCategories = async () => {
 };
 
 export async function createEvent(event: events) {
-  console.log(event);
   const { data, error } = await supabase.from('events').insert(event);
 
   if (error) throw error;
@@ -109,7 +108,6 @@ export const getApprovalDashboardData = async (
       p_fest_id: id, // Passing the fest_id parameter
     });
 
-    console.log(data);
     if (error) {
       console.error('Error fetching event table data:', error);
       toast.error('Error fetching event table data');

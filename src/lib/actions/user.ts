@@ -4,9 +4,11 @@ import { updateUserData } from '@/utils/functions';
 export const populateUserDetails = async (set: any) => {
   set({ userLoading: true });
   const data = await getUserData();
-  const isSWCPaid = await getSWCData(data.college_roll);
-  console.log(isSWCPaid);
-  set({ userData: data, swcStatus: isSWCPaid, userLoading: false });
+  if(data && data?.college_roll){
+    const isSWCPaid = await getSWCData(data.college_roll);
+    set({ userData: data, swcStatus: isSWCPaid, userLoading: false });
+  }
+  set({ userData: data, userLoading: false });
 };
 
 export const update_and_populate = async (set: any, data: any) => {

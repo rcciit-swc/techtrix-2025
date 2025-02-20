@@ -12,6 +12,5 @@ export const login = async () => {
     console.error('Login Error:', error);
     return null;
   }
-  console.log('data is ', data);
   return data;
 };

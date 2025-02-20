@@ -662,7 +662,7 @@ export function TeamEventRegistration({
                   type="file"
                   {...registerPayment('paymentScreenshot')}
                   className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
-                  accept="image/*"
+                  // accept="image/*"
                 />
                 {paymentErrors.paymentScreenshot && (
                   <p className="text-red-500 text-sm font-alexandria tracking-wider">

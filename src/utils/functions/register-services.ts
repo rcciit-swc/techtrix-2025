@@ -6,13 +6,9 @@ export async function uploadPaymentScreenshot(file: File, eventName: string) {
 
   const fileName = `${new Date()}-${file.name}`;
   const filePath = `techtrix-2025/${eventName}/${fileName}`;
-
-  console.log('Uploading file:', file);
   const { data, error } = await supabase.storage
     .from(bucket)
     .upload(filePath, file);
-
-  console.log(data);
 
   if (error) {
     console.error('Error uploading file:', error);
@@ -20,7 +16,7 @@ export async function uploadPaymentScreenshot(file: File, eventName: string) {
   }
 
   // Get the public URL of the uploaded file.
-  const publicUrl = supabase.storage.from(bucket).getPublicUrl(filePath)
+  const publicUrl = await supabase.storage.from(bucket).getPublicUrl(filePath)
     .data?.publicUrl;
 
   if (!publicUrl) {
@@ -93,7 +89,6 @@ export async function registerTeamWithParticipants(
   params: RegisterTeamParams,
   isSWCPaid = false
 ) {
-  console.log('Registering team with participants:', params);
 
   // Validate required fields. If any validation fails, throw immediately.
   const validations = [
@@ -171,7 +166,6 @@ export async function registerTeamWithParticipants(
     throw new Error(error.message);
   } else {
     toast.success('Registration successful!');
-    console.log('Team registered successfully:', data);
     return data;
   }
 }
