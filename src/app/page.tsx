@@ -4,7 +4,6 @@ import React from 'react';
 import { HeroBg } from '@/components/Home/HeroBg';
 import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
 import { EventLanding } from '@/components/Home/EventLanding';
-import Sponsorship from '@/components/Sponsorship';
 
 const Page = () => {
   return (
@@ -20,7 +19,6 @@ const Page = () => {
       </div>*/}
       <About />
       {/* <EventLanding /> */}
-      <Sponsorship />
     </div>
   );
 };
