@@ -17,9 +17,7 @@ const Page = () => {
         <div className="relative z-10 flex justify-center items-center h-full">
           <HeroGlobeText />
         </div>
-        
       </div>
-
       <About />
       <div className="relative min-h-screen flex items-center justify-center">
         <EventLanding />
