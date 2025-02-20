@@ -1,0 +1,137 @@
+/* EventCard.module.css */
+.card {
+    --d: 700ms;
+    --e: cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+  }
+  
+  .cardContent {
+    transition: transform var(--d) var(--e);
+  }
+  
+  .cardBackground {
+    transition: transform calc(var(--d) * 1.5) var(--e);
+  }
+  
+  .content {
+    transform: translateY(100%);
+    transition: transform var(--d) var(--e);
+    z-index: 1;
+  }
+  
+  .card::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    pointer-events: none;
+    background-image: linear-gradient(
+      to bottom,
+      hsla(0, 0%, 0%, 0) 0%,
+      hsla(0, 0%, 0%, 0.009) 11.7%,
+      hsla(0, 0%, 0%, 0.034) 22.1%,
+      hsla(0, 0%, 0%, 0.072) 31.2%,
+      hsla(0, 0%, 0%, 0.123) 39.4%,
+      hsla(0, 0%, 0%, 0.182) 46.6%,
+      hsla(0, 0%, 0%, 0.249) 53.1%,
+      hsla(0, 0%, 0%, 0.32) 58.9%,
+      hsla(0, 0%, 0%, 0.394) 64.3%,
+      hsla(0, 0%, 0%, 0.468) 69.3%,
+      hsla(0, 0%, 0%, 0.54) 74.1%,
+      hsla(0, 0%, 0%, 0.607) 78.8%,
+      hsla(0, 0%, 0%, 0.668) 83.6%,
+      hsla(0, 0%, 0%, 0.721) 88.7%,
+      hsla(0, 0%, 0%, 0.762) 94.1%,
+      hsla(0, 0%, 0%, 0.79) 100%
+    );
+    transform: translateY(-50%);
+    transition: transform calc(var(--d) * 2) var(--e);
+  }
+  
+  .registerButton {
+    background: radial-gradient(ellipse at center, #a383e6, #9158ff, #9158ff);
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity var(--d) var(--e),
+      transform var(--d) var(--e);
+  }
+  
+  /* Mobile styles */
+  .content.active {
+    transform: translateY(0);
+  }
+  
+  .content.active .registerButton {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Desktop styles */
+  @media (hover: hover) and (min-width: 600px) {
+    .content {
+      transform: translateY(calc(100% - 4.5rem));
+    }
+  
+    .card::after {
+      transform: translateY(0);
+    }
+  
+    .content > *:not(:first-child) {
+      opacity: 0;
+      transform: translateY(1rem);
+      transition:
+        transform var(--d) var(--e),
+        opacity var(--d) var(--e);
+    }
+  
+    .card:hover .cardBackground,
+    .card:focus-within .cardBackground {
+      transform: translateY(-4%);
+    }
+  
+    .card:hover::after,
+    .card:focus-within::after {
+      transform: translateY(-50%);
+    }
+  
+    .card:hover .content,
+    .card:focus-within .content {
+      transform: translateY(0);
+    }
+  
+    .card:hover .content > *:not(:first-child),
+    .card:focus-within .content > *:not(:first-child) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: calc(var(--d) / 8);
+    }
+  
+    .card:hover .registerButton,
+    .card:focus-within .registerButton {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .card:focus-within::after,
+    .card:focus-within .content,
+    .card:focus-within .content > *:not(:first-child) {
+      transition-duration: 0s;
+    }
+  }
+  
+  /* Reset mobile active state on desktop */
+  @media (hover: hover) and (min-width: 600px) {
+    .content.active {
+      transform: translateY(calc(100% - 4.5rem));
+    }
+  
+    .content.active .registerButton {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+  }
+  

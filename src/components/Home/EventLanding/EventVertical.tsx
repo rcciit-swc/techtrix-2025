@@ -1,16 +1,9 @@
 import React from 'react';
-import Spline from '@splinetool/react-spline';
 import SVGIcon from '@/components/SVGIcon';
 
 const EventVertical = () => {
   return (
     <div className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center">
-      <div className="flex items-center justify-center">
-        <Spline
-          className="w-full rotate-90"
-          scene="https://prod.spline.design/Xv3a7dgRxqGmUiAr/scene.splinecode"
-        />
-      </div>
       <div className="absolute flex flex-col gap-28 w-full px-10">
         <div className="text-2xl font-kagitingan text-white self-start">OUT OF THE BOX</div>
         <div className="text-2xl font-kagitingan text-white self-end">AUTOMATA</div>

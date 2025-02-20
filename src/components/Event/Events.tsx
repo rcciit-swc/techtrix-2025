@@ -1,23 +1,9 @@
 "use client"
-import Spline from "@splinetool/react-spline"
 
 const Events = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-[#0a0a1a]">
       <div className="absolute w-full h-full top-0 left-0 z-0">
-        <div
-          className="w-full h-full"
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            minWidth: "100%",
-            minHeight: "100%",
-          }}
-        >
-          <Spline scene="https://prod.spline.design/Xv3a7dgRxqGmUiAr/scene.splinecode" />
-        </div>
       </div>
 
       {/* Content layer */}
