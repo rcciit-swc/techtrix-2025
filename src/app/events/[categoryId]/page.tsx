@@ -8,7 +8,11 @@ const CarouselCards = dynamic(
 );
 
 const Events = ({ params }: { params: { categoryId: string } }) => {
-  return <CarouselCards />;
+  return (
+    <div className="flex justify-center items-center bg-black">
+      <CarouselCards />
+    </div>
+  );
 };
 
 export default Events;

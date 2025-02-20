@@ -1,21 +1,21 @@
-"use client"
+'use client';
 
-import { Swiper, SwiperSlide } from "swiper/react"
-import { EffectCoverflow, Pagination } from "swiper/modules"
-import "swiper/css"
-import "swiper/css/effect-coverflow"
-import "swiper/css/pagination"
-import Image from "next/image"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import Image from 'next/image';
 
 const slides: string[] = [
-  "/assets/Events/sampleimage.jpg",
-  "/assets/Events/sampleimage.jpg",
-  "/assets/Events/sampleimage.jpg",
-  "/assets/Events/sampleimage.jpg",
-  "/assets/Events/sampleimage.jpg",
-  "/assets/Events/sampleimage.jpg",
-  "/assets/Events/sampleimage.jpg",
-]
+  '/assets/Events/sampleimage.jpg',
+  '/assets/Events/sampleimage.jpg',
+  '/assets/Events/sampleimage.jpg',
+  '/assets/Events/sampleimage.jpg',
+  '/assets/Events/sampleimage.jpg',
+  '/assets/Events/sampleimage.jpg',
+  '/assets/Events/sampleimage.jpg',
+];
 
 const CarouselCards = () => {
   return (
@@ -40,26 +40,26 @@ const CarouselCards = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          modules={[EffectCoverflow, Pagination]}
+          modules={[EffectCoverflow]}
           className="mySwiper"
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index} className="bg-center bg-cover rounded-lg">
-              <div className="relative w-full h-64 md:h-80">
-                <Image
-                  src={slide || "/placeholder.svg"}
-                  alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover rounded-lg"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-            </SwiperSlide>
+            <div className="relative w-full h-64 md:h-80 rounded-lg shadow-lg">
+              <Image
+                src={slide || "/placeholder.svg"}
+                alt={`Slide ${index + 1}`}
+                fill
+                className="object-cover rounded-lg"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
+          </SwiperSlide>          
           ))}
         </Swiper>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CarouselCards
+export default CarouselCards;
