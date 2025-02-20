@@ -63,28 +63,38 @@ export function TeamEventRegistration({
     email: z.string().email('Invalid email'),
   });
   type TeamMemberFormValues = z.infer<typeof teamMemberSchema>;
+ 
+  // const usePaymentSchema = (isPaid: boolean) => {
+  //   return useMemo(() => {
+  //     return z.object({
+  //       transactionId: swcStatus
+  //         ? z.string().min(1, 'Transaction ID is required')
+  //         : z.string().optional(),
 
-  const usePaymentSchema = (isPaid: boolean) => {
-    return useMemo(() => {
-      return z.object({
-        transactionId: swcStatus
-          ? z.string().min(1, 'Transaction ID is required')
-          : z.string().optional(),
-
-        paymentScreenshot: swcStatus
-          ? z
-              .any()
-              .refine(
-                (files) => files && files.length > 0,
-                'Payment screenshot is required'
-              )
-              .transform((files) => files[0])
-          : z.any().optional(),
-      });
-    }, [swcStatus]);
-  };
+  //       paymentScreenshot: swcStatus
+  //         ? z
+  //             .any()
+  //             .refine(
+  //               (files) => files && files.length > 0,
+  //               'Payment screenshot is required'
+  //             )
+  //             .transform((files) => files[0])
+  //         : z.any().optional(),
+  //     });
+  //   }, [swcStatus]);
+  // };
   // Zod schema for Payment Details (Step 3)
-  const paymentSchema = usePaymentSchema(swcStatus);
+  const paymentSchema = z.object({
+    transactionId:  z.string().min(1, 'Transaction ID is required'),
+
+    paymentScreenshot:  z
+          .any()
+          .refine(
+            (files) => files && files.length > 0,
+            'Payment screenshot is required'
+          )
+          .transform((files) => files[0]),
+  });
   type PaymentFormValues = z.infer<typeof paymentSchema>;
   // step: 1 = Team Lead, 2 = Manage Team Members, 3 = Payment Details
   const [step, setStep] = useState(1);
@@ -187,6 +197,7 @@ export function TeamEventRegistration({
 
   const onPaymentSubmit = async (data: PaymentFormValues) => {
     setIsRegistering(true);
+    console.log(data);
     let screenshotUrl = '';
     if (!swcStatus) {
       try {

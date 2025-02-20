@@ -16,12 +16,23 @@ const EventDetails = ({
   eventId: string;
   eventData: any;
 }) => {
-  const { eventsLoading } = useEvents();
+
+  const { eventsLoading, eventsData } = useEvents();
+  const [isRegistered, setIsRegistered] = useState(false);
   const [isSoloOpen, setIsSoloOpen] = useState(false);
   const [isTeamOpen, setIsTeamOpen] = useState(false);
   const { userData, userLoading } = useUser();
   const router = useRouter();
 
+
+  useEffect(()=>{
+    if(eventsData){
+      const event = eventsData.find((event:any)=>event.id===eventId)
+      if(event){
+        setIsRegistered(event.registered || false)
+      }
+    }
+  },[eventsData])
   const handleRegister = async () => {
     if (userLoading) {
       toast.info('Please wait while we check your login status');
@@ -100,9 +111,10 @@ const EventDetails = ({
         <div className="place-self-center">
           <button
             onClick={handleRegister}
+            disabled={isRegistered}
             className="mt-10 px-10 py-3 font-alexandria rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
           >
-            Register Now
+            {isRegistered ?  "Registered" : "Register Now"}
           </button>
         </div>
 
