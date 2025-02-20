@@ -156,10 +156,6 @@
   color: white;
   transition: all 0.3s;
 }
-video {
-  will-change: transform;
-  animation-timing-function: linear;
-}
 
 .adminButton:hover {
   box-shadow: 0 4px 6px -1px rgba(63, 42, 103, 0.9);
@@ -179,4 +175,12 @@ video {
     0 0 20px #DD00FF, 
     0 0 80px #DD00FF;
 
+}
+
+.card {
+  backdrop-filter: blur(3px) saturate(132%);
+  -webkit-backdrop-filter: blur(3px) saturate(132%);
+  background-color: rgba(17, 25, 40, 0.59);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }

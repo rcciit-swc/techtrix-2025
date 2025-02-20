@@ -1,4 +1,4 @@
-import { createEvent, getApprovalDashboardData, getEventCategories, getEventsData, updateEventById, updateRegisterStatusDb } from '@/utils/functions';
+import { createEvent, getApprovalDashboardData, getEventByID, getEventCategories, getEventsData, updateEventById, updateRegisterStatusDb } from '@/utils/functions';
 import { events } from '../types/events';
 
 
@@ -65,5 +65,22 @@ export const updateRegisterStatus = async (
     }
     catch(error: any){
         console.log(error.message);
+    }
+  };
+
+  export const populateEventDetailsByID = async (set: any, id: string) => {
+    try{
+      set({ eventsLoading: true });
+      const eventData = await getEventByID(id);
+      console.log(eventData);
+      if(!eventData){
+        set({ eventData: {}, eventDetailsLoading: false });
+      }
+      else{
+        set({ eventData, eventDetailsLoading: false });
+      }
+    }
+    catch(error: any){
+        set({ eventData: {}, eventDetailsLoading: false });
     }
   };

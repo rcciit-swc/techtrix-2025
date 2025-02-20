@@ -20,7 +20,6 @@ import { EditProfileDialog } from './EditProfileDialog';
 export default function ProfileContent() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const { userData, userLoading, updateUserData, clearUserData } = useUser();
-  console.log(userData);
   const { eventsData, eventsLoading } = useEvents();
   const [profileImage, setProfileImage] = useState<string | undefined>(
     undefined
@@ -66,7 +65,8 @@ export default function ProfileContent() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    localStorage.removeItem('sb-session'); // Adjust based on storage mechanism
+    localStorage.removeItem('sb-session'); 
+    router.push('/');
     clearUserData();
   };
 
@@ -91,7 +91,7 @@ export default function ProfileContent() {
   return (
     <div className="min-h-screen mt-32">
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <div className="bg-card rounded-xl bg-purple-800/30 backdrop-blur-lg p-8 shadow-lg border border-white/20">
+        <div className="card rounded-xl p-8 shadow-lg border border-white/20">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             <Avatar className="w-32 h-32">
               {!imageLoaded && (
@@ -116,12 +116,14 @@ export default function ProfileContent() {
               </div>
               <div className="flex gap-4">
                 <Button
+                  className='text-black'
                   variant="outline"
                   onClick={() => setIsEditModalOpen(true)}
                 >
                   Edit Profile
                 </Button>
-                <Button variant="outline" onClick={handleLogout}>
+                <Button                   className='text-black'
+ variant="outline" onClick={handleLogout}>
                   Logout
                 </Button>
               </div>

@@ -38,17 +38,22 @@
 import React from "react";
 import EventLayout from "../../layout";
 import EventDetails from "@/components/Event/EventDetails";
+import { getEventByID } from "@/utils/functions";
 
-const Events = ({
+const Events = async({
   params,
 }: {
-  params: { categoryId: string };
+  params: { categoryId: string, eventId: string };
 }) => {
-
+  const getData = async () => {
+    const data = await getEventByID(params.eventId);
+    return data;
+  };
+  const eventData = await getData();
   return (
-    <EventLayout categoryId={params.categoryId}>
-      <EventDetails categoryId={params.categoryId} />
-    </EventLayout>
+    // <EventLayout categoryId={params.categoryId} eventId={params.eventId}>
+      <EventDetails categoryId={params.categoryId} eventId={params.eventId} eventData={eventData} />
+    // </EventLayout>
   );
 };
 

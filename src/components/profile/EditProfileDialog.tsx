@@ -44,11 +44,10 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
         <form
           onSubmit={async (e) => {
             e.preventDefault();
-            // Pass the form data to the onSave handler
             await onSave(new FormData(e.currentTarget));
           }}
         >
-          <div className="grid gap-6 py-4">
+          <div className="grid gap-6 py-4 max-h-[60vh] pr-2 overflow-y-auto">
             <div className="flex justify-center">
               <Avatar className="w-24 h-24 border-2 border-violet-500">
                 <AvatarImage
@@ -93,12 +92,12 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                   >
                     Male
                   </SelectItem>
-                  <SelectItem
+                  {/* <SelectItem
                     value="other"
                     className="text-white hover:bg-[#8B5CF6]/20"
                   >
                     Other
-                  </SelectItem>
+                  </SelectItem> */}
                 </SelectContent>
               </Select>
             </div>
@@ -126,6 +125,58 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 defaultValue={userData?.phone || ''}
                 className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
                 placeholder="Enter your phone number"
+              />
+            </div>
+            <div className="grid gap-2">
+              <label htmlFor="phone" className="text-white">
+                College
+              </label>
+              <Input
+                id="college"
+                name="college"
+                type="text"
+                defaultValue={userData?.college || ''}
+                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                placeholder="Enter College"
+              />
+            </div>
+            <div className="grid gap-2">
+              <label htmlFor="phone" className="text-white">
+                Course
+              </label>
+              <Input
+                id="course"
+                name="course"
+                type="text"
+                defaultValue={userData?.course || ''}
+                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                placeholder="Enter Course"
+              />
+            </div>
+            <div className="grid gap-2">
+              <label htmlFor="phone" className="text-white">
+                Stream
+              </label>
+              <Input
+                id="stream"
+                name="stream"
+                type="text"
+                defaultValue={userData?.stream || ''}
+                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                placeholder="Enter Stream"
+              />
+            </div>
+            <div className="grid gap-2">
+              <label htmlFor="phone" className="text-white">
+                College Roll
+              </label>
+              <Input
+                id="college_roll"
+                name="college_roll"
+                type="text"
+                defaultValue={userData?.college_roll || ''}
+                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                placeholder="Enter College Roll"
               />
             </div>
           </div>

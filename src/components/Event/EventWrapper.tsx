@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 type EventWrapperProps = {
   children: React.ReactNode;
   categoryId: string; // Ensure this is defined
+  eventId: string; // Ensure this is defined
 };
 
 // const arrayBg = [
@@ -29,7 +30,7 @@ type EventWrapperProps = {
 //   },
 // ];
 
-const EventWrapper = ({ children, categoryId }: EventWrapperProps) => {
+const EventWrapper = ({ children, categoryId, eventId }: EventWrapperProps) => {
   // const [splineUrl, setSplineUrl] = useState<string | null>(null);
 
   // useEffect(() => {

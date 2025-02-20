@@ -1,6 +1,8 @@
-import React from 'react';
+'use client';
+import { useEvents } from '@/lib/stores';
+import React, { useEffect } from 'react';
 
-const EventDetails = ({categoryId}: {categoryId: string}) => {
+const EventDetails = ({categoryId, eventId, eventData}: {categoryId: string, eventId: string, eventData:any}) => {
   return (
     <div className="relative max-w-5xl mx-auto p-6 pt-44">
       <h1
@@ -21,16 +23,18 @@ const EventDetails = ({categoryId}: {categoryId: string}) => {
               id="glowPurple"
               className="text-5xl sm:text-6xl font-bold text-transparent font-kagitingan text-center"
             >
-              <span className="block">EVENT</span>
-              <span className="block">NAME</span>
+              <span className="block">{eventData?.name}</span>
             </h2>
 
             <div className="relative flex flex-col justify-start w-2/3 px-6 py-8 rounded-3xl bg-gradient-to-tl from-black via-black/70 to-gray-800 border border-white shadow-lg">
               <h2 className="text-white font-kagitingan text-lg">
                 EVENT COORDINATORS
               </h2>
-              <p className="font-alexandria text-gray-300 mt-2">Name name</p>
-              <p className="font-alexandria text-gray-300 mt-2">Name name</p>
+              {
+                eventData?.coordinators.map((coordinator: any) => (
+                  <p key={coordinator.id} className="font-alexandria text-gray-300 mt-2">{coordinator.name}: {coordinator.phone}</p>
+                ))
+              }
             </div>
           </div>
         </div>

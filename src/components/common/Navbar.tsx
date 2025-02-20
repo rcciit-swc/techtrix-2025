@@ -5,9 +5,89 @@ import Link from 'next/link';
 import SVGIcon from '../SVGIcon';
 import clsx from 'clsx';
 import { login } from '@/utils/functions/login';
+import { useUser } from '@/lib/stores';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
+import { Skeleton } from '../ui/skeleton';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { supabase } from '@/utils/functions/supabase-client';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   className?: string;
+};
+
+export const SignInButton = () => {
+  const { userData, userLoading, clearUserData } = useUser();
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const readUserSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data?.session?.user.user_metadata?.avatar_url) {
+        setProfileImage(data.session.user.user_metadata.avatar_url);
+      }
+    };
+    readUserSession();
+  }, []);
+
+  if (userLoading) {
+    return <Skeleton className="w-10 h-10 rounded-full bg-gray-600" />;
+  }
+
+  if (userData && profileImage) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Avatar className="relative">
+            {!imageLoaded && (
+              <Skeleton className="w-10 h-10 rounded-full absolute inset-0" />
+            )}
+            <AvatarImage
+              src={profileImage}
+              alt="Profile"
+              onLoad={() => setImageLoaded(true)}
+              className={imageLoaded ? 'block' : 'hidden'}
+            />
+            <AvatarFallback>
+              {!userLoading && userData?.name ? userData.name.charAt(0) : ''}
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem
+            onSelect={() => {
+              router.push('/profile');
+            }}
+          >
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onSelect={async () => {
+              await supabase.auth.signOut();
+              localStorage.removeItem('sb-session'); // Adjust based on storage mechanism
+              clearUserData();
+            }}
+          >
+            Logout
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
+  return (
+    <button
+      className="group relative scale-100 overflow-hidden rounded-lg py-2 transition-transform hover:scale-105 active:scale-95"
+      onClick={login}
+    >
+      <span className="relative z-10 text-white/90 transition-colors group-hover:text-white bg-blue-500 font-bold rounded-full px-4 py-2">
+        Login
+      </span>
+      <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
+    </button>
+  );
 };
 
 const Navbar = ({ className }: Props) => {
@@ -49,7 +129,7 @@ const Navbar = ({ className }: Props) => {
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
             <NavLink href="/team">Team</NavLink>
-            {/* <NavLink asButton onClick={login}>Login</NavLink> */}
+            <SignInButton />
           </div>
           {/* Hamburger for Mobile */}
           <div className="md:hidden">
@@ -99,9 +179,7 @@ const Navbar = ({ className }: Props) => {
           <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
             Team
           </MobileNavLink>
-          {/* <MobileNavLink href="/login" onClick={() => setMobileMenuOpen(false)}>
-            Login
-          </MobileNavLink> */}
+          <SignInButton />
         </div>
       </div>
     </nav>
