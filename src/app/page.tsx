@@ -18,7 +18,6 @@ const Page = () => {
           <HeroGlobeText />
         </div>
       </div>
-
       <About />
       <div className="relative min-h-screen flex items-center justify-center">
         <EventLanding />

@@ -5,8 +5,9 @@ export async function uploadPaymentScreenshot(file: File, eventName: string) {
   const bucket = 'fests';
 
   const fileName = `${new Date()}-${file.name}`;
-  const filePath = `techtrix-2025/${eventName}/${fileName}-${Date.now()}`;
+  const filePath = `techtrix-2025/${eventName}/${fileName}`;
 
+  console.log('Uploading file:', file);
   const { data, error } = await supabase.storage
     .from(bucket)
     .upload(filePath, file);

@@ -8,7 +8,6 @@ import ButtonEvent from '../Home/ButtonEvent';
 type Card = {
   id: number;
   content: JSX.Element | React.ReactNode | string;
-  className: string;
   thumbnail: string;
 };
 
@@ -27,33 +26,29 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="w-full h-full p-10 flex flex-wrap max-w-7xl mx-auto gap-4 relative">
-      {cards.map((card, i) => (
-        <div key={i} className="flex-1 min-w-[200px]">
-          <motion.div
-            onClick={() => handleClick(card)}
-            className={cn(
-              'relative overflow-hidden',
-              selected?.id === card.id
-                ? 'rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col'
-                : lastSelected?.id === card.id
-                  ? 'z-40 bg-white rounded-xl h-full w-full'
-                  : 'bg-white rounded-xl h-full w-full'
-            )}
-            layoutId={`card-${card.id}`}
-          >
-            {selected?.id === card.id && <SelectedCard selected={selected} />}
-            <ImageComponent card={card} />
-          </motion.div>
-        </div>
+    <div className="w-full h-full p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
+      {cards.map((card) => (
+        <motion.div
+          key={card.id}
+          onClick={() => handleClick(card)}
+          className={cn(
+            'relative overflow-hidden rounded-lg cursor-pointer transition-all duration-300',
+            selected?.id === card.id
+              ? 'absolute inset-0 h-1/2 md:h-full w-5/6 sm:w-2/3 md:w-1/2 lg:w-1/3 m-auto z-50 flex justify-center items-center'
+              : 'h-80 w-full'
+          )}
+          layoutId={`card-${card.id}`}
+        >
+          {selected?.id === card.id && <SelectedCard selected={selected} />}
+          <ImageComponent card={card} />
+        </motion.div>
       ))}
       <motion.div
         onClick={handleOutsideClick}
         className={cn(
-          'absolute h-full w-full left-0 top-0 bg-black opacity-0 z-10',
-          selected?.id ? 'pointer-events-auto' : 'pointer-events-none'
+          'fixed inset-0 bg-black opacity-0 transition-opacity duration-600 z-10',
+          selected?.id ? 'opacity-50 pointer-events-auto' : 'opacity-0 pointer-events-none'
         )}
-        animate={{ opacity: selected?.id ? 0.3 : 0 }}
       />
     </div>
   );
@@ -76,14 +71,14 @@ const ImageComponent = ({ card }: { card: Card }) => {
 
 const SelectedCard = ({ selected }: { selected: Card | null }) => {
   return (
-    <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60]">
+    <div className="h-full w-full flex flex-col md:flex-row justify-center items-center rounded-lg shadow-2xl relative z-[60] p-4">
       {/* Background Overlay */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
-        className="absolute inset-0 h-full w-full bg-black opacity-60 z-10"
+        animate={{ opacity: 0.7 }}
+        className="absolute inset-0 h-full w-full bg-black opacity-70 z-10"
       />
-
+      
       {/* Content Container */}
       <motion.div
         layoutId={`content-${selected?.id}`}
@@ -91,11 +86,8 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="relative px-8 pb-6 z-[70] flex flex-col items-start gap-4"
-      >
-        {/* Event Content */}
-        <div className="text-white text-left">{selected?.content}</div>
-
+        className="relative px-8 z-[70] flex flex-col md:flex-row justify-center items-center gap-4"
+      > 
         <ButtonEvent text="Explore" />
       </motion.div>
     </div>
