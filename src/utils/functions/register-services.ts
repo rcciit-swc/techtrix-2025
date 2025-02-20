@@ -5,8 +5,9 @@ export async function uploadPaymentScreenshot(file: File, eventName: string) {
   const bucket = 'fests';
 
   const fileName = `${new Date()}-${file.name}`;
-  const filePath = `got-2025/${eventName}/${fileName}`;
+  const filePath = `techtrix-2025/${eventName}/${fileName}`;
 
+  console.log('Uploading file:', file);
   const { data, error } = await supabase.storage
     .from(bucket)
     .upload(filePath, file);
@@ -34,7 +35,7 @@ export interface RegisterSoloParams {
   userId: string;
   eventId: string;
   transactionId: string;
-  transactionScreenshot: string;
+  transactionScreenshot: string | null;
   college: string;
 }
 
@@ -45,13 +46,20 @@ export async function registerSoloEvent(
     params;
 
   // Call the RPC named 'register_solo_event' with the required parameters.
-  const { data, error } = await supabase.rpc('register_solo_event', {
-    p_user_id: userId,
-    p_event_id: eventId,
-    p_transaction_id: transactionId,
-    p_transaction_screenshot: transactionScreenshot,
-    p_college: college,
-  });
+  const { data, error } = await supabase.rpc(
+    'register_solo_event_with_details',
+    {
+      p_user_id: userId,
+      p_event_id: eventId,
+      p_transaction_id: transactionId,
+      p_transaction_screenshot: transactionScreenshot,
+      p_college: college,
+      p_reg_mode: 'ONLINE',
+      p_payment_mode: 'UPI',
+      p_referral_code: 'TECHTRIX2025',
+      p_attendance: false,
+    }
+  );
 
   if (error) {
     throw error;
@@ -71,36 +79,46 @@ export interface TeamMember {
 export interface RegisterTeamParams {
   userId: string;
   eventId: string;
-  transactionId: string;
+  transactionId: string | null;
   teamName: string;
   college: string;
-  transactionScreenshot: string;
+  transactionScreenshot: string | null;
   teamLeadName: string;
   teamLeadPhone: string;
   teamLeadEmail: string;
   teamMembers: TeamMember[];
 }
 
-export async function registerTeamWithParticipants(params: RegisterTeamParams) {
+export async function registerTeamWithParticipants(
+  params: RegisterTeamParams,
+  isSWCPaid = false
+) {
   console.log('Registering team with participants:', params);
 
   // Validate required fields. If any validation fails, throw immediately.
   const validations = [
     { value: params.userId, message: 'User ID is required.' },
     { value: params.eventId, message: 'Event ID is required.' },
-    { value: params.transactionId, message: 'Transaction ID is required.' },
+    !isSWCPaid && {
+      value: params.transactionId,
+      message: 'Transaction ID is required.',
+    },
     { value: params.teamName, message: 'Team name is required.' },
     { value: params.college, message: 'College is required.' },
-    {
+    !isSWCPaid && {
       value: params.transactionScreenshot,
       message: 'Transaction screenshot is required.',
     },
     { value: params.teamLeadName, message: 'Team lead name is required.' },
     { value: params.teamLeadPhone, message: 'Team lead phone is required.' },
     { value: params.teamLeadEmail, message: 'Team lead email is required.' },
-  ];
+  ].filter(Boolean);
 
-  for (const { value, message } of validations) {
+  for (const validation of validations) {
+    const { value, message } = validation as {
+      value: string | null;
+      message: string;
+    };
     if (!value) {
       toast.error(message);
       console.error('Validation failed:', message);
@@ -123,7 +141,7 @@ export async function registerTeamWithParticipants(params: RegisterTeamParams) {
 
   // Call the RPC function 'register_team_with_participants'
   const { data, error } = await supabase.rpc(
-    'register_team_with_participants',
+    'register_team_with_new_participants',
     {
       p_user_id: userId,
       p_event_id: eventId,
@@ -135,6 +153,10 @@ export async function registerTeamWithParticipants(params: RegisterTeamParams) {
       p_team_lead_phone: teamLeadPhone,
       p_team_lead_email: teamLeadEmail,
       p_team_members: teamMembers || [],
+      p_reg_mode: 'ONLINE',
+      p_payment_mode: 'UPI',
+      p_referral_code: 'TECHTRIX2025',
+      p_attendance: false,
     }
   );
 

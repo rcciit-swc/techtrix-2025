@@ -2,14 +2,10 @@ import React, { FC } from 'react';
 import { IIconProps } from '../../interfaces';
 //width={width} height={height} className={className}
 const HeroSVG: FC<IIconProps> = (props) => {
-  const {
-    className = '',
-    width = '989',
-    height = '1379',
-  } = props;
+  const { className = '', width = '989', height = '1379' } = props;
   return (
     <svg
-        className={className}
+      className={className}
       width={width}
       height={height}
       viewBox="0 0 989 1379"

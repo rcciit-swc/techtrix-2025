@@ -1,1 +1,1 @@
-export {default} from './EventsSVG';
+export { default } from './EventsSVG';

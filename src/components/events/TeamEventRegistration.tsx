@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState, useEffect, useMemo } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -16,7 +16,11 @@ import Image from 'next/image';
 import { useUser } from '@/lib/stores';
 import { toast } from 'sonner';
 import { useEvents } from '@/lib/stores';
-import { RegisterTeamParams, registerTeamWithParticipants, uploadPaymentScreenshot } from '@/utils/functions';
+import {
+  RegisterTeamParams,
+  registerTeamWithParticipants,
+  uploadPaymentScreenshot,
+} from '@/utils/functions';
 import { ViewTeamMembers } from './ViewTeamMembers';
 
 interface EventRegistrationDialogProps {
@@ -41,25 +45,6 @@ type TeamLeadFormValues = z.infer<typeof teamLeadSchema>;
 
 // Zod schema for a Team Member (used in Step 2)
 // Note: Removed the collegeName field.
-const teamMemberSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  phone: z.string().regex(/^\d{10,}$/, 'Phone must be at least 10 digits'),
-  email: z.string().email('Invalid email'),
-});
-type TeamMemberFormValues = z.infer<typeof teamMemberSchema>;
-
-// Zod schema for Payment Details (Step 3)
-const paymentSchema = z.object({
-  transactionId: z.string().min(1, 'Transaction ID is required'),
-  paymentScreenshot: z
-    .any()
-    .refine(
-      (files) => files && files.length > 0,
-      'Payment screenshot is required'
-    )
-    .transform((files) => files[0]),
-});
-type PaymentFormValues = z.infer<typeof paymentSchema>;
 
 export function TeamEventRegistration({
   isOpen,
@@ -69,8 +54,38 @@ export function TeamEventRegistration({
   maxTeamSize,
   eventID,
 }: EventRegistrationDialogProps) {
-  const { userData } = useUser();
+  const { userData, swcStatus } = useUser();
   const { markEventAsRegistered } = useEvents();
+
+  const teamMemberSchema = z.object({
+    name: z.string().min(1, 'Name is required'),
+    phone: z.string().regex(/^\d{10,}$/, 'Phone must be at least 10 digits'),
+    email: z.string().email('Invalid email'),
+  });
+  type TeamMemberFormValues = z.infer<typeof teamMemberSchema>;
+
+  const usePaymentSchema = (isPaid: boolean) => {
+    return useMemo(() => {
+      return z.object({
+        transactionId: swcStatus
+          ? z.string().min(1, 'Transaction ID is required')
+          : z.string().optional(),
+
+        paymentScreenshot: swcStatus
+          ? z
+              .any()
+              .refine(
+                (files) => files && files.length > 0,
+                'Payment screenshot is required'
+              )
+              .transform((files) => files[0])
+          : z.any().optional(),
+      });
+    }, [swcStatus]);
+  };
+  // Zod schema for Payment Details (Step 3)
+  const paymentSchema = usePaymentSchema(swcStatus);
+  type PaymentFormValues = z.infer<typeof paymentSchema>;
   // step: 1 = Team Lead, 2 = Manage Team Members, 3 = Payment Details
   const [step, setStep] = useState(1);
   // Store validated team lead details
@@ -81,6 +96,8 @@ export function TeamEventRegistration({
   const [teamMembers, setTeamMembers] = useState<TeamMemberFormValues[]>([]);
   // For displaying the added team members via the ViewTeamMembers component
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isConfirmedTeam, setIsConfirmedTeam] = useState(false);
+  const [showConfirmTeam, setShowConfirmTeam] = useState(false);
   // Toggle for showing the add team member form
   const [isAddingMember, setIsAddingMember] = useState(false);
   // Added state to track which member is being edited
@@ -153,7 +170,8 @@ export function TeamEventRegistration({
         `Maximum team size is ${maxTeamSize}. Please remove some team members.`
       );
     } else {
-      setStep(3);
+      setShowConfirmTeam(true);
+      setIsSheetOpen(true);
     }
   };
 
@@ -170,24 +188,26 @@ export function TeamEventRegistration({
   const onPaymentSubmit = async (data: PaymentFormValues) => {
     setIsRegistering(true);
     let screenshotUrl = '';
-    try {
-      // Upload the payment screenshot using the integrated Supabase function.
-      screenshotUrl = await uploadPaymentScreenshot(
-        data.paymentScreenshot,
-        eventName
-      );
-    } catch (error) {
-      console.error('Failed to upload screenshot:', error);
-      toast.error('Failed to upload payment screenshot. Please try again.');
-      setIsRegistering(false);
-      return;
+    if (!swcStatus) {
+      try {
+        // Upload the payment screenshot using the integrated Supabase function.
+        screenshotUrl = await uploadPaymentScreenshot(
+          data.paymentScreenshot,
+          eventName
+        );
+      } catch (error) {
+        console.error('Failed to upload screenshot:', error);
+        toast.error('Failed to upload payment screenshot. Please try again.');
+        setIsRegistering(false);
+        return;
+      }
     }
 
     // Combine all registration data.
     const registrationParams: RegisterTeamParams = {
       userId: userData?.id!, // non-null assertion since we expect this to be set
       eventId: eventID,
-      transactionId: data.transactionId,
+      transactionId: data.transactionId || null,
       teamName: teamLeadData!.teamName,
       college: teamLeadData!.collegeName,
       transactionScreenshot: screenshotUrl,
@@ -199,13 +219,49 @@ export function TeamEventRegistration({
 
     try {
       // Call the registerTeamWithParticipants function.
-      const result = await registerTeamWithParticipants(registrationParams);
+      const result = await registerTeamWithParticipants(
+        registrationParams,
+        swcStatus
+      );
       markEventAsRegistered(eventID);
       handleDialogClose();
     } catch (error) {
       console.error('Failed to register team:', error);
       setIsRegistering(false);
       return;
+    }
+  };
+
+  const [registerLoading, setRegisterLoading] = useState(false);
+  const registerForSWCPaid = async () => {
+    setIsRegistering(true);
+    setRegisterLoading(true);
+    const registrationParams: RegisterTeamParams = {
+      userId: userData?.id!, // non-null assertion since we expect this to be set
+      eventId: eventID,
+      transactionId: null,
+      teamName: teamLeadData!.teamName,
+      college: teamLeadData!.collegeName,
+      transactionScreenshot: '',
+      teamLeadName: teamLeadData!.name,
+      teamLeadPhone: teamLeadData!.phone,
+      teamLeadEmail: teamLeadData!.email,
+      teamMembers: teamMembers,
+    };
+    try {
+      // Call the registerTeamWithParticipants function.
+      const result = await registerTeamWithParticipants(
+        registrationParams,
+        swcStatus
+      );
+      markEventAsRegistered(eventID);
+      handleDialogClose();
+    } catch (error) {
+      console.error('Failed to register team:', error);
+      setIsRegistering(false);
+      return;
+    } finally {
+      setRegisterLoading(false);
     }
   };
 
@@ -238,20 +294,32 @@ export function TeamEventRegistration({
         }
       }}
     >
-      <DialogContent className="sm:max-w-[500px] bg-black border border-[#8B5CF6] rounded-xl p-6">
+      <DialogContent
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/90/59/3b/90593b288869fe650f17b101322ee12d.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        className="sm:max-w-[500px] bg-black border border-yellow-200 rounded-xl p-6 modal"
+      >
         <DialogHeader>
-          <DialogTitle className="text-white text-2xl">
-            Registration for {eventName}
+          <DialogTitle className="text-white text-2xl font-kagitingan tracking-wider">
+            Registration for <br />{' '}
+            <span className="text-yellow-200 text-3xl">{eventName}</span>
           </DialogTitle>
         </DialogHeader>
-        <p className="text-gray-400 mt-2">
-          Team Members: {totalTeamCount} (Min: {minTeamSize}, Max: {maxTeamSize}
-          )
+        <p className="text-white font-alexandria tracking-widest text-lg ">
+          Team Members: {totalTeamCount} <br />
+          (Min: {minTeamSize}, Max: {maxTeamSize})
         </p>
         {teamMembers.length > 0 && (
           <span
-            className="text-[#8B5CF6] cursor-pointer hover:underline"
-            onClick={() => setIsSheetOpen(true)}
+            className="text-yellow-200 font-alexandria cursor-pointer hover:underline"
+            onClick={() => {
+              setShowConfirmTeam(false);
+              setIsSheetOpen(true);
+            }}
           >
             View & Edit Added Members
           </span>
@@ -266,42 +334,54 @@ export function TeamEventRegistration({
             <div className="grid gap-6 py-4">
               {/* New Team Name Field */}
               <div className="grid gap-2">
-                <label htmlFor="teamName" className="text-white">
+                <label
+                  htmlFor="teamName"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Team Name
                 </label>
                 <Input
                   id="teamName"
                   {...registerTeamLead('teamName')}
                   defaultValue={teamLeadData?.teamName}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter your team name"
                 />
                 {teamLeadErrors.teamName && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {teamLeadErrors.teamName.message}
                   </p>
                 )}
               </div>
-              <div className="grid gap-2">
-                <label htmlFor="name" className="text-white">
+              <div className="grid gap-2 ">
+                <label
+                  htmlFor="name"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Team Lead Name
                 </label>
                 <Input
                   id="name"
                   readOnly
                   {...registerTeamLead('name')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md  cursor-not-allowed font-alexandria tracking-wider"
                   placeholder="Enter team lead name"
                   defaultValue={userData?.name}
                 />
                 {teamLeadErrors.name && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {teamLeadErrors.name.message}
                   </p>
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="phone" className="text-white">
+                <label
+                  htmlFor="phone"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Team Lead Phone
                 </label>
                 <Input
@@ -310,17 +390,21 @@ export function TeamEventRegistration({
                   readOnly
                   defaultValue={userData?.phone}
                   {...registerTeamLead('phone')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md  cursor-not-allowed font-alexandria tracking-wider"
                   placeholder="Enter team lead phone number"
                 />
                 {teamLeadErrors.phone && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {teamLeadErrors.phone.message}
                   </p>
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="email" className="text-white">
+                <label
+                  htmlFor="email"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Team Lead Email
                 </label>
                 <Input
@@ -328,29 +412,33 @@ export function TeamEventRegistration({
                   type="email"
                   defaultValue={userData?.email}
                   {...registerTeamLead('email')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md  cursor-not-allowed font-alexandria tracking-wider"
                   placeholder="Enter team lead email"
                   readOnly
                 />
                 {teamLeadErrors.email && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {teamLeadErrors.email.message}
                   </p>
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="collegeName" className="text-white">
+                <label
+                  htmlFor="collegeName"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   College Name
                 </label>
                 <Input
                   id="collegeName"
                   {...registerTeamLead('collegeName')}
-                  defaultValue={teamLeadData?.collegeName}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  defaultValue={teamLeadData?.collegeName || userData?.email}
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter college name"
                 />
                 {teamLeadErrors.collegeName && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {teamLeadErrors.collegeName.message}
                   </p>
                 )}
@@ -362,35 +450,47 @@ export function TeamEventRegistration({
                 type="button"
                 variant="outline"
                 onClick={handleDialogClose}
-                className="bg-white text-black hover:bg-white/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
                 Close
               </Button>
               <Button
                 type="submit"
-                className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
                 Next
               </Button>
             </div>
           </form>
         )}
+        {
+          <ViewTeamMembers
+            isOpen={isSheetOpen}
+            onOpenChange={setIsSheetOpen}
+            teamMembers={teamMembers}
+            teamLeadData={teamLeadData}
+            showConfirmTeam={showConfirmTeam}
+            registerLoading={registerLoading}
+            confirmTeam={async () => {
+              setIsConfirmedTeam(true);
+              swcStatus ? await registerForSWCPaid() : setStep(3);
+              setIsSheetOpen(false);
+            }}
+            onEditTeamLead={() => {
+              setStep(1);
+              setIsSheetOpen(false);
+            }}
+            onEditMember={(index: number) => {
+              setEditingMemberIndex(index);
+              setIsAddingMember(true);
+              setIsSheetOpen(false);
+            }}
+          />
+        }
 
         {/* Step 2: Manage Team Members */}
         {step === 2 && (
           <div className="overflow-y-auto my-scrollbar max-h-[65vh]">
-            {teamMembers.length > 0 && (
-              <ViewTeamMembers
-                isOpen={isSheetOpen}
-                onOpenChange={setIsSheetOpen}
-                teamMembers={teamMembers}
-                onEditMember={(index:number) => {
-                  setEditingMemberIndex(index);
-                  setIsAddingMember(true);
-                  setIsSheetOpen(false);
-                }}
-              />
-            )}
             {isAddingMember ? (
               <form
                 onSubmit={handleTeamMemberSubmit((data) => {
@@ -407,51 +507,63 @@ export function TeamEventRegistration({
                 className="grid gap-6 py-4"
               >
                 <div className="grid gap-2">
-                  <label htmlFor="memberName" className="text-white">
+                  <label
+                    htmlFor="memberName"
+                    id="glowPink"
+                    className="font-alexandria tracking-wider"
+                  >
                     Team Member Name
                   </label>
                   <Input
                     id="memberName"
                     {...registerTeamMember('name')}
-                    className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                    className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                     placeholder="Enter team member name"
                   />
                   {teamMemberErrors.name && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm font-alexandria tracking-wider">
                       {teamMemberErrors.name.message}
                     </p>
                   )}
                 </div>
                 <div className="grid gap-2">
-                  <label htmlFor="memberPhone" className="text-white">
+                  <label
+                    htmlFor="memberPhone"
+                    id="glowPink"
+                    className="font-alexandria tracking-wider"
+                  >
                     Team Member Phone
                   </label>
                   <Input
                     id="memberPhone"
                     type="tel"
                     {...registerTeamMember('phone')}
-                    className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                    className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                     placeholder="Enter team member phone number"
                   />
                   {teamMemberErrors.phone && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm font-alexandria tracking-wider">
                       {teamMemberErrors.phone.message}
                     </p>
                   )}
                 </div>
                 <div className="grid gap-2">
-                  <label htmlFor="memberEmail" className="text-white">
+                  <label
+                    htmlFor="memberEmail"
+                    id="glowPink"
+                    className="font-alexandria tracking-wider"
+                  >
                     Team Member Email
                   </label>
                   <Input
                     id="memberEmail"
                     type="email"
                     {...registerTeamMember('email')}
-                    className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                    className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                     placeholder="Enter team member email"
                   />
                   {teamMemberErrors.email && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm font-alexandria tracking-wider">
                       {teamMemberErrors.email.message}
                     </p>
                   )}
@@ -464,42 +576,44 @@ export function TeamEventRegistration({
                       setIsAddingMember(false);
                       setEditingMemberIndex(null);
                     }}
-                    className="bg-white text-black hover:bg-white/90 border-0"
+                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl"
                   >
                     Cancel
                   </Button>
                   <Button
                     type="submit"
-                    className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
                   >
                     {editingMemberIndex !== null ? 'Update' : 'Save'}
                   </Button>
                 </div>
               </form>
             ) : (
-              <div className="flex flex-col sm:flex-row gap-4 mt-4">
-                <Button
-                  type="button"
-                  onClick={() => setIsAddingMember(true)}
-                  className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
-                >
-                  Add New Member
-                </Button>
+              <div className="flex flex-wrap gap-4 mt-4">
+                {teamMembers?.length < maxTeamSize - 1 && (
+                  <Button
+                    type="button"
+                    onClick={() => setIsAddingMember(true)}
+                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
+                  >
+                    Add New Member
+                  </Button>
+                )}
                 <Button
                   type="button"
                   onClick={handleProceedToPayment}
-                  className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+                  className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
                   disabled={
                     totalTeamCount < minTeamSize || totalTeamCount > maxTeamSize
                   }
                 >
-                  Make Payment
+                  {swcStatus ? 'Register' : 'Make Payment'}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setStep(1)}
-                  className="bg-white text-black hover:bg-white/90 border-0"
+                  className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
                 >
                   Back
                 </Button>
@@ -516,34 +630,42 @@ export function TeamEventRegistration({
           >
             <div className="grid gap-6 py-4">
               <div className="grid gap-2">
-                <label htmlFor="transactionId" className="text-white">
+                <label
+                  htmlFor="transactionId"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Transaction ID
                 </label>
                 <Input
                   id="transactionId"
                   {...registerPayment('transactionId')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                   placeholder="Enter transaction ID"
                 />
                 {paymentErrors.transactionId && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {paymentErrors.transactionId.message}
                   </p>
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="paymentScreenshot" className="text-white">
+                <label
+                  htmlFor="paymentScreenshot"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Payment Screenshot
                 </label>
                 <Input
                   id="paymentScreenshot"
                   type="file"
                   {...registerPayment('paymentScreenshot')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                   accept="image/*"
                 />
                 {paymentErrors.paymentScreenshot && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm font-alexandria tracking-wider">
                     {String(paymentErrors.paymentScreenshot.message)}
                   </p>
                 )}
@@ -563,13 +685,13 @@ export function TeamEventRegistration({
                 type="button"
                 variant="outline"
                 onClick={() => setStep(2)}
-                className="bg-white text-black hover:bg-white/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
                 Back
               </Button>
               <Button
                 type="submit"
-                className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
                 disabled={isRegistering}
               >
                 {isRegistering ? 'Registering...' : 'Register'}

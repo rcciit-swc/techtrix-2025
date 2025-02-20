@@ -39,10 +39,10 @@ export default function EventsTable() {
   } = useEvents();
 
   const refreshData = async () => {
-    getApprovalDashboardData('a4bc08e4-9af9-4212-8d32-cd88d2437f18');
+    getApprovalDashboardData('44bb2093-d229-4385-8f08-3fe7da3521c8');
   };
   useEffect(() => {
-    refreshData();
+    getApprovalDashboardData('44bb2093-d229-4385-8f08-3fe7da3521c8');
   }, []);
 
   const filteredData = useMemo(() => {

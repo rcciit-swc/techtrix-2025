@@ -105,10 +105,11 @@ export const getApprovalDashboardData = async (
       return null;
     }
 
-    const { data, error } = await supabase.rpc('get_registrations_by_fest', {
+    const { data, error } = await supabase.rpc('get_registration_data', {
       p_fest_id: id, // Passing the fest_id parameter
     });
 
+    console.log(data);
     if (error) {
       console.error('Error fetching event table data:', error);
       toast.error('Error fetching event table data');
@@ -123,22 +124,23 @@ export const getApprovalDashboardData = async (
   }
 };
 
-export const getEventByName = async (name: string): Promise<events | null> => {
+export const getEventByID = async (id: string): Promise<events | null> => {
   const serverClient = await supabaseServer();
-  const p_event_name = name;
+  const p_event_id = id;
   const { data: sessionData, error: sessionError } =
-  await supabase.auth.getSession();
-if (sessionError) {
-  console.error('Error getting session:', sessionError);
-  return null;
-}
+    await supabase.auth.getSession();
+  if (sessionError) {
+    console.error('Error getting session:', sessionError);
+    return null;
+  }
 
-const p_user_id = sessionData?.session?.user?.id || null;
+  const p_user_id = sessionData?.session?.user?.id || null;
 
   const { data, error } = await serverClient.rpc(
-    'get_event_by_name_with_registration',
+    'get_event_by_id_with_registration',
     {
-      p_event_name,
+      p_event_id,
+      p_user_id,
     }
   );
 
@@ -148,5 +150,5 @@ const p_user_id = sessionData?.session?.user?.id || null;
   }
 
   // Return the first result, since the RPC returns a table (array)
-  return data && data.length > 0 ? data[0] : null;
+  return data && data.length > 0 ? data[0] : {};
 };

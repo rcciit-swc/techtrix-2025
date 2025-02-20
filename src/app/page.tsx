@@ -4,7 +4,7 @@ import React from 'react';
 import { HeroBg } from '@/components/Home/HeroBg';
 import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
 import { EventLanding } from '@/components/Home/EventLanding';
-import Sponsorship from '@/components/Sponsorship';
+import Image from 'next/image';
 
 const Page = () => {
   // throw new Error("Error occured");
@@ -20,9 +20,9 @@ const Page = () => {
         </div>
       </div>
       <About />
-      <Events />
-      {/* <EventLanding /> */}
-      <Sponsorship />
+      <div className="relative min-h-screen flex items-center justify-center">
+        <EventLanding />
+      </div>
     </div>
   );
 };

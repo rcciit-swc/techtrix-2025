@@ -1,1 +1,1 @@
-export {default} from "./TechtrixLogoEvents"
+export { default } from './TechtrixLogoEvents';

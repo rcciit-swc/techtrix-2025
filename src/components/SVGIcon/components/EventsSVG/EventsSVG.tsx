@@ -5,7 +5,7 @@ const HeroSVG: FC<IIconProps> = (props) => {
   const { className = '', width = '1728', height = '1227' } = props;
   return (
     <svg
-        className={className}
+      className={className}
       width={width}
       height={height}
       viewBox="0 0 1728 1227"
