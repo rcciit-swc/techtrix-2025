@@ -1,1 +1,1 @@
-export {default as EventLanding} from "./EventLanding";
+export { default as EventLanding } from './EventLanding';

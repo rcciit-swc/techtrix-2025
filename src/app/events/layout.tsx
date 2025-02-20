@@ -1,5 +1,5 @@
-import React from "react";
-import EventWrapper from "@/components/Event/EventWrapper";
+import React from 'react';
+import EventWrapper from '@/components/Event/EventWrapper';
 
 type props = {
   children: React.ReactNode;
@@ -8,10 +8,10 @@ type props = {
 };
 
 const EventLayout = ({ children, categoryId, eventId }: props) => {
-    return (
-      <EventWrapper categoryId={categoryId} eventId={eventId}>
-        {children}
-      </EventWrapper>
+  return (
+    <EventWrapper categoryId={categoryId} eventId={eventId}>
+      {children}
+    </EventWrapper>
   );
 };
 

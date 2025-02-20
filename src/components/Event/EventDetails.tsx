@@ -1,8 +1,63 @@
 'use client';
-import { useEvents } from '@/lib/stores';
-import React, { useEffect } from 'react';
+import { useEvents, useUser } from '@/lib/stores';
+import React, { useEffect, useState } from 'react';
+import { SoloEventRegistration } from '../events/EventRegistrationDialog';
+import { TeamEventRegistration } from '../events/TeamEventRegistration';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { login } from '@/utils/functions/login';
 
-const EventDetails = ({categoryId, eventId, eventData}: {categoryId: string, eventId: string, eventData:any}) => {
+const EventDetails = ({
+  categoryId,
+  eventId,
+  eventData,
+}: {
+  categoryId: string;
+  eventId: string;
+  eventData: any;
+}) => {
+  const { eventsLoading } = useEvents();
+  const [isSoloOpen, setIsSoloOpen] = useState(false);
+  const [isTeamOpen, setIsTeamOpen] = useState(false);
+  const { userData, userLoading } = useUser();
+  const router = useRouter();
+
+  const handleRegister = async () => {
+    if (userLoading) {
+      toast.info('Please wait while we check your login status');
+      return;
+    }
+    if (!userData) {
+      await login();
+      return;
+    }
+
+    if (
+      !userData.phone ||
+      !userData.name ||
+      userData.phone.trim() === '' ||
+      userData.name.trim() === ''
+    ) {
+      router.push(
+        `/profile?onboarding=true&callback=${encodeURIComponent(`/events/${categoryId}/${eventId}`)}`
+      );
+      return;
+    }
+
+    if (eventData?.max_team_size === 1) {
+      setIsSoloOpen(true);
+    } else {
+      setIsTeamOpen(true);
+    }
+  };
+
+  if (eventsLoading || !eventData) {
+    return (
+      <div className="min-h-screen w-full mt-14 text-white flex flex-col items-center py-16 px-4 relative">
+        loading...
+      </div>
+    );
+  }
   return (
     <div className="relative max-w-5xl mx-auto p-6 pt-44">
       <h1
@@ -30,17 +85,23 @@ const EventDetails = ({categoryId, eventId, eventData}: {categoryId: string, eve
               <h2 className="text-white font-kagitingan text-lg">
                 EVENT COORDINATORS
               </h2>
-              {
-                eventData?.coordinators.map((coordinator: any) => (
-                  <p key={coordinator.id} className="font-alexandria text-gray-300 mt-2">{coordinator.name}: {coordinator.phone}</p>
-                ))
-              }
+              {eventData?.coordinators.map((coordinator: any) => (
+                <p
+                  key={coordinator.id}
+                  className="font-alexandria text-gray-300 mt-2"
+                >
+                  {coordinator.name}: {coordinator.phone}
+                </p>
+              ))}
             </div>
           </div>
         </div>
 
         <div className="place-self-center">
-          <button className="mt-10 px-10 py-3 font-alexandria rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]">
+          <button
+            onClick={handleRegister}
+            className="mt-10 px-10 py-3 font-alexandria rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
+          >
             Register Now
           </button>
         </div>
@@ -65,6 +126,25 @@ const EventDetails = ({categoryId, eventId, eventData}: {categoryId: string, eve
           ))}
         </div>
       </div>
+      {eventData?.id && (
+        <SoloEventRegistration
+          isOpen={isSoloOpen}
+          eventID={eventData.id}
+          onClose={() => setIsSoloOpen(false)}
+          eventName={eventData.name}
+          eventFees={eventData.registration_fees}
+        />
+      )}
+      {eventData?.id && (
+        <TeamEventRegistration
+          isOpen={isTeamOpen}
+          onClose={() => setIsTeamOpen(false)}
+          eventID={eventData.id}
+          eventName={eventData.name}
+          minTeamSize={Number(eventData.min_team_size)}
+          maxTeamSize={Number(eventData.max_team_size)}
+        />
+      )}
     </div>
   );
 };

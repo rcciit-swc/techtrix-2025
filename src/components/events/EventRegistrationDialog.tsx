@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -36,17 +36,6 @@ const soloLeadSchema = z.object({
 type SoloLeadFormValues = z.infer<typeof soloLeadSchema>;
 
 // Schema for payment details.
-const paymentSchema = z.object({
-  transactionId: z.string().min(1, 'Transaction ID is required'),
-  paymentScreenshot: z
-    .any()
-    .refine(
-      (files) => files && files.length > 0,
-      'Payment screenshot is required'
-    )
-    .transform((files) => files[0]),
-});
-type PaymentFormValues = z.infer<typeof paymentSchema>;
 
 export function SoloEventRegistration({
   isOpen,
@@ -55,7 +44,7 @@ export function SoloEventRegistration({
   eventID,
   eventFees,
 }: SoloEventRegistrationDialogProps) {
-  const { userData } = useUser();
+  const { userData, swcStatus } = useUser();
   const { markEventAsRegistered } = useEvents();
   const [step, setStep] = useState(1);
   const [soloLeadData, setSoloLeadData] = useState<SoloLeadFormValues | null>(
@@ -77,11 +66,34 @@ export function SoloEventRegistration({
     },
   });
 
-  const onSoloLeadSubmit = (data: SoloLeadFormValues) => {
+  const onSoloLeadSubmit = async (data: SoloLeadFormValues) => {
     setSoloLeadData(data);
-    setStep(2);
+    swcStatus ? await registerForSWCPaid() : setStep(2);
     resetSoloLead();
   };
+
+  const usePaymentSchema = () => {
+    return useMemo(() => {
+      return z.object({
+        transactionId: swcStatus
+          ? z.string().min(1, 'Transaction ID is required')
+          : z.string().optional(),
+
+        paymentScreenshot: swcStatus
+          ? z
+              .any()
+              .refine(
+                (files) => files && files.length > 0,
+                'Payment screenshot is required'
+              )
+              .transform((files) => files[0])
+          : z.any().optional(),
+      });
+    }, [swcStatus]);
+  };
+  // Zod schema for Payment Details (Step 3)
+  const paymentSchema = usePaymentSchema();
+  type PaymentFormValues = z.infer<typeof paymentSchema>;
 
   // Form for payment details.
   const {
@@ -110,7 +122,7 @@ export function SoloEventRegistration({
     const registrationParams = {
       userId: userData?.id!, // non-null assertion; adjust if necessary
       eventId: eventID,
-      transactionId: data.transactionId,
+      transactionId: data.transactionId || '',
       college: soloLeadData!.college,
       transactionScreenshot: screenshotUrl,
       name: soloLeadData!.name,
@@ -120,7 +132,33 @@ export function SoloEventRegistration({
 
     try {
       const result = await registerSoloEvent(registrationParams);
-      console.log('Solo registration result:', result);
+      markEventAsRegistered(eventID);
+      onClose();
+      setSoloLeadData(null);
+      setStep(1);
+      resetPayment();
+    } catch (error) {
+      console.error('Failed to register for solo event:', error);
+      toast.error('Failed to register for solo event. Please try again.');
+    }
+  };
+
+  const registerForSWCPaid = async () => {
+    console.log(soloLeadData);
+    // Combine the registration data.
+    const registrationParams = {
+      userId: userData?.id!, // non-null assertion; adjust if necessary
+      eventId: eventID,
+      transactionId: '',
+      college: userData?.college || '',
+      transactionScreenshot: null,
+      name: userData!.name,
+      phone: userData!.phone,
+      email: userData!.email,
+    };
+
+    try {
+      const result = await registerSoloEvent(registrationParams);
       markEventAsRegistered(eventID);
       onClose();
       setSoloLeadData(null);
@@ -134,10 +172,19 @@ export function SoloEventRegistration({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] bg-black border border-[#8B5CF6] rounded-xl p-6">
+      <DialogContent
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/90/59/3b/90593b288869fe650f17b101322ee12d.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        className="modal sm:max-w-[500px] bg-black border border-yellow-200 rounded-xl p-6"
+      >
         <DialogHeader>
-          <DialogTitle className="text-white text-2xl">
-            Registration for {eventName}
+          <DialogTitle className="text-white text-2xl font-kagitingan tracking-wider">
+            Registration for <br />{' '}
+            <span className="text-yellow-200 text-3xl">{eventName}</span>
           </DialogTitle>
         </DialogHeader>
 
@@ -148,14 +195,18 @@ export function SoloEventRegistration({
           >
             <div className="grid gap-6 py-4">
               <div className="grid gap-2">
-                <label htmlFor="name" className="text-white">
+                <label
+                  htmlFor="name"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Name
                 </label>
                 <Input
                   id="name"
                   readOnly
                   {...registerSoloLead('name')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 cursor-not-allowed focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter your name"
                   defaultValue={userData?.name}
                 />
@@ -166,7 +217,11 @@ export function SoloEventRegistration({
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="phone" className="text-white">
+                <label
+                  htmlFor="phone"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Phone
                 </label>
                 <Input
@@ -174,7 +229,7 @@ export function SoloEventRegistration({
                   type="tel"
                   readOnly
                   {...registerSoloLead('phone')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 cursor-not-allowed focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter your phone number"
                   defaultValue={userData?.phone}
                 />
@@ -185,14 +240,18 @@ export function SoloEventRegistration({
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="email" className="text-white">
+                <label
+                  htmlFor="email"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Email
                 </label>
                 <Input
                   id="email"
                   type="email"
                   {...registerSoloLead('email')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 cursor-not-allowed focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter your email"
                   defaultValue={userData?.email}
                   readOnly
@@ -204,14 +263,19 @@ export function SoloEventRegistration({
                 )}
               </div>
               <div className="grid gap-2">
-                <label htmlFor="college" className="text-white">
+                <label
+                  htmlFor="college"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   College
                 </label>
                 <Input
                   id="college"
                   autoFocus
                   {...registerSoloLead('college')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  defaultValue={userData?.college}
+                  className="bg-black border border-gray-500 cursor-not-allowed focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter your college name"
                 />
                 {soloLeadErrors.college && (
@@ -226,15 +290,15 @@ export function SoloEventRegistration({
                 type="button"
                 variant="outline"
                 onClick={onClose}
-                className="bg-white text-black hover:bg-white/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
                 Close
               </Button>
               <Button
                 type="submit"
-                className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
-                Next
+                {swcStatus ? 'Register' : 'Next'}
               </Button>
             </div>
           </form>
@@ -247,13 +311,17 @@ export function SoloEventRegistration({
           >
             <div className="grid gap-6 py-4">
               <div className="grid gap-2">
-                <label htmlFor="transactionId" className="text-white">
+                <label
+                  htmlFor="transactionId"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Transaction ID
                 </label>
                 <Input
                   id="transactionId"
                   {...registerPayment('transactionId')}
-                  className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter transaction ID"
                 />
                 {paymentErrors.transactionId && (
@@ -263,14 +331,18 @@ export function SoloEventRegistration({
                 )}
               </div>
               <div className="grid gap-2 text-white">
-                <label htmlFor="paymentScreenshot" className="text-white">
+                <label
+                  htmlFor="paymentScreenshot"
+                  id="glowPink"
+                  className="font-alexandria tracking-wider"
+                >
                   Payment Screenshot
                 </label>
                 <Input
                   id="paymentScreenshot"
                   type="file"
                   {...registerPayment('paymentScreenshot')}
-                  className="bg-black border text-white border-gray-500 focus:border-[#8B5CF6] focus:outline-none rounded-md"
+                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md  font-alexandria tracking-wider"
                   accept="image/*"
                 />
                 {paymentErrors.paymentScreenshot && (
@@ -297,13 +369,13 @@ export function SoloEventRegistration({
                 type="button"
                 variant="outline"
                 onClick={() => setStep(1)}
-                className="bg-white text-black hover:bg-white/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
                 Back
               </Button>
               <Button
                 type="submit"
-                className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
                 Register
               </Button>

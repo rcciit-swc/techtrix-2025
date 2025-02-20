@@ -1,7 +1,6 @@
-import EventsTable from "@/components/admin/approve/EventsTable";
-import TableSkeleton from "@/components/admin/approve/TableSkeleton";
-import { Suspense } from "react";
-
+import EventsTable from '@/components/admin/approve/EventsTable';
+import TableSkeleton from '@/components/admin/approve/TableSkeleton';
+import { Suspense } from 'react';
 
 export default async function EventsDashboard() {
   // Call the RPC function to fetch approval table data

@@ -37,9 +37,19 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-black border border-[#8B5CF6] rounded-xl">
+      <DialogContent
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/90/59/3b/90593b288869fe650f17b101322ee12d.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        className="sm:max-w-[425px] bg-black border border-yellow-200 rounded-xl modal"
+      >
         <DialogHeader>
-          <DialogTitle className="text-white">Edit Profile</DialogTitle>
+          <DialogTitle className="font-kagitingan tracking-widest text-2xl text-yellow-200">
+            Edit Profile
+          </DialogTitle>
         </DialogHeader>
         <form
           onSubmit={async (e) => {
@@ -47,54 +57,66 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
             await onSave(new FormData(e.currentTarget));
           }}
         >
-          <div className="grid gap-6 py-4 max-h-[60vh] pr-2 overflow-y-auto">
+          <div className="grid gap-6 py-4 font-alexandria max-h-[60vh] pr-2 overflow-y-auto">
             <div className="flex justify-center">
-              <Avatar className="w-24 h-24 border-2 border-violet-500">
+              <Avatar className="w-24 h-24 border-2 bg-yellow-200">
                 <AvatarImage
                   src={profileImage}
                   alt={userData?.name || 'Profile'}
                 />
-                <AvatarFallback className="bg-violet-500 text-white">
+                <AvatarFallback className="bg-yellow-200 text-white">
                   {userData?.name?.[0] || 'U'}
                 </AvatarFallback>
               </Avatar>
             </div>
             <div className="grid gap-2">
-              <label htmlFor="fullName" className="text-white">
+              <label
+                htmlFor="fullName"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 Full Name
               </label>
               <Input
                 id="fullName"
                 name="fullName"
                 defaultValue={userData?.name || name}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 placeholder="Enter your full name"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="gender" className="text-white">
+              <label
+                htmlFor="gender"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 Gender
               </label>
               <Select name="gender" defaultValue={userData?.gender || ''}>
-                <SelectTrigger className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md">
-                  <SelectValue placeholder="Select Gender" />
+                <SelectTrigger className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md">
+                  <SelectValue
+                    placeholder="Select Gender"
+                    id="glowPink"
+                    className="font-alexandria tracking-wider"
+                  />
                 </SelectTrigger>
-                <SelectContent className="bg-black border border-gray-500">
+                <SelectContent className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md">
                   <SelectItem
                     value="female"
-                    className="text-white hover:bg-[#8B5CF6]/20"
+                    className="text-white hover:bg-yellow-200/20"
                   >
                     Female
                   </SelectItem>
                   <SelectItem
                     value="male"
-                    className="text-white hover:bg-[#8B5CF6]/20"
+                    className="text-white hover:bg-yellow-200/20"
                   >
                     Male
                   </SelectItem>
                   {/* <SelectItem
                     value="other"
-                    className="text-white hover:bg-[#8B5CF6]/20"
+                    className="text-white hover:bg-yellow-200/20"
                   >
                     Other
                   </SelectItem> */}
@@ -102,7 +124,11 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
               </Select>
             </div>
             <div className="grid gap-2">
-              <label htmlFor="email" className="text-white">
+              <label
+                htmlFor="email"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 Email ID
               </label>
               <Input
@@ -110,12 +136,16 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 name="email"
                 type="email"
                 defaultValue={userData?.email || ''}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 readOnly
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="phone" className="text-white">
+              <label
+                htmlFor="phone"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 Phone Number
               </label>
               <Input
@@ -123,12 +153,16 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 name="phone"
                 type="tel"
                 defaultValue={userData?.phone || ''}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 placeholder="Enter your phone number"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="phone" className="text-white">
+              <label
+                htmlFor="phone"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 College
               </label>
               <Input
@@ -136,12 +170,16 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 name="college"
                 type="text"
                 defaultValue={userData?.college || ''}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 placeholder="Enter College"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="phone" className="text-white">
+              <label
+                htmlFor="course"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 Course
               </label>
               <Input
@@ -149,12 +187,16 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 name="course"
                 type="text"
                 defaultValue={userData?.course || ''}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 placeholder="Enter Course"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="phone" className="text-white">
+              <label
+                htmlFor="stream"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 Stream
               </label>
               <Input
@@ -162,12 +204,16 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 name="stream"
                 type="text"
                 defaultValue={userData?.stream || ''}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 placeholder="Enter Stream"
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="phone" className="text-white">
+              <label
+                htmlFor="phone"
+                id="glowPink"
+                className="font-alexandria tracking-wider"
+              >
                 College Roll
               </label>
               <Input
@@ -175,7 +221,7 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
                 name="college_roll"
                 type="text"
                 defaultValue={userData?.college_roll || ''}
-                className="bg-black border border-gray-500 focus:border-[#8B5CF6] focus:outline-none text-white rounded-md"
+                className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
                 placeholder="Enter College Roll"
               />
             </div>
@@ -191,7 +237,7 @@ export const EditProfileDialog: FC<EditProfileDialogProps> = ({
             </Button>
             <Button
               type="submit"
-              className="bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+              className="bg-yellow-200 text-black hover:bg-yellow-100 border-0"
             >
               Save Changes
             </Button>

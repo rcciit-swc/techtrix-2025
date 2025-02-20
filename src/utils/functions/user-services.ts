@@ -8,7 +8,7 @@ export const getUserData = async () => {
       .from('users')
       .select('*')
       .eq('id', data?.session?.user?.id);
-      console.log(userdetails)
+    console.log(userdetails);
     if (userdetails && userdetails.data && userdetails.data.length > 0) {
       return userdetails.data[0];
     }
@@ -102,3 +102,18 @@ export const handleSaveChanges = async (
   }
 };
 
+export const getSWCData = async (collegeRoll: string) => {
+  try {
+    const { data } = await supabase
+      .from('SWC-2025')
+      .select('*')
+      .eq('roll', collegeRoll);
+    if (data && data.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

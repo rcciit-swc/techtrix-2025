@@ -6,7 +6,12 @@ import SVGIcon from '../SVGIcon';
 import clsx from 'clsx';
 import { login } from '@/utils/functions/login';
 import { useUser } from '@/lib/stores';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 import { Skeleton } from '../ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { supabase } from '@/utils/functions/supabase-client';
@@ -111,8 +116,9 @@ const Navbar = ({ className }: Props) => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-md bg-black/70' : 'bg-transparent'
-        }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'backdrop-blur-md bg-black/70' : 'bg-transparent'
+      }`}
     >
       <div className="max-w-screen-2xl mx-auto relative px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between transition-all duration-300">
@@ -167,13 +173,17 @@ const Navbar = ({ className }: Props) => {
         </div>
         {/* Mobile Menu - absolutely positioned so it doesn't push content */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-black/90 p-4 rounded-b-lg overflow-hidden transform transition-all duration-300 origin-top ${mobileMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
-            }`}
+          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-black/90 p-4 rounded-b-lg overflow-hidden transform transition-all duration-300 origin-top ${
+            mobileMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
+          }`}
         >
           <MobileNavLink href="/" onClick={() => setMobileMenuOpen(false)}>
             Home
           </MobileNavLink>
-          <MobileNavLink href="/events" onClick={() => setMobileMenuOpen(false)}>
+          <MobileNavLink
+            href="/events"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Events
           </MobileNavLink>
           <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
@@ -192,9 +202,14 @@ interface NavLinkProps {
   asButton?: boolean;
   onClick?: () => void;
 }
-const NavLink = ({ href, children, asButton = false, onClick }: NavLinkProps) => {
+const NavLink = ({
+  href,
+  children,
+  asButton = false,
+  onClick,
+}: NavLinkProps) => {
   const commonClasses =
-    "relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center";
+    'relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center';
 
   const shimmerEffect = (
     <span className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 hover:opacity-100 animate-glitter"></span>

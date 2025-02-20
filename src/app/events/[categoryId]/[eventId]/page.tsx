@@ -35,15 +35,15 @@
 //   return <EventDetails eventData={eventData} />;
 // }
 
-import React from "react";
-import EventLayout from "../../layout";
-import EventDetails from "@/components/Event/EventDetails";
-import { getEventByID } from "@/utils/functions";
+import React from 'react';
+import EventLayout from '../../layout';
+import EventDetails from '@/components/Event/EventDetails';
+import { getEventByID } from '@/utils/functions';
 
-const Events = async({
+const Events = async ({
   params,
 }: {
-  params: { categoryId: string, eventId: string };
+  params: { categoryId: string; eventId: string };
 }) => {
   const getData = async () => {
     const data = await getEventByID(params.eventId);
@@ -52,7 +52,11 @@ const Events = async({
   const eventData = await getData();
   return (
     // <EventLayout categoryId={params.categoryId} eventId={params.eventId}>
-      <EventDetails categoryId={params.categoryId} eventId={params.eventId} eventData={eventData} />
+    <EventDetails
+      categoryId={params.categoryId}
+      eventId={params.eventId}
+      eventData={eventData}
+    />
     // </EventLayout>
   );
 };

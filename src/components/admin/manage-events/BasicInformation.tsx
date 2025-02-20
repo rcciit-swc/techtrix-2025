@@ -98,7 +98,9 @@ export function BasicInformation({ form }: { form: any }) {
                 </FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <span className="absolute left-3 top-[6px] text-white">₹</span>
+                    <span className="absolute left-3 top-[6px] text-white">
+                      ₹
+                    </span>
                     <Input
                       className="pl-7 bg-[#1e2432] text-white border-gray-600 focus-visible:ring-[#9158FF] focus-visible:border-[#9158FF]"
                       placeholder="0.00"
@@ -121,7 +123,9 @@ export function BasicInformation({ form }: { form: any }) {
                 <FormLabel className="text-gray-300">Prize Pool</FormLabel>
                 <FormControl>
                   <div className="relative">
-                  <span className="absolute left-3 top-[6px] text-white">₹</span>
+                    <span className="absolute left-3 top-[6px] text-white">
+                      ₹
+                    </span>
                     <Input
                       className="pl-7 bg-[#1e2432] text-white border-gray-600 focus-visible:ring-[#9158FF] focus-visible:border-[#9158FF]"
                       placeholder="0.00"

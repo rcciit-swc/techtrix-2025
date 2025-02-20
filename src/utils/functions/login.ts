@@ -1,5 +1,4 @@
-import { supabase } from "./supabase-client";
-
+import { supabase } from './supabase-client';
 
 export const login = async () => {
   const { data, error } = await supabase.auth.signInWithOAuth({

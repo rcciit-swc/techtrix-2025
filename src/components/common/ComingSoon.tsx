@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import React from 'react'
-import ButtonLanding from '../Home/ButtonLanding'
+import Image from 'next/image';
+import React from 'react';
+import ButtonLanding from '../Home/ButtonLanding';
 
 const ComingSoon = () => {
   return (
@@ -27,7 +27,7 @@ const ComingSoon = () => {
         <ButtonLanding text="Coming Soon" disabled />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ComingSoon
+export default ComingSoon;
