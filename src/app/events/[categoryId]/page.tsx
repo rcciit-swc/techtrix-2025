@@ -4,16 +4,10 @@ import dynamic from 'next/dynamic';
 import { useEvents } from '@/lib/stores';
 import { TechtrixCategories } from '@/utils/constraints/constants/fests';
 import EventCard from '@/components/profile/EventCard';
-import { useRouter } from 'next/navigation';
-import ComingSoon from '@/components/common/ComingSoon';
+import { useParams, useRouter } from 'next/navigation';
 
-const CarouselCards = dynamic(
-  () => import('@/components/Event/CarouselCards'),
-  { ssr: false }
-);
-
-const Events = ({ params }: { params: { categoryId: any } }) => {
-  const categoryId = params?.categoryId;
+const Events = () => {
+  const categoryId = useParams().categoryId;
   const { eventsData } = useEvents();
   const events = eventsData?.filter(
     (category) => category.event_category_id === categoryId

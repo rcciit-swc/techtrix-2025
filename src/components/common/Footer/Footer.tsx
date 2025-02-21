@@ -13,10 +13,10 @@ import Image from 'next/image';
 export default function Footer() {
   const list = [
     { title: 'Events', link: '/events' },
-    // { title: 'Team', link: '/team' },
+    { title: 'Team', link: '/team' },
     {
       title: 'Sponsorship',
-      link: 'https://drive.google.com/file/d/1UajjAiTHkHN2JItyHBcZBxWOVwAwtqIH/view?usp=sharing',
+      link: 'https://drive.google.com/file/d/1jugHitB4Q8GgR2ZWSAeHoluaH2mnNG_y/view?usp=sharing',
     },
     // { title: "Contact Us", link: "/contact" }
   ];

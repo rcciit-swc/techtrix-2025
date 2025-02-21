@@ -123,7 +123,6 @@ export const getApprovalDashboardData = async (
 };
 
 export const getEventByID = async (id: string): Promise<events | null> => {
-  const serverClient = await supabaseServer();
   const p_event_id = id;
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();
@@ -134,7 +133,7 @@ export const getEventByID = async (id: string): Promise<events | null> => {
 
   const p_user_id = sessionData?.session?.user?.id || null;
 
-  const { data, error } = await serverClient.rpc(
+  const { data, error } = await supabase.rpc(
     'get_event_by_id_with_registration',
     {
       p_event_id,
