@@ -73,7 +73,7 @@ const cards = [
     id: '0f52d7d3-a9e7-454a-bff0-979de725e51a',
     content: <Skeleton />,
     name: 'Out of the Box',
-    thumbnail: '/assets/Events/Categories/outofthebox.png',
+    thumbnail: 'https://i.postimg.cc/CxmmXyyc/ICON-BOX-WEBSITE.png',
   },
   {
     id: '0f947f04-f7bc-45f7-a66c-789b2bbe2b53',
