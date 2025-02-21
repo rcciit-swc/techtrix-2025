@@ -6,7 +6,7 @@ const HeroBg = ({ showAssets = true }: { showAssets?: boolean }) => {
     <>
       <div className="relative h-screen w-full overflow-hidden ">
         {/* Background */}
-        <div className="inset-0">
+        {/* <div className="inset-0">
           <Image
             src="https://i.postimg.cc/pVDLP06f/stars2.png"
             alt="Starfield Background"
@@ -14,7 +14,7 @@ const HeroBg = ({ showAssets = true }: { showAssets?: boolean }) => {
             className="object-cover"
             quality={100}
           />
-        </div>
+        </div> */}
         {showAssets && (
           <div className="absolute top-0 left-0 h-full flex items-center">
             <SVGIcon

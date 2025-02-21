@@ -57,7 +57,7 @@ const EventCard: React.FC<EventCardProps> = ({
             {title}
           </h2>
           {subtitle && (
-            <p className="text-gray-300 text-sm line-clamp-2 font-alexandria">
+            <p className="text-gray-300 text-base line-clamp-2 font-alexandria">
               {parse(subtitle)}
             </p>
           )}

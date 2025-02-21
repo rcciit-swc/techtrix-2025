@@ -118,3 +118,31 @@ export const getSWCData = async (collegeRoll: string) => {
     console.log(err);
   }
 };
+
+export async function fetchRegistrationDetails(
+  eventId: string,
+  userId: string
+): Promise<
+  Array<{
+    is_team: boolean;
+    team_name: string;
+    team_members: Array<{
+      name: string;
+      email: string;
+      phone: string;
+    }>;
+  }>
+> {
+  const { data, error } = await supabase.rpc('get_registration_details', {
+    p_event_id: eventId,
+    p_user_id: userId,
+  });
+
+  if (error) {
+    console.error('Error fetching registration details:', error);
+    throw new Error('Failed to fetch registration details');
+  }
+
+  console.log('Registration Details:', data);
+  return data;
+}

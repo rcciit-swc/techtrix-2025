@@ -48,7 +48,7 @@ const Events = ({ params }: { params: { categoryId: any } }) => {
       {/* <CarouselCards events={eventsDataDetails} categoryName={categoryName || ''} categoryId={
         categoryId
       } /> */}
-      <div className="flex flex-col items-center justify-center w-full h-full pt-[200px]">
+      <div className="flex flex-col items-center justify-center w-full h-full pt-[150px]">
         <h1
           id="glowPink"
           className="text-5xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left"

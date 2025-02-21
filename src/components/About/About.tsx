@@ -1,7 +1,24 @@
+'use client';
 import Image from 'next/image';
 import SVGIcon from '../SVGIcon';
+import EventCard from '../profile/EventCard';
+import { useRouter } from 'next/navigation';
+import { useUser } from '@/lib/stores';
+import { login } from '@/utils/functions/login';
+import { toast } from 'sonner';
 
+const extendedEvents = [
+  {
+    image: 'https://i.postimg.cc/4y8SDw39/Community-Posters.png',
+    title: 'Techtrix 2025 - Orientation Day 1',
+    date: '20th March 2025',
+    time: '10:00 AM',
+    link: 'https://lu.ma/bk6sxplg',
+  },
+];
 export default function About() {
+  const { userData } = useUser();
+  const router = useRouter();
   return (
     <div className="relative h-fit w-full  overflow-hidden">
       <div className="inset-0 bg-repeat-y">
@@ -12,10 +29,54 @@ export default function About() {
           className="object-cover bg-repeat-y"
           quality={100}
         />
-        {/* <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" /> */}
+        <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" />
       </div>
       <div className="relative z-10  container mx-auto px-6">
-        <h1 className="text-4xl md:text-7xl font-bold font-kagitingan text-white text-center pt-12">
+       <div id='ext-events' className='flex flex-col items-center gap-5 justify-center'>
+       <h1   id="glowPink"
+        className="text-5xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pt-12 pb-4 sm:pb-6 text-left z-10">
+          EXTENDED EVENTS
+        </h1>
+        <div className="relative mt-3 w-full flex flex-row items-center justify-center">
+          {extendedEvents.map((event, index) => {
+            return (
+              <EventCard
+                key={index}
+                image_url={event.image}
+                title={event.title}
+                showExploreButton={true}
+                schedule={event.date + ' ' + event.time}
+                exploreAction={async () => {
+                  try {
+                    if (!userData) {
+                      await login();
+                      const checkUserLoggedIn = setInterval(() => {
+                        const updatedUser = useUser().userData; 
+                        if (updatedUser) {
+                          clearInterval(checkUserLoggedIn);
+                          router.push(event.link);
+                        }
+                      }, 500); 
+                
+                      setTimeout(() => clearInterval(checkUserLoggedIn), 5000); 
+                    } else {
+                      router.push(event.link);
+                    }
+                  } catch (e) {
+                    toast.error('An error occurred. Please try again later.');
+                  }
+                }}
+                
+                button_text="Register"
+              />
+            );
+          })}
+        </div>
+      </div>
+       </div>
+      <div className="relative z-10  container mx-auto px-6">
+        <h1   id="glowPink"
+        className="text-5xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-center mt-10 z-10">
           ABOUT
         </h1>
         <div className="flex flex-col-reverse w-full lg:flex-row items-center justify-between">

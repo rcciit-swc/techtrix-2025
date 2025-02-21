@@ -5,7 +5,8 @@ import { type CookieOptions, createServerClient } from '@supabase/ssr';
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/';
+  let next = searchParams.get('next') || '/'; // Default to home if next is missing
+
   if (code) {
     const cookieStore = cookies();
     const supabase = createServerClient(
@@ -25,11 +26,13 @@ export async function GET(request: Request) {
         },
       }
     );
+
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      return NextResponse.redirect(`${origin}${next}`); // Redirect back to original page
     }
   }
 
   return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }
+

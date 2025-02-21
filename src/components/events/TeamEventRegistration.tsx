@@ -30,6 +30,8 @@ interface EventRegistrationDialogProps {
   minTeamSize: number; // includes team lead
   maxTeamSize: number;
   eventID: string;
+  isFree: boolean;
+  eventFees: number;
 }
 
 // Zod schema for the Team Lead (Step 1)
@@ -53,8 +55,10 @@ export function TeamEventRegistration({
   minTeamSize,
   maxTeamSize,
   eventID,
+  isFree,
+  eventFees,
 }: EventRegistrationDialogProps) {
-  const { userData, swcStatus } = useUser();
+  const { userData } = useUser();
   const { markEventAsRegistered } = useEvents();
 
   const teamMemberSchema = z.object({
@@ -67,11 +71,11 @@ export function TeamEventRegistration({
   // const usePaymentSchema = (isPaid: boolean) => {
   //   return useMemo(() => {
   //     return z.object({
-  //       transactionId: swcStatus
+  //       transactionId: isFree
   //         ? z.string().min(1, 'Transaction ID is required')
   //         : z.string().optional(),
 
-  //       paymentScreenshot: swcStatus
+  //       paymentScreenshot: isFree
   //         ? z
   //             .any()
   //             .refine(
@@ -81,7 +85,7 @@ export function TeamEventRegistration({
   //             .transform((files) => files[0])
   //         : z.any().optional(),
   //     });
-  //   }, [swcStatus]);
+  //   }, [isFree]);
   // };
   // Zod schema for Payment Details (Step 3)
   const paymentSchema = z.object({
@@ -199,7 +203,7 @@ export function TeamEventRegistration({
     setIsRegistering(true);
     console.log(data);
     let screenshotUrl = '';
-    if (!swcStatus) {
+    if (!isFree) {
       try {
         // Upload the payment screenshot using the integrated Supabase function.
         screenshotUrl = await uploadPaymentScreenshot(
@@ -232,7 +236,7 @@ export function TeamEventRegistration({
       // Call the registerTeamWithParticipants function.
       const result = await registerTeamWithParticipants(
         registrationParams,
-        swcStatus
+        isFree
       );
       markEventAsRegistered(eventID);
       handleDialogClose();
@@ -263,7 +267,7 @@ export function TeamEventRegistration({
       // Call the registerTeamWithParticipants function.
       const result = await registerTeamWithParticipants(
         registrationParams,
-        swcStatus
+        isFree
       );
       markEventAsRegistered(eventID);
       handleDialogClose();
@@ -296,6 +300,12 @@ export function TeamEventRegistration({
     onClose();
   };
 
+  const onRemoveMember = (index: number) => {
+    const updatedMembers = [...teamMembers];
+    updatedMembers.splice(index, 1);
+    setTeamMembers(updatedMembers);
+  } 
+
   return (
     <Dialog
       open={isOpen}
@@ -312,7 +322,7 @@ export function TeamEventRegistration({
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        className="sm:max-w-[500px] bg-black border border-yellow-200 rounded-xl p-6 modal"
+        className="sm:max-w-[500px] bg-black border  border-yellow-200 rounded-xl p-6 modal"
       >
         <DialogHeader>
           <DialogTitle className="text-white text-2xl font-kagitingan tracking-wider">
@@ -444,7 +454,7 @@ export function TeamEventRegistration({
                 <Input
                   id="collegeName"
                   {...registerTeamLead('collegeName')}
-                  defaultValue={teamLeadData?.collegeName || userData?.email}
+                  defaultValue={teamLeadData?.collegeName || userData?.college}
                   className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter college name"
                 />
@@ -476,15 +486,17 @@ export function TeamEventRegistration({
         )}
         {
           <ViewTeamMembers
+          isFree={isFree}
             isOpen={isSheetOpen}
             onOpenChange={setIsSheetOpen}
             teamMembers={teamMembers}
             teamLeadData={teamLeadData}
             showConfirmTeam={showConfirmTeam}
             registerLoading={registerLoading}
+            onRemoveMember={onRemoveMember}
             confirmTeam={async () => {
               setIsConfirmedTeam(true);
-              swcStatus ? await registerForSWCPaid() : setStep(3);
+              isFree ? await registerForSWCPaid() : setStep(3);
               setIsSheetOpen(false);
             }}
             onEditTeamLead={() => {
@@ -618,7 +630,7 @@ export function TeamEventRegistration({
                     totalTeamCount < minTeamSize || totalTeamCount > maxTeamSize
                   }
                 >
-                  {swcStatus ? 'Register' : 'Make Payment'}
+                  {isFree ? 'Register' : 'Make Payment'}
                 </Button>
                 <Button
                   type="button"
@@ -673,7 +685,7 @@ export function TeamEventRegistration({
                   type="file"
                   {...registerPayment('paymentScreenshot')}
                   className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md"
-                  // accept="image/*"
+                  accept="image/*"
                 />
                 {paymentErrors.paymentScreenshot && (
                   <p className="text-red-500 text-sm font-alexandria tracking-wider">
@@ -682,9 +694,12 @@ export function TeamEventRegistration({
                 )}
               </div>
             </div>
+            <h1 className="text-white text-center text-lg font-semibold">
+              Pay <span className="text-green-500">₹ {}</span>
+            </h1>
             <div className="mt-6 flex items-center justify-center">
               <Image
-                src="/images/qr.jpg"
+                src="https://i.postimg.cc/CLkk57DC/dhara.jpg"
                 alt="Payment QR Code"
                 width={200}
                 height={200}

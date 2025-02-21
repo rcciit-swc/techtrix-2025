@@ -32,8 +32,10 @@ interface ViewTeamMembersProps {
   onEditMember: (index: number) => void;
   onEditTeamLead: () => void;
   confirmTeam: () => void;
+  onRemoveMember: (index: number) => void;
   showConfirmTeam: boolean;
   registerLoading: boolean;
+  isFree: boolean;
 }
 
 export function ViewTeamMembers({
@@ -43,11 +45,12 @@ export function ViewTeamMembers({
   onEditMember,
   teamLeadData,
   onEditTeamLead,
+  onRemoveMember,
   confirmTeam,
   registerLoading,
   showConfirmTeam,
+  isFree,
 }: ViewTeamMembersProps) {
-  const { swcStatus } = useUser();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -78,12 +81,20 @@ export function ViewTeamMembers({
           <p className="text-white font-semibold">Name: {member.name}</p>
           <p className="text-gray-400">Email: {member.email}</p>
           <p className="text-gray-400">Phone: {member.phone}</p>
-          <Button
+         <div className='flex flex-row items-center gap-5'>
+         <Button
             onClick={() => onEditMember(index)}
             className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
           >
             Edit
           </Button>
+          <Button
+            onClick={() => onRemoveMember(index)}
+            className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
+          >
+            Remove
+          </Button>
+         </div>
         </div>
       ))}
       {showConfirmTeam && (
@@ -92,8 +103,8 @@ export function ViewTeamMembers({
           disabled={registerLoading}
           className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
         >
-          {swcStatus
-            ? swcStatus && registerLoading
+          {isFree
+            ? isFree && registerLoading
               ? 'Loading...'
               : 'Register'
             : 'Proceed to Payment'}

@@ -6,6 +6,7 @@ import { HeroBg } from '@/components/Home/HeroBg';
 import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
 import { EventLanding } from '@/components/Home/EventLanding';
 import SplashScreen from "@/components/GifRender/SplashScreen";
+import Image from "next/image";
 
 const Page = () => {
   // const [showSplash, setShowSplash] = useState(false);
@@ -26,6 +27,15 @@ const Page = () => {
         <SplashScreen onFinish={() => setShowSplash(false)} />
       ) : ( */}
         <div className="fade-in">
+           <div className="inset-0">
+                    <Image
+                      src="https://i.postimg.cc/pVDLP06f/stars2.png"
+                      alt="Starfield Background"
+                      fill
+                      className="object-cover bg-repeat-y h-full"
+                      quality={100}
+                    />
+                  </div>
           <div className="relative w-full h-screen">
             <div className="absolute inset-0 z-0">
               <HeroBg />

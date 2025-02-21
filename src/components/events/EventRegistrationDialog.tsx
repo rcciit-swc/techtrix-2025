@@ -24,6 +24,7 @@ interface SoloEventRegistrationDialogProps {
   eventName: string;
   eventID: string;
   eventFees: number;
+  isFree: boolean;
 }
 
 // Schema for solo (team lead) details.
@@ -43,8 +44,9 @@ export function SoloEventRegistration({
   eventName,
   eventID,
   eventFees,
+  isFree,
 }: SoloEventRegistrationDialogProps) {
-  const { userData, swcStatus } = useUser();
+  const { userData } = useUser();
   const { markEventAsRegistered } = useEvents();
   const [step, setStep] = useState(1);
   const [soloLeadData, setSoloLeadData] = useState<SoloLeadFormValues | null>(
@@ -68,18 +70,18 @@ export function SoloEventRegistration({
 
   const onSoloLeadSubmit = async (data: SoloLeadFormValues) => {
     setSoloLeadData(data);
-    swcStatus ? await registerForSWCPaid() : setStep(2);
+    isFree ? await registerForSWCPaid() : setStep(2);
     resetSoloLead();
   };
 
   // const usePaymentSchema = () => {
   //   return useMemo(() => {
   //     return z.object({
-  //       transactionId: swcStatus
+  //       transactionId: isFree
   //         ? z.string().min(1, 'Transaction ID is required')
   //         : z.string().optional(),
 
-  //       paymentScreenshot: swcStatus
+  //       paymentScreenshot: isFree
   //         ? z
   //             .any()
   //             .refine(
@@ -89,7 +91,7 @@ export function SoloEventRegistration({
   //             .transform((files) => files[0])
   //         : z.any().optional(),
   //     });
-  //   }, [swcStatus]);
+  //   }, [isFree]);
   // };
   // Zod schema for Payment Details (Step 3)
   const paymentSchema = z.object({
@@ -308,7 +310,7 @@ export function SoloEventRegistration({
                 type="submit"
                 className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
               >
-                {swcStatus ? 'Register' : 'Next'}
+                {isFree ? 'Register' : 'Next'}
               </Button>
             </div>
           </form>
@@ -367,13 +369,14 @@ export function SoloEventRegistration({
             </h1>
             <div className="mt-6 flex items-center justify-center">
               <Image
-                src="/images/qr.jpg"
+                src="https://i.postimg.cc/CLkk57DC/dhara.jpg"
                 alt="Payment QR Code"
                 width={200}
                 height={200}
-                className="rounded-lg"
+                className="rounded-lg w-[250px]"
               />
             </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <Button
                 type="button"

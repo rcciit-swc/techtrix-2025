@@ -17,7 +17,7 @@ export default function EventLanding() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col min-h-screen max-lg:pt-40 pb-20 items-center justify-center bg-black">
+    <div className="w-full flex flex-col min-h-screen max-lg:pt-40 pt-40 pb-20 items-center justify-center bg-black">
       <div className="inset-0">
         <Image
           src="https://i.postimg.cc/pVDLP06f/stars2.png"

@@ -19,6 +19,7 @@ import {
 } from '../ui/drawer';
 import { toast } from 'sonner';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { fetchRegistrationDetails } from '@/utils/functions';
 
 interface EventDetailsDialogProps {
   event: any | null;
@@ -61,18 +62,17 @@ export function EventDetailsDialog({
       const loadTeamData = async () => {
         setLoading(true);
         try {
-          //   const data = await fetchRegistrationDetails(event.id, userId);
-          //   console.log('Fetched Data:', data);
-          //   const members =
-          //     data.length > 0 && data[0].team_members ? data[0].team_members : [];
-          //   const fetchedTeamName =
-          //     data.length > 0 && data[0].team_name ? data[0].team_name : null;
-          //   setTeamMembers(members);
-          //   setTeamName(fetchedTeamName);
-          //   teamDataCache.current[event.id] = {
-          //     teamName: fetchedTeamName,
-          //     members,
-          //   };
+          const data = await fetchRegistrationDetails(event.id, userId);
+          const members =
+            data.length > 0 && data[0].team_members ? data[0].team_members : [];
+          const fetchedTeamName =
+            data.length > 0 && data[0].team_name ? data[0].team_name : null;
+          setTeamMembers(members);
+          setTeamName(fetchedTeamName);
+          teamDataCache.current[event.id] = {
+            teamName: fetchedTeamName,
+            members,
+          };
         } catch (error) {
           console.error('Error fetching team data:', error);
           toast.error('Failed to fetch team details');
@@ -93,11 +93,13 @@ export function EventDetailsDialog({
       {loading ? (
         <Skeleton className="h-6 w-2/3 mb-4" />
       ) : teamName ? (
-        <h3 className="text-xl font-semibold text-white text-center">
+        <h3 className="text-xl font-semibold text-yellow-200 font-kagitingan tracking-widest text-center">
           Team: {teamName}
         </h3>
       ) : (
-        <p className="text-gray-300 text-center">No team name available</p>
+        <p className="text-gray-300 text-center font-alexandria">
+          No team name available
+        </p>
       )}
 
       <div>
@@ -118,7 +120,10 @@ export function EventDetailsDialog({
             className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-4`}
           >
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-zinc-800 p-4 rounded-lg">
+              <div
+                key={index}
+                className="bg-zinc-800 font-alexandria tracking-wider p-4 rounded-lg"
+              >
                 <h4 className="text-lg font-bold text-white">{member.name}</h4>
                 <p className="text-sm text-gray-300">{member.email}</p>
                 <p className="text-sm text-gray-300">{member.phone}</p>
@@ -138,7 +143,7 @@ export function EventDetailsDialog({
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerContent className="bg-zinc-900 text-white border-t border-zinc-800">
           <DrawerHeader className="border-b border-zinc-800">
-            <DrawerTitle className="text-2xl font-got !tracking-widest">
+            <DrawerTitle className="text-2xl font-kagitingan !tracking-widest">
               {event.name}
             </DrawerTitle>
             <DrawerDescription className="text-sm text-gray-300">
@@ -155,9 +160,14 @@ export function EventDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-zinc-900 text-white border-zinc-800 min-w-xl max-w-3xl">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-got !tracking-widest">
+      <DialogContent   style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/90/59/3b/90593b288869fe650f17b101322ee12d.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }} className=" text-white border-yellow-200 min-w-xl max-w-3xl">
+        <DialogHeader className='font-kagitingan tracking-widest'>
+          <DialogTitle className="text-2xl text-yellow-200 font-got !tracking-widest">
             {event.name}
           </DialogTitle>
           <DialogDescription className="text-sm text-gray-300">
