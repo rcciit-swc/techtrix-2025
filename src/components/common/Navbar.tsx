@@ -125,7 +125,7 @@ const Navbar = ({ className }: Props) => {
         <div className="flex items-center justify-between transition-all duration-300">
           <div className="flex-shrink-0" onClick={() => router.push('/')}>
             <Image
-              src={'/assets/Home/techtrixLogo.png'}
+              src={'https://i.postimg.cc/vZjbz2zk/Techtrix-Logo.png'}
               alt="Techtrix Logo"
               width={isMobile ? 100 : scrolled ? 100 : 160}
               height={isMobile ? 100 : scrolled ? 100 : 160}
