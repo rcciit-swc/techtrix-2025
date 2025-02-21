@@ -4,6 +4,7 @@ import { useState } from 'react';
 import parse from 'html-react-parser';
 import { Card } from '@/components/ui/card';
 import styles from './EventCard.module.css';
+import Image from 'next/image';
 
 interface EventCardProps {
   title: string;
@@ -27,6 +28,7 @@ const EventCard: React.FC<EventCardProps> = ({
   exploreAction = () => {},
 }) => {
   const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <Card
@@ -35,9 +37,18 @@ const EventCard: React.FC<EventCardProps> = ({
       onTouchStart={() => setIsActive(!isActive)}
     >
       <div className={`${styles.cardContent} relative h-full w-full`}>
-        <div
-          className={`${styles.cardBackground} absolute inset-0 bg-cover bg-center`}
-          style={{ backgroundImage: `url(${image_url})` }}
+      {isLoading && (
+          <div className="absolute inset-0 bg-gray-800 animate-pulse" />
+        )}
+
+        {/* Next.js Optimized Image */}
+        <Image
+          src={image_url}
+          alt={title}
+          fill
+          className="object-cover"
+          onLoad={() => setIsLoading(false)}
+          priority
         />
         <div
           className={`${styles.content} ${isActive ? styles.active : ''} absolute inset-0 p-6 pb-14 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent`}

@@ -8,23 +8,23 @@ import { EventLanding } from '@/components/Home/EventLanding';
 import SplashScreen from "@/components/GifRender/SplashScreen";
 
 const Page = () => {
-  const [showSplash, setShowSplash] = useState(false);
+  // const [showSplash, setShowSplash] = useState(false);
 
-  useEffect(() => {
-    // Check if this is a fresh page load or reload
-    const isPageReload = !window.performance.navigation.type || 
-                        window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD;
+  // useEffect(() => {
+  //   // Check if this is a fresh page load or reload
+  //   const isPageReload = !window.performance.navigation.type || 
+  //                       window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD;
     
-    if (isPageReload) {
-      setShowSplash(true);
-    }
-  }, []);
+  //   if (isPageReload) {
+  //     setShowSplash(true);
+  //   }
+  // }, []);
 
   return (
     <>
-      {showSplash ? (
+      {/* {showSplash ? (
         <SplashScreen onFinish={() => setShowSplash(false)} />
-      ) : (
+      ) : ( */}
         <div className="fade-in">
           <div className="relative w-full h-screen">
             <div className="absolute inset-0 z-0">
@@ -39,7 +39,7 @@ const Page = () => {
             <EventLanding />
           </div>
         </div>
-      )}
+      {/* )} */}
     </>
   );
 };

@@ -1,26 +1,40 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { useEvents } from '@/lib/stores';
 import { TechtrixCategories } from '@/utils/constraints/constants/fests';
 import EventCard from '@/components/profile/EventCard';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import ComingSoon from '@/components/common/ComingSoon';
 import Image from 'next/image';
 
-const Events = () => {
-  const categoryId = useParams().categoryId;
-  const { eventsData, setEventsData, eventsLoading } = useEvents();
-  useEffect(() => {
-    if(!eventsData || eventsData.length === 0){
-      setEventsData();
-    }
-  }, []);
+const CarouselCards = dynamic(
+  () => import('@/components/Event/CarouselCards'),
+  { ssr: false }
+);
+
+const Events = ({ params }: { params: { categoryId: any } }) => {
+  const categoryId = params?.categoryId;
+  const { eventsData } = useEvents();
   const events = eventsData?.filter(
     (category) => category.event_category_id === categoryId
   );
   const categoryName = TechtrixCategories.find(
     (category) => category.id === categoryId
   )?.name;
+  if (!events || events?.length === 0) {
+    return (
+      <div className="w-full h-full flex justify-center items-center py-20">
+        <Image
+          src={'/assets/Home/loader.gif'}
+          className="w-full h-full lg:w-[800px] lg:h-[400px]"
+          alt=""
+          width={1000}
+          height={500}
+        />
+      </div>
+    );
+  }
   const router = useRouter();
   return (
     <div className="flex justify-center items-center w-full h-full relative">
@@ -42,35 +56,25 @@ const Events = () => {
           {categoryName}
         </h1>
         {/* <ComingSoon /> */}
-        {eventsLoading ? (
-          <Image
-            src={'/assets/Home/loader.gif'}
-            className="w-full h-full lg:w-[800px] lg:h-[400px]"
-            alt=""
-            width={1000}
-            height={500}
-          />
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 gap-10 pb-10">
-            {events?.map((event, index) => {
-              return (
-                <EventCard
-                  key={index}
-                  title={event.name}
-                  subtitle={event.description}
-                  schedule={event.schedule}
-                  image_url={event.image_url}
-                  showExploreButton={true}
-                  exploreAction={() => {
-                    router.push(
-                      `/events/${event?.event_category_id}/${event.id}`
-                    );
-                  }}
-                />
-              );
-            })}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 gap-10 pb-10">
+          {events?.map((event, index) => {
+            return (
+              <EventCard
+                key={index}
+                title={event.name}
+                subtitle={event.description}
+                schedule={event.schedule}
+                image_url={event.image_url}
+                showExploreButton={true}
+                exploreAction={() => {
+                  router.push(
+                    `/events/${event?.event_category_id}/${event.id}`
+                  );
+                }}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
