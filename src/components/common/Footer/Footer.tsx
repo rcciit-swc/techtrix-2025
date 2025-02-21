@@ -24,14 +24,14 @@ export default function Footer() {
   return (
     <footer className="relative bg-black text-white py-4 px-4 overflow-hidden">
       <Image
-        src="/assets/home/box.svg"
+        src="https://i.postimg.cc/XqMqQmDJ/cube.png"
         alt="Box"
         width={200}
         height={200}
         className={`block absolute top-[20%] left-4 sm:left-10 w-40 sm:w-80 h-40 sm:h-80 ${styles.floatingIcon}`}
       />
       <Image
-        src="/assets/home/box.svg"
+        src="https://i.postimg.cc/XqMqQmDJ/cube.png"
         alt="Box"
         width={200}
         height={200}

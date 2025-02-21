@@ -6,7 +6,7 @@ export default function About() {
     <div className="relative h-fit w-full  overflow-hidden">
       <div className="inset-0 bg-repeat-y">
         <Image
-          src="/assets/home/star2.svg"
+          src="https://i.postimg.cc/pVDLP06f/stars2.png"
           alt="Starfield Background"
           fill
           className="object-cover bg-repeat-y"

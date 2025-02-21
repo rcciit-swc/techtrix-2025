@@ -20,7 +20,7 @@ export default function EventLanding() {
     <div className="w-full flex flex-col min-h-screen items-center justify-center bg-black">
       <div className="inset-0">
         <Image
-          src="/assets/home/star2.svg"
+          src="https://i.postimg.cc/pVDLP06f/stars2.png"
           alt="Starfield Background"
           fill
           className="object-cover"
