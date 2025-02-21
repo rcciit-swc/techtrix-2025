@@ -1,14 +1,20 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useEvents } from '@/lib/stores';
 import { TechtrixCategories } from '@/utils/constraints/constants/fests';
 import EventCard from '@/components/profile/EventCard';
 import { useParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Events = () => {
   const categoryId = useParams().categoryId;
-  const { eventsData } = useEvents();
+  const { eventsData, setEventsData, eventsLoading } = useEvents();
+  useEffect(() => {
+    if(!eventsData || eventsData.length === 0){
+      setEventsData();
+    }
+  }, []);
   const events = eventsData?.filter(
     (category) => category.event_category_id === categoryId
   );
@@ -36,24 +42,35 @@ const Events = () => {
           {categoryName}
         </h1>
         {/* <ComingSoon /> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 gap-10 pb-10">
-     {
-        events?.map((event, index) => {
-          return (
-            <EventCard
-              key={index}
-                    title={event.name}
-                    subtitle={event.description}
-                    schedule={event.schedule}
-                    image_url={event.image_url}
-                    showExploreButton={true}
-                    exploreAction={() => {
-                      router.push(`/events/${event?.event_category_id}/${event.id}`);
-                    }}
-                  />
-          )
-        })}
-     </div>
+        {eventsLoading ? (
+          <Image
+            src={'/assets/Home/loader.gif'}
+            className="w-full h-full lg:w-[800px] lg:h-[400px]"
+            alt=""
+            width={1000}
+            height={500}
+          />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 gap-10 pb-10">
+            {events?.map((event, index) => {
+              return (
+                <EventCard
+                  key={index}
+                  title={event.name}
+                  subtitle={event.description}
+                  schedule={event.schedule}
+                  image_url={event.image_url}
+                  showExploreButton={true}
+                  exploreAction={() => {
+                    router.push(
+                      `/events/${event?.event_category_id}/${event.id}`
+                    );
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

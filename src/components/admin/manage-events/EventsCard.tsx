@@ -105,20 +105,20 @@ export function EventCards() {
                     {parseWithQuillStyles(event.description)}
                   </div>
                   <div className="space-y-3">
-                    <p>
+                    <div>
                       <span className="font-semibold">Fees:</span>{' '}
                       {event.registration_fees}
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                       <span className="font-semibold">Prize:</span>{' '}
                       {event.prize_pool}
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                       <span className="font-semibold">Team Size:</span>{' '}
                       {event.min_team_size === event.max_team_size
                         ? event.min_team_size
                         : `${event.min_team_size} - ${event.max_team_size}`}
-                    </p>
+                    </div>
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col items-start space-y-4">
