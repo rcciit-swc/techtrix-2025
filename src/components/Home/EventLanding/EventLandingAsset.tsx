@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import Spline from "@splinetool/react-spline";
 
 const EventLandingAsset = () => {
   return (
@@ -18,12 +17,12 @@ const EventLandingAsset = () => {
         </div>
       }
     >
-      <div>
+      {/* <div>
         <Spline
           scene="https://prod.spline.design/KEELmKSXO3Evqb00/scene.splinecode"
           className="object-cover"
         />
-      </div>
+      </div> */}
     </Suspense>
   );
 };

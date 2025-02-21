@@ -12,7 +12,7 @@ const CarouselCards = dynamic(
   { ssr: false }
 );
 
-const Events = ({ params }: { params: { categoryId: string } }) => {
+const Events = ({ params }: { params: { categoryId: any } }) => {
   const categoryId = params?.categoryId;
   const { eventsData } = useEvents();
   const events = eventsData?.filter(

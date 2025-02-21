@@ -10,9 +10,9 @@ export function constructMetaData({
   creator = 'TECHTRIX RCCIIT Team 2025',
   generator = 'Next.js',
   publisher = 'TECHTRIX',
-  icons = '/favicon.ico',
+  icons = '/favicon.png',
   robots = 'index, follow',
-  image = '/assets/home/techtrix.png',
+  image = '/favicon.png',
 }: {
   title?: string;
   description?: string;
