@@ -17,7 +17,7 @@ export default function EventLanding() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col min-h-screen items-center justify-center bg-black">
+    <div className="w-full flex flex-col min-h-screen max-lg:pt-40 pb-20 items-center justify-center bg-black">
       <div className="inset-0">
         <Image
           src="https://i.postimg.cc/pVDLP06f/stars2.png"
@@ -29,7 +29,7 @@ export default function EventLanding() {
       </div>
       <h1
         id="glowPink"
-        className="text-3xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left z-10"
+        className="text-5xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left z-10"
       >
         EVENTS
       </h1>
@@ -64,7 +64,7 @@ const cards = [
     thumbnail: '/assets/Events/Categories/automata.png',
   },
   {
-    id: '46ea4f76-36ba-469d-aed6-3bf72d1beb87',
+    id: '4ff0cd32-079f-43fd-84b0-b9147f74eaca',
     content: <Skeleton />,
     name: 'Flagship',
     thumbnail: '/assets/Events/Categories/flagship.png',
@@ -81,7 +81,7 @@ const cards = [
     thumbnail: '/assets/Events/Categories/robotics.png',
   },
   {
-    id: '4ff0cd32-079f-43fd-84b0-b9147f74eaca',
+    id: '43c36d73-7e86-4c5b-a580-cecda4b14281',
     name: 'Gaming',
     thumbnail: '/assets/Events/Categories/gaming.png',
   },

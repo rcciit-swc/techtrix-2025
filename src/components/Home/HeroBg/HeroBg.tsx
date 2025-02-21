@@ -4,7 +4,7 @@ import Image from 'next/image';
 const HeroBg = ({ showAssets = true }: { showAssets?: boolean }) => {
   return (
     <>
-      <div className="relative h-screen w-full overflow-hidden">
+      <div className="relative h-screen w-full overflow-hidden ">
         {/* Background */}
         <div className="inset-0">
           <Image

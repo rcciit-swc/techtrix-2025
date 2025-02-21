@@ -37,12 +37,12 @@ const Events = ({ params }: { params: { categoryId: any } }) => {
       <div className="flex flex-col items-center justify-center w-full h-full pt-[200px]">
         <h1
           id="glowPink"
-          className="text-3xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left"
+          className="text-5xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left"
         >
           {categoryName}
         </h1>
-        <ComingSoon />
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 gap-4 p-4">
+        {/* <ComingSoon /> */}
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 lg:grid-cols-3 gap-10 pb-10">
      {
         events?.map((event, index) => {
           return (
@@ -59,7 +59,7 @@ const Events = ({ params }: { params: { categoryId: any } }) => {
                   />
           )
         })}
-     </div> */}
+     </div>
       </div>
     </div>
   );

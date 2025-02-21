@@ -16,6 +16,7 @@ import { Skeleton } from '../ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { supabase } from '@/utils/functions/supabase-client';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 type Props = {
   className?: string;
@@ -123,18 +124,19 @@ const Navbar = ({ className }: Props) => {
       <div className="max-w-screen-2xl mx-auto relative px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between transition-all duration-300">
           <div className="flex-shrink-0" onClick={() => router.push('/')}>
-            <SVGIcon
-              iconName="techtrixLogo"
-              className="transition-all duration-300 h-16 w-auto"
+            <Image
+              src={'/assets/Home/techtrixLogo.png'}
+              alt="Techtrix Logo"
               width={isMobile ? 100 : scrolled ? 100 : 160}
               height={isMobile ? 100 : scrolled ? 100 : 160}
             />
+
           </div>
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
-            {/* <NavLink href="/team">Team</NavLink> */}
+            <NavLink href="/team">Team</NavLink>
             <div className="ml-10">
               <SignInButton />
             </div>
@@ -188,9 +190,9 @@ const Navbar = ({ className }: Props) => {
           >
             Events
           </MobileNavLink>
-          {/* <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
+          <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
             Team
-          </MobileNavLink> */}
+          </MobileNavLink>
           <div className="ml-4 mt-2">
             <SignInButton />
           </div>

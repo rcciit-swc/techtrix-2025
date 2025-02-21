@@ -46,10 +46,10 @@ export default function Footer() {
             Ready to be a part of Techtrix?
           </h1>
           <Link
-            href="/"
+            href="/events"
             className="mt-4 md:mt-0 border border-white px-6 py-2 rounded-full hover:bg-gray-800 transition"
           >
-            Coming Soon
+            Explore
           </Link>
         </div>
         <div className="relative flex justify-center items-center">

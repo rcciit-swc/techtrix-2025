@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { login } from '@/utils/functions/login';
 import Link from 'next/link';
 import { RulesDialog } from '../admin/manage-events';
+import Image from 'next/image';
 
 type Coordinator = {
   name: string;
@@ -92,12 +93,18 @@ const EventDetails: React.FC<EventDetailsProps> = ({
   if (eventsLoading || !eventData) {
     return (
       <div className="min-h-screen w-full mt-14 text-white flex flex-col items-center py-16 px-4 relative">
-        loading...
+        <Image
+                    src={'/assets/Home/loader.gif'}
+                    className="w-full h-full lg:w-[800px] lg:h-[400px]"
+                    alt=""
+                    width={1000}
+                    height={500}
+                  />
       </div>
     );
   }
   return (
-    <div className='relative w-full min-h-screen'>
+    <div className='relative w-full '>
             <video
         className="absolute inset-0 w-full h-full object-cover -z-10"
         src="/assets/Home/bg2.mp4" // Change this to your video file path
@@ -108,7 +115,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({
     <div className="relative max-w-5xl mx-auto p-4 sm:p-6 pt-24 sm:pt-48 mt-10 mix-blend-normal">
       <h1
         id="glowPink"
-        className="text-3xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left"
+        className="text-5xl sm:text-4xl md:text-6xl font-bold text-transparent font-kagitingan pb-4 sm:pb-6 text-left"
       >
         {eventCategory}
       </h1>
@@ -156,11 +163,19 @@ const EventDetails: React.FC<EventDetailsProps> = ({
             <div className="flex flex-row items-center justify-center gap-4">
               <RulesDialog rules={eventData.rules} />
               <div className=" text-center">
-                <button
+                {/* <button
                   onClick={handleRegister}
                   className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
                 >
                   {eventData.registered ? 'Registered' : 'Register Now'}
+                </button> */}
+                <button
+                  onClick={()=>{
+                    toast.success('Registration will be open soon !');
+                  }}
+                  className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
+                >
+                  Register Soon
                 </button>
               </div>
             </div>

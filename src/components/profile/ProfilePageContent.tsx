@@ -39,8 +39,8 @@ export default function ProfileContent() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (eventsData.length > 0) {
-      const registeredEvents = eventsData.filter((event) => event.registered);
+    if (eventsData?.length > 0) {
+      const registeredEvents = eventsData?.filter((event) => event.registered);
       setRegisteredEvents(registeredEvents);
     }
   }, [eventsData]);
@@ -97,6 +97,13 @@ export default function ProfileContent() {
 
   return (
     <div className="min-h-screen mt-32">
+      <video
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+        src="/assets/Home/bg2.mp4" // Change this to your video file path
+        autoPlay
+        loop
+        muted
+      />
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div
           style={{
@@ -153,7 +160,7 @@ export default function ProfileContent() {
           <h2 className="text-2xl font-bold mb-4 text-white font-alexandria tracking-widest">
             Events Registered
           </h2>
-          {registeredEvents.length > 0 ? (
+          {registeredEvents?.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {registeredEvents.map((event, index) => (
                 <div key={index} onClick={() => handleEventClick(event)}>

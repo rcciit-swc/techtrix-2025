@@ -10,11 +10,11 @@ const TechtrixCategories = [
     name: 'Robotics',
   },
   {
-    id: '4ff0cd32-079f-43fd-84b0-b9147f74eaca',
+    id: '43c36d73-7e86-4c5b-a580-cecda4b14281',
     name: 'Gaming',
   },
   {
-    id: '46ea4f76-36ba-469d-aed6-3bf72d1beb87',
+    id: '4ff0cd32-079f-43fd-84b0-b9147f74eaca',
     name: 'Flagship',
   },
   {
