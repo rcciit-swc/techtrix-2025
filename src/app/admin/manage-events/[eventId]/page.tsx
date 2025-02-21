@@ -12,12 +12,7 @@ import { eventSchema } from '@/lib/schemas';
 import { useEvents } from '@/lib/stores';
 import { Coordinator, Link } from '@/lib/types/events';
 import { EditEventSkeleton } from '@/components/admin/manage-events/EditEventSkeleton';
-import {
-  BasicInformation,
-  LinksAndCoordinators,
-  RulesAndGuidelines,
-  ScheduleAndDescription,
-} from '@/components/admin/manage-events';
+import { BasicInformation, LinksAndCoordinators, RulesAndGuidelines, ScheduleAndDescription } from '@/components/admin/manage-events';
 
 export default function EditEventPage() {
   const params = useParams();

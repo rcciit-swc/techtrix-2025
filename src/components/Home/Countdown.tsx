@@ -33,7 +33,7 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="grid grid-flow-col gap-5 text-center auto-cols-max font-alexandria">
+    <section className="grid grid-flow-col gap-5 text-center auto-cols-max font-alexandria">
       <div className="flex flex-col p-2 bg-transparent backdrop-blur-sm border-yellow-200 border-2 rounded-md text-white">
         <span className="countdown font-mono text-5xl">{timeLeft.days}</span>
         Days
@@ -50,7 +50,7 @@ const Countdown = () => {
         <span className="countdown font-mono text-5xl">{timeLeft.seconds}</span>
         sec
       </div>
-    </div>
+    </section>
   );
 };
 

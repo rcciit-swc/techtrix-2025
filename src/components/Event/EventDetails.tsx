@@ -97,6 +97,14 @@ const EventDetails: React.FC<EventDetailsProps> = ({
     );
   }
   return (
+    <div className='relative w-full min-h-screen'>
+            <video
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+        src="/assets/Home/bg2.mp4" // Change this to your video file path
+        autoPlay
+        loop
+        muted
+      />
     <div className="relative max-w-5xl mx-auto p-4 sm:p-6 pt-24 sm:pt-48 mt-10 mix-blend-normal">
       <h1
         id="glowPink"
@@ -202,6 +210,8 @@ const EventDetails: React.FC<EventDetailsProps> = ({
         />
       )}
     </div>
+    </div>
+
   );
 };
 

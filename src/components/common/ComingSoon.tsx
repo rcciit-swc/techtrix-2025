@@ -4,7 +4,7 @@ import ButtonLanding from '../Home/ButtonLanding';
 
 const ComingSoon = () => {
   return (
-    <div className="relative mt-10 w-full flex flex-col justify-center items-center">
+    <div className="relative mt-10 w-full min-h-[50vh] flex flex-col">
       {/* Background */}
 
       {/* Content */}

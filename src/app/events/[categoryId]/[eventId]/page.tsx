@@ -1,5 +1,4 @@
 import React from 'react';
-import EventLayout from '../../layout';
 import EventDetails from '@/components/Event/EventDetails';
 import { getEventByID } from '@/utils/functions';
 import { TechtrixCategories } from '@/utils/constraints/constants/fests';
@@ -33,27 +32,25 @@ interface EventData {
 }
 
 interface EventsProps {
-  params: { categoryId: string; eventId: string };
+ categoryId: string; eventId: string ;
 }
 
-const Events = async ({ params }: EventsProps) => {
-  const eventData = (await getEventByID(params.eventId)) as EventData | null;
+const Events = async ({ categoryId, eventId }: EventsProps) => {
+  const eventData = (await getEventByID(eventId)) as EventData | null;
   const eventCategory =
-    TechtrixCategories.find((category) => category.id === params.categoryId)
+    TechtrixCategories.find((category) => category.id === categoryId)
       ?.name || '';
   if (!eventData || !eventData.id) {
     return <div className="text-white text-center mt-10">Event not found</div>;
   }
 
   return (
-    <EventLayout categoryId={params.categoryId} eventId={params.eventId}>
       <EventDetails
         eventCategory={eventCategory}
-        categoryId={params.categoryId}
-        eventId={params.eventId}
+        categoryId={categoryId}
+        eventId={eventId}
         eventData={eventData}
       />
-    </EventLayout>
   );
 };
 
