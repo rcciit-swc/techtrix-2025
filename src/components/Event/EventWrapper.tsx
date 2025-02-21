@@ -39,14 +39,21 @@ const EventWrapper = ({ children, categoryId, eventId }: EventWrapperProps) => {
   // }, [categoryId]);
 
   return (
-    <div className="relative min-h-screen text-white">
+    <div className="relative min-h-screen w-screen text-white">
       {/* {splineUrl && (
         <div key={splineUrl} className="absolute inset-0 w-full h-full -z-10">
           <Spline scene={splineUrl} />
         </div>
       )} */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+        src="/assets/Home/bg2.mp4" // Change this to your video file path
+        autoPlay
+        loop
+        muted
+      />
 
-      {children}
+      <div className="relative z-10">{children}</div>
     </div>
   );
 };

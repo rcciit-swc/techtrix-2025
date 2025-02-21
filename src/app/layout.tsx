@@ -23,7 +23,7 @@ export default function RootLayout({
         {children}
 
         <Toaster position="bottom-right" richColors duration={5000} />
-        <ChatBot />
+        {/* <ChatBot /> */}
         <SessionProvider />
         <Footer />
       </body>

@@ -13,7 +13,7 @@ import Image from 'next/image';
 export default function Footer() {
   const list = [
     { title: 'Events', link: '/events' },
-    { title: 'Team', link: '/team' },
+    // { title: 'Team', link: '/team' },
     {
       title: 'Sponsorship',
       link: 'https://drive.google.com/file/d/1UajjAiTHkHN2JItyHBcZBxWOVwAwtqIH/view?usp=sharing',
@@ -22,7 +22,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-black text-white py-8 px-4 overflow-hidden">
+    <footer className="relative bg-black text-white py-4 px-4 overflow-hidden">
       <Image
         src="/assets/home/box.svg"
         alt="Box"
@@ -53,7 +53,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className="relative flex justify-center items-center">
-          <SVGIcon iconName="logo" className="block w-[380px] h-[380px]" />
+          <SVGIcon iconName="logo" className="block w-[480px] h-[280px]" />
           <SVGIcon
             iconName="techtrix"
             className="absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-[100px] z-10"
@@ -73,7 +73,7 @@ export default function Footer() {
             </React.Fragment>
           ))}
         </div>
-        <div className="text-center mt-6">
+        <div className="text-center mt-3">
           <p className="mb-4 text-xl font-semibold">Follow us</p>
           <div className="flex justify-center space-x-4">
             {[

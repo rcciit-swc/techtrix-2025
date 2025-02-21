@@ -4,7 +4,7 @@ import { updateUserData } from '@/utils/functions';
 export const populateUserDetails = async (set: any) => {
   set({ userLoading: true });
   const data = await getUserData();
-  if(data && data?.college_roll){
+  if (data && data?.college_roll) {
     const isSWCPaid = await getSWCData(data.college_roll);
     set({ userData: data, swcStatus: isSWCPaid, userLoading: false });
   }

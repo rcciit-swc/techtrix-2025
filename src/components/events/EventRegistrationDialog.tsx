@@ -93,15 +93,15 @@ export function SoloEventRegistration({
   // };
   // Zod schema for Payment Details (Step 3)
   const paymentSchema = z.object({
-    transactionId:  z.string().min(1, 'Transaction ID is required'),
+    transactionId: z.string().min(1, 'Transaction ID is required'),
 
-    paymentScreenshot:  z
-          .any()
-          .refine(
-            (files) => files && files.length > 0,
-            'Payment screenshot is required'
-          )
-          .transform((files) => files[0])
+    paymentScreenshot: z
+      .any()
+      .refine(
+        (files) => files && files.length > 0,
+        'Payment screenshot is required'
+      )
+      .transform((files) => files[0]),
   });
   type PaymentFormValues = z.infer<typeof paymentSchema>;
 
@@ -117,7 +117,7 @@ export function SoloEventRegistration({
 
   const onPaymentSubmit = async (data: PaymentFormValues) => {
     let screenshotUrl = '';
-    console.log(data?.paymentScreenshot)
+    console.log(data?.paymentScreenshot);
     try {
       screenshotUrl = await uploadPaymentScreenshot(
         data.paymentScreenshot,

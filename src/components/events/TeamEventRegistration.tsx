@@ -63,7 +63,7 @@ export function TeamEventRegistration({
     email: z.string().email('Invalid email'),
   });
   type TeamMemberFormValues = z.infer<typeof teamMemberSchema>;
- 
+
   // const usePaymentSchema = (isPaid: boolean) => {
   //   return useMemo(() => {
   //     return z.object({
@@ -85,15 +85,15 @@ export function TeamEventRegistration({
   // };
   // Zod schema for Payment Details (Step 3)
   const paymentSchema = z.object({
-    transactionId:  z.string().min(1, 'Transaction ID is required'),
+    transactionId: z.string().min(1, 'Transaction ID is required'),
 
-    paymentScreenshot:  z
-          .any()
-          .refine(
-            (files) => files && files.length > 0,
-            'Payment screenshot is required'
-          )
-          .transform((files) => files[0]),
+    paymentScreenshot: z
+      .any()
+      .refine(
+        (files) => files && files.length > 0,
+        'Payment screenshot is required'
+      )
+      .transform((files) => files[0]),
   });
   type PaymentFormValues = z.infer<typeof paymentSchema>;
   // step: 1 = Team Lead, 2 = Manage Team Members, 3 = Payment Details

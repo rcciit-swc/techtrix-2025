@@ -4,17 +4,8 @@ import ButtonLanding from '../Home/ButtonLanding';
 
 const ComingSoon = () => {
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-center items-center">
+    <div className="relative mt-10 w-full flex flex-col justify-center items-center">
       {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/assets/home/star.svg"
-          alt="Starfield Background"
-          fill
-          className="object-cover"
-          quality={100}
-        />
-      </div>
 
       {/* Content */}
       <div className="relative flex flex-col items-center text-center text-white z-10">

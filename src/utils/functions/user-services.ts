@@ -4,11 +4,11 @@ import { supabase } from './supabase-client';
 export const getUserData = async () => {
   try {
     const { data } = await supabase.auth.getSession();
-    if(data){
+    if (data) {
       const userdetails = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', data?.session?.user?.id);
+        .from('users')
+        .select('*')
+        .eq('id', data?.session?.user?.id);
       if (userdetails && userdetails.data && userdetails.data.length > 0) {
         return userdetails.data[0];
       }

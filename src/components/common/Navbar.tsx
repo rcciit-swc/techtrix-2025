@@ -113,7 +113,7 @@ const Navbar = ({ className }: Props) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
+  const router = useRouter();
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -122,7 +122,7 @@ const Navbar = ({ className }: Props) => {
     >
       <div className="max-w-screen-2xl mx-auto relative px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between transition-all duration-300">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" onClick={() => router.push('/')}>
             <SVGIcon
               iconName="techtrixLogo"
               className="transition-all duration-300 h-16 w-auto"
@@ -134,8 +134,10 @@ const Navbar = ({ className }: Props) => {
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
-            <NavLink href="/team">Team</NavLink>
-            <SignInButton />
+            {/* <NavLink href="/team">Team</NavLink> */}
+            <div className="ml-10">
+              <SignInButton />
+            </div>
           </div>
           {/* Hamburger for Mobile */}
           <div className="md:hidden">
@@ -186,10 +188,12 @@ const Navbar = ({ className }: Props) => {
           >
             Events
           </MobileNavLink>
-          <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
+          {/* <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
             Team
-          </MobileNavLink>
-          <SignInButton />
+          </MobileNavLink> */}
+          <div className="ml-4 mt-2">
+            <SignInButton />
+          </div>
         </div>
       </div>
     </nav>

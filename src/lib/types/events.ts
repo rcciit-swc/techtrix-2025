@@ -11,6 +11,7 @@ export interface Coordinator {
 export interface events {
   id?: string;
   name: string;
+  event_category_id?: string;
   reg_status: boolean;
   registration_fees: number;
   prize_pool: number;

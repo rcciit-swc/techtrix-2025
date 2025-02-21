@@ -3,16 +3,7 @@ import SVGIcon from '../SVGIcon';
 
 export default function About() {
   return (
-    <main className="relative h-fit w-full  overflow-hidden">
-      <div className="relative w-full">
-        <Image
-          src="/assets/home/eventbg.png"
-          alt="Event Background"
-          fill
-          className="object-cover z-[10]"
-          quality={100}
-        />
-      </div>
+    <div className="relative h-fit w-full  overflow-hidden">
       <div className="inset-0 bg-repeat-y">
         <Image
           src="/assets/home/star2.svg"
@@ -23,11 +14,11 @@ export default function About() {
         />
         {/* <div className="absolute bottom-0 w-full h-10 bg-[#030204] bg-opacity-60 backdrop-blur-sm" /> */}
       </div>
-      <div className="relative z-10 min-h-screen container mx-auto px-6">
+      <div className="relative z-10  container mx-auto px-6">
         <h1 className="text-4xl md:text-7xl font-bold font-kagitingan text-white text-center pt-12">
           ABOUT
         </h1>
-        <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="flex flex-col-reverse w-full lg:flex-row items-center justify-between">
           <div className="lg:w-1/2 w-full text-center flex flex-col items-start mt-10">
             <h1 className="text-5xl font-bold md:text-4xl lg:text-6xl font-kagitingan">
               TECHTRIX <span className="text-yellow-200">2025</span>
@@ -48,8 +39,21 @@ export default function About() {
               experience!
             </p>
           </div>
+          <Image
+            src={'/assets/Home/loader.gif'}
+            className="w-full h-full lg:w-[800px] lg:h-[400px]"
+            alt=""
+            width={1000}
+            height={500}
+          />
+          {/* <SVGIcon
+                        iconName="techtrixLogo"
+                        className="transition-all w-[600px] duration-300 h-[600px]"
+                        // width={isMobile ? 100 : scrolled ? 100 : 160}
+                        // height={isMobile ? 100 : scrolled ? 100 : 160}
+                      /> */}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
