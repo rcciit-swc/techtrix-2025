@@ -5,19 +5,20 @@ import * as crypto from 'crypto';
 
 export const generateReferralCode = async (): Promise<string | null> => {
   const maxReferrals = parseInt(process.env.REFERREAL_LIMIT ?? '5', 10);
-  const authUser = await supabaseServer.auth.getSession();
+  const supabase = await supabaseServer();
+  const authUser = await supabase.auth.getSession();
   const userId = authUser.data.session?.user.id;
   if (!userId) {
     throw new Error('User not authenticated');
   }
-  const { count } = await supabaseServer
+  const { count } = await supabase
     .from('transactions')
     .select('*')
     .eq('referrer', userId);
   const referralCount = count ?? 0;
   if (referralCount >= maxReferrals) return null;
 
-  const { data } = await supabaseServer
+  const { data } = await supabase
     .from('referral_codes')
     .select('*')
     .eq('community_name', 'RCCIIT')

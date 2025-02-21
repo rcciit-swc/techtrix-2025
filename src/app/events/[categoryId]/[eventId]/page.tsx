@@ -31,11 +31,11 @@ interface EventData {
   registered: boolean;
 }
 
-interface EventsProps {
- categoryId: string; eventId: string ;
-}
+// interface EventsProps {
+//  categoryId: string; eventId: string ;
+// }
 
-const Events = async ({ categoryId, eventId }: EventsProps) => {
+const Events = async ({ categoryId, eventId }: any) => {
   const eventData = (await getEventByID(eventId)) as EventData | null;
   const eventCategory =
     TechtrixCategories.find((category) => category.id === categoryId)

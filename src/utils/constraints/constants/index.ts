@@ -1,1 +1,1 @@
-export { default } from './fests';
+export * from './fests';
