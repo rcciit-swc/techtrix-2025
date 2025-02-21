@@ -33,21 +33,21 @@ const Countdown = () => {
   }, []);
 
   return (
-    <section className="grid grid-flow-col gap-5 text-center auto-cols-max font-alexandria">
+    <section className="grid grid-flow-col gap-5 text-center auto-cols-max font-kagitingan tracking-widest">
       <div className="flex flex-col p-2 bg-transparent backdrop-blur-sm border-yellow-200 border-2 rounded-md text-white">
-        <span className="countdown font-mono text-5xl">{timeLeft.days}</span>
+        <span className="countdown font-kagitingan text-5xl">{timeLeft.days}</span>
         Days
       </div>
       <div className="flex flex-col p-2 bg-transparent backdrop-blur-sm border-yellow-200 border-2 rounded-md text-white">
-        <span className="countdown font-mono text-5xl">{timeLeft.hours}</span>
+        <span className="countdown font-kagitingan text-5xl">{timeLeft.hours}</span>
         hours
       </div>
       <div className="flex flex-col p-2 bg-transparent backdrop-blur-sm border-yellow-200 border-2 rounded-md text-white">
-        <span className="countdown font-mono text-5xl">{timeLeft.minutes}</span>
+        <span className="countdown font-kagitingan text-5xl">{timeLeft.minutes}</span>
         min
       </div>
       <div className="flex flex-col p-2 bg-transparent backdrop-blur-sm border-yellow-200 border-2 rounded-md text-white">
-        <span className="countdown font-mono text-5xl">{timeLeft.seconds}</span>
+        <span className="countdown font-kagitingan text-5xl">{timeLeft.seconds}</span>
         sec
       </div>
     </section>
