@@ -5,7 +5,8 @@ type UserStore = userActionsType & userStateType;
 
 const userState: userStateType = {
   userData: null,
-  userLoading: true,
+  userLoading: false,
+  swcStatus: false,
 };
 export const useUser = create<UserStore>((set) => ({
   ...userState,

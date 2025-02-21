@@ -1,1 +1,1 @@
-export {default as HeroGlobeText} from './HeroGlobeText';
+export { default as HeroGlobeText } from './HeroGlobeText';

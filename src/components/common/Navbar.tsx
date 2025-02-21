@@ -5,9 +5,94 @@ import Link from 'next/link';
 import SVGIcon from '../SVGIcon';
 import clsx from 'clsx';
 import { login } from '@/utils/functions/login';
+import { useUser } from '@/lib/stores';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { Skeleton } from '../ui/skeleton';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { supabase } from '@/utils/functions/supabase-client';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   className?: string;
+};
+
+export const SignInButton = () => {
+  const { userData, userLoading, clearUserData } = useUser();
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const readUserSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data?.session?.user.user_metadata?.avatar_url) {
+        setProfileImage(data.session.user.user_metadata.avatar_url);
+      }
+    };
+    readUserSession();
+  }, []);
+
+  if (userLoading) {
+    return <Skeleton className="w-10 h-10 rounded-full bg-gray-600" />;
+  }
+
+  if (userData && profileImage) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Avatar className="relative">
+            {!imageLoaded && (
+              <Skeleton className="w-10 h-10 rounded-full absolute inset-0" />
+            )}
+            <AvatarImage
+              src={profileImage}
+              alt="Profile"
+              onLoad={() => setImageLoaded(true)}
+              className={imageLoaded ? 'block' : 'hidden'}
+            />
+            <AvatarFallback>
+              {!userLoading && userData?.name ? userData.name.charAt(0) : ''}
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem
+            onSelect={() => {
+              router.push('/profile');
+            }}
+          >
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onSelect={async () => {
+              await supabase.auth.signOut();
+              localStorage.removeItem('sb-session'); // Adjust based on storage mechanism
+              clearUserData();
+            }}
+          >
+            Logout
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
+  return (
+    <button
+      className="group relative scale-100 overflow-hidden rounded-lg py-2 transition-transform hover:scale-105 active:scale-95"
+      onClick={login}
+    >
+      <span className="relative z-10 text-white/90 transition-colors group-hover:text-white bg-blue-500 font-bold rounded-full px-4 py-2">
+        Login
+      </span>
+      <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
+    </button>
+  );
 };
 
 const Navbar = ({ className }: Props) => {
@@ -28,15 +113,16 @@ const Navbar = ({ className }: Props) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
+  const router = useRouter();
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-md bg-black/70' : 'bg-transparent'
-        }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'backdrop-blur-md bg-black/70' : 'bg-transparent'
+      }`}
     >
       <div className="max-w-screen-2xl mx-auto relative px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between transition-all duration-300">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" onClick={() => router.push('/')}>
             <SVGIcon
               iconName="techtrixLogo"
               className="transition-all duration-300 h-16 w-auto"
@@ -48,8 +134,10 @@ const Navbar = ({ className }: Props) => {
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
-            <NavLink href="/team">Team</NavLink>
-            {/* <NavLink asButton onClick={login}>Login</NavLink> */}
+            {/* <NavLink href="/team">Team</NavLink> */}
+            <div className="ml-10">
+              <SignInButton />
+            </div>
           </div>
           {/* Hamburger for Mobile */}
           <div className="md:hidden">
@@ -87,21 +175,25 @@ const Navbar = ({ className }: Props) => {
         </div>
         {/* Mobile Menu - absolutely positioned so it doesn't push content */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-black/90 p-4 rounded-b-lg overflow-hidden transform transition-all duration-300 origin-top ${mobileMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
-            }`}
+          className={`md:hidden absolute top-full left-0 right-0 backdrop-blur-md bg-black/90 p-4 rounded-b-lg overflow-hidden transform transition-all duration-300 origin-top ${
+            mobileMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
+          }`}
         >
           <MobileNavLink href="/" onClick={() => setMobileMenuOpen(false)}>
             Home
           </MobileNavLink>
-          <MobileNavLink href="/events" onClick={() => setMobileMenuOpen(false)}>
+          <MobileNavLink
+            href="/events"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Events
           </MobileNavLink>
-          <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
+          {/* <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
             Team
-          </MobileNavLink>
-          {/* <MobileNavLink href="/login" onClick={() => setMobileMenuOpen(false)}>
-            Login
           </MobileNavLink> */}
+          <div className="ml-4 mt-2">
+            <SignInButton />
+          </div>
         </div>
       </div>
     </nav>
@@ -114,9 +206,14 @@ interface NavLinkProps {
   asButton?: boolean;
   onClick?: () => void;
 }
-const NavLink = ({ href, children, asButton = false, onClick }: NavLinkProps) => {
+const NavLink = ({
+  href,
+  children,
+  asButton = false,
+  onClick,
+}: NavLinkProps) => {
   const commonClasses =
-    "relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center";
+    'relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center';
 
   const shimmerEffect = (
     <span className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 hover:opacity-100 animate-glitter"></span>

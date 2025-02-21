@@ -1,20 +1,11 @@
-import Image from 'next/image'
-import React from 'react'
-import ButtonLanding from '../Home/ButtonLanding'
+import Image from 'next/image';
+import React from 'react';
+import ButtonLanding from '../Home/ButtonLanding';
 
 const ComingSoon = () => {
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-center items-center">
+    <div className="relative mt-10 w-full flex flex-col justify-center items-center">
       {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="https://i.postimg.cc/d1PGRJfp/Mac-OS-X-Snow-Leopard.png"
-          alt="Starfield Background"
-          fill
-          className="object-cover"
-          quality={100}
-        />
-      </div>
 
       {/* Content */}
       <div className="relative flex flex-col items-center text-center text-white z-10">
@@ -27,7 +18,7 @@ const ComingSoon = () => {
         <ButtonLanding text="Coming Soon" disabled />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ComingSoon
+export default ComingSoon;

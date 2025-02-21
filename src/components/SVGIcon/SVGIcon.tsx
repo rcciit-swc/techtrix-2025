@@ -15,8 +15,14 @@ const SVGIcon = (props: ISVGIconProps) => {
         <Icon
           {...{
             ...rest,
-            width: typeof rest.width === 'string' ? parseInt(rest.width, 10) : rest.width,
-            height: typeof rest.height === 'string' ? parseInt(rest.height, 10) : rest.height,
+            width:
+              typeof rest.width === 'string'
+                ? parseInt(rest.width, 10)
+                : rest.width,
+            height:
+              typeof rest.height === 'string'
+                ? parseInt(rest.height, 10)
+                : rest.height,
           }}
           className={className}
         />
@@ -25,8 +31,14 @@ const SVGIcon = (props: ISVGIconProps) => {
       <Icon
         {...{
           ...rest,
-          width: typeof rest.width === 'string' ? parseInt(rest.width, 10) : rest.width,
-          height: typeof rest.height === 'string' ? parseInt(rest.height, 10) : rest.height,
+          width:
+            typeof rest.width === 'string'
+              ? parseInt(rest.width, 10)
+              : rest.width,
+          height:
+            typeof rest.height === 'string'
+              ? parseInt(rest.height, 10)
+              : rest.height,
         }}
         className={className}
       />

@@ -1,5 +1,4 @@
-import React, { Suspense } from 'react';
-import Spline from '@splinetool/react-spline';
+import React from 'react';
 import SVGIcon from '@/components/SVGIcon';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
@@ -20,13 +19,23 @@ const EventLandingAsset = dynamic(() => import("@/components/Home/EventLanding/E
 });
 const EventHorizontal = () => {
   return (
+    <div className="relative min-w-screen  flex flex-col items-center justify-center">
+      <Image
+        src="/assets/home/eventbg.png"
+        alt="Starfield Background"
+        fill
+        className="object-cover -z-10"
+        quality={100}
+      />
+      <h1 className="text-7xl py-9 font-kagitingan">Events</h1>
+      <Image
+        src="/assets/home/eventbg.png"
+        alt="Starfield Background"
+        fill
+        className="object-cover -z-10"
+        quality={100}
+      />
 
-      <div className="relative min-w-screen  flex flex-col items-center justify-center">
-        <Image src="https://i.postimg.cc/8cC0BP8N/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
-        <h1 className='text-7xl py-9 font-kagitingan'>Events</h1>
-          <Image src="https://i.postimg.cc/8cC0BP8N/eventbg.png" alt="Starfield Background" fill className="object-cover -z-10" quality={100} />
-      
-          <EventLandingAsset />
       <div className="absolute pb-40">
         <div className="flex flex-row space-x-[55rem] pb-37">
           <div className="text-2xl font-kagitingan text-white">
@@ -41,14 +50,12 @@ const EventHorizontal = () => {
             <div className="text-2xl font-kagitingan text-white">ROBOTICS</div>
             <div className="text-2xl font-kagitingan text-white">FLAGSHIP</div>
           </div>
- 
         </div>
-
       </div>
       <div className="absolute mr-2 bottom-60 w-full flex justify-center items-center">
-            <SVGIcon iconName="techtrixLogo" />
-          </div>
-  </div>
+        <SVGIcon iconName="techtrixLogo" />
+      </div>
+    </div>
   );
 };
 

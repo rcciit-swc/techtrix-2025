@@ -16,6 +16,7 @@ import {
   DrawerDescription,
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
+import { useUser } from '@/lib/stores';
 
 interface TeamMember {
   name: string;
@@ -27,7 +28,12 @@ interface ViewTeamMembersProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   teamMembers: TeamMember[];
+  teamLeadData?: any;
   onEditMember: (index: number) => void;
+  onEditTeamLead: () => void;
+  confirmTeam: () => void;
+  showConfirmTeam: boolean;
+  registerLoading: boolean;
 }
 
 export function ViewTeamMembers({
@@ -35,7 +41,13 @@ export function ViewTeamMembers({
   onOpenChange,
   teamMembers,
   onEditMember,
+  teamLeadData,
+  onEditTeamLead,
+  confirmTeam,
+  registerLoading,
+  showConfirmTeam,
 }: ViewTeamMembersProps) {
+  const { swcStatus } = useUser();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -46,7 +58,21 @@ export function ViewTeamMembers({
   }, []);
 
   const Content = () => (
-    <div className="mt-6">
+    <div className="mt-6  font-alexandria">
+      <div className="mb-4 p-4 bg-gray-900 rounded-lg">
+        <h1 className="text-green-500 text-xl">Team Lead :</h1>
+        <p className="text-white font-semibold">
+          Name: {teamLeadData?.name || ''}
+        </p>
+        <p className="text-gray-400">Email: {teamLeadData?.email || ''}</p>
+        <p className="text-gray-400">Phone: {teamLeadData?.phone || ''}</p>
+        <Button
+          onClick={onEditTeamLead}
+          className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
+        >
+          Edit
+        </Button>
+      </div>
       {teamMembers.map((member, index) => (
         <div key={index} className="mb-4 p-4 bg-gray-900 rounded-lg">
           <p className="text-white font-semibold">Name: {member.name}</p>
@@ -54,23 +80,38 @@ export function ViewTeamMembers({
           <p className="text-gray-400">Phone: {member.phone}</p>
           <Button
             onClick={() => onEditMember(index)}
-            className="mt-2 bg-[#8B5CF6] text-white hover:bg-[#8B5CF6]/90 border-0"
+            className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
           >
             Edit
           </Button>
         </div>
       ))}
+      {showConfirmTeam && (
+        <Button
+          onClick={confirmTeam}
+          disabled={registerLoading}
+          className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
+        >
+          {swcStatus
+            ? swcStatus && registerLoading
+              ? 'Loading...'
+              : 'Register'
+            : 'Proceed to Payment'}
+        </Button>
+      )}
     </div>
   );
 
   if (isMobile) {
     return (
       <Drawer open={isOpen} onOpenChange={onOpenChange}>
-        <DrawerContent className="bg-black border-t border-[#8B5CF6]">
+        <DrawerContent className="bg-black border-t border-yellow-200">
           <DrawerHeader>
-            <DrawerTitle className="text-white">Added Team Members</DrawerTitle>
-            <DrawerDescription className="text-gray-400">
-              Total members: {teamMembers.length}
+            <DrawerTitle className="text-white text-2xl font-alexandria tracking-wider">
+              Added Team Members
+            </DrawerTitle>
+            <DrawerDescription className="text-yellow-200 text-xl font-kagitingan tracking-wider">
+              Total members: {1 + teamMembers.length}
             </DrawerDescription>
           </DrawerHeader>
           <div className="p-4 overflow-y-auto max-h-[calc(100vh-10rem)]">
@@ -85,11 +126,13 @@ export function ViewTeamMembers({
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="bg-black border-l border-[#8B5CF6] w-[400px] sm:w-[540px]"
+        className="bg-black border-l border-yellow-200 w-[400px] sm:w-[540px]"
       >
         <SheetHeader>
-          <SheetTitle className="text-white">Added Team Members</SheetTitle>
-          <SheetDescription className="text-gray-400">
+          <SheetTitle className="text-white text-2xl font-alexandria tracking-wider">
+            Added Team Members
+          </SheetTitle>
+          <SheetDescription className="text-yellow-200 text-xl font-kagitingan tracking-wider">
             Total members: {teamMembers.length}
           </SheetDescription>
         </SheetHeader>

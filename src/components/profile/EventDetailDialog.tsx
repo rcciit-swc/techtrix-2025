@@ -10,10 +10,15 @@ import {
 } from '@/components/ui/dialog';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '../ui/drawer';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from '../ui/drawer';
 import { toast } from 'sonner';
 import { useIsMobile } from '@/hooks/useIsMobile';
-
 
 interface EventDetailsDialogProps {
   event: any | null;
@@ -56,21 +61,18 @@ export function EventDetailsDialog({
       const loadTeamData = async () => {
         setLoading(true);
         try {
-        //   const data = await fetchRegistrationDetails(event.id, userId);
-        //   console.log('Fetched Data:', data);
-
-        //   const members =
-        //     data.length > 0 && data[0].team_members ? data[0].team_members : [];
-        //   const fetchedTeamName =
-        //     data.length > 0 && data[0].team_name ? data[0].team_name : null;
-
-        //   setTeamMembers(members);
-        //   setTeamName(fetchedTeamName);
-
-        //   teamDataCache.current[event.id] = {
-        //     teamName: fetchedTeamName,
-        //     members,
-        //   };
+          //   const data = await fetchRegistrationDetails(event.id, userId);
+          //   console.log('Fetched Data:', data);
+          //   const members =
+          //     data.length > 0 && data[0].team_members ? data[0].team_members : [];
+          //   const fetchedTeamName =
+          //     data.length > 0 && data[0].team_name ? data[0].team_name : null;
+          //   setTeamMembers(members);
+          //   setTeamName(fetchedTeamName);
+          //   teamDataCache.current[event.id] = {
+          //     teamName: fetchedTeamName,
+          //     members,
+          //   };
         } catch (error) {
           console.error('Error fetching team data:', error);
           toast.error('Failed to fetch team details');

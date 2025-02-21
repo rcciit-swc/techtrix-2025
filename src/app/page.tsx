@@ -4,6 +4,7 @@ import React from 'react';
 import { HeroBg } from '@/components/Home/HeroBg';
 import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
 import { EventLanding } from '@/components/Home/EventLanding';
+import Image from 'next/image';
 
 const Page = () => {
   return (
@@ -18,7 +19,9 @@ const Page = () => {
         </div>
       </div>
       <About />
-      <EventLanding />
+      <div className="relative min-h-screen flex items-center justify-center">
+        <EventLanding />
+      </div>
     </div>
   );
 };
