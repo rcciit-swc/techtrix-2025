@@ -11,7 +11,7 @@ const extendedEvents = [
   {
     image: 'https://i.postimg.cc/4y8SDw39/Community-Posters.png',
     title: 'Techtrix 2025 - Orientation Day 1',
-    date: '20th March 2025',
+    date: '24th February 2025',
     time: '10:00 AM',
     link: 'https://lu.ma/bk6sxplg',
   },

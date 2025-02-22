@@ -33,7 +33,7 @@ const EventCard: React.FC<EventCardProps> = ({
   return (
     <Card
       onClick={exploreAction}
-      className={`${styles.card} bg-black/40 w-[300px] h-[400px] flex-shrink-0 backdrop-blur-sm border-none overflow-hidden group transition-transform duration-300 cursor-pointer`}
+      className={`${styles.card} bg-black/40 w-[320px] h-[400px] flex-shrink-0 backdrop-blur-sm border-none overflow-hidden group transition-transform duration-300 cursor-pointer`}
       onTouchStart={() => setIsActive(!isActive)}
     >
       <div className={`${styles.cardContent} relative h-full w-full`}>
