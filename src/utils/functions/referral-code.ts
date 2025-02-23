@@ -6,8 +6,9 @@ import * as crypto from 'crypto';
 export const generateReferralCode = async (): Promise<string | null> => {
   const maxReferrals = parseInt(process.env.REFERREAL_LIMIT ?? '5', 10);
   const supabase = await supabaseServer();
-  const authUser = await supabase.auth.getSession();
-  const userId = authUser.data.session?.user.id;
+  const authUser = await supabase.auth.getUser();
+  const userId = authUser.data.user?.id;
+  console.log(userId);
   if (!userId) {
     throw new Error('User not authenticated');
   }
@@ -16,19 +17,25 @@ export const generateReferralCode = async (): Promise<string | null> => {
     .select('*')
     .eq('referrer', userId);
   const referralCount = count ?? 0;
+  console.log("ReferralCount, Count",referralCount, count);
   if (referralCount >= maxReferrals) return null;
-
-  const { data } = await supabase
-    .from('referral_codes')
-    .select('*')
-    .eq('community_name', 'RCCIIT')
-    .single(); // This should be dynamic
-  if (!data || !data.referral_code) {
+  // const { data } = await supabase
+  //   .from('referral_codes')
+  //   .select('*')
+  //   // .eq('community_name', 'RCCIIT')
+  //   // .single(); // This should be dynamic
+  // console.log("Data",data)
+  // if (!data || !data.referral_code) {
+  //   throw new Error('No referral code found for the specified community');
+  // }
+  // const referralCode: string = data.referral_code;
+  const referralCode = process.env.REFERRAL_CODE;
+  if (!referralCode) {
     throw new Error('No referral code found for the specified community');
   }
-  const referralCode: string = data.referral_code;
   const payload = { userId, referralCode };
   const payloadString = JSON.stringify(payload);
+  console.log("Payload", payloadString);
   return encryption(payloadString);
 };
 
