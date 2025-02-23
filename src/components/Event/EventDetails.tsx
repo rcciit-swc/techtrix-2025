@@ -203,9 +203,15 @@ const EventDetails: React.FC<EventDetailsProps> = ({
               id="glowPink"
               className="text-xl tracking-widest flex flex-row sm:text-2xl md:text-3xl font-semibold text-transparent font-kagitingan text-left"
             >
-              Team Size : <span className='text-white'> &nbsp;{eventData.min_team_size} - {eventData.max_team_size}</span>
+              Team Size :{' '}
+              <span className="text-white">
+                {' '}
+                &nbsp;
+                {eventData.min_team_size === eventData.max_team_size
+                  ? eventData.max_team_size
+                  : `${eventData.min_team_size} - ${eventData.max_team_size}`}
+              </span>
             </h1>
-            
           </div>
           <div className="mt-4 sm:mt-6 text-white text-base sm:text-lg">
             <h1
