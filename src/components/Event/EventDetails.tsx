@@ -41,7 +41,7 @@ type EventDetailsProps = {
 };
 
 const freeCategories: string[] = [
-  // '0f52d7d3-a9e7-454a-bff0-979de725e51a','a1bb62c8-fd3d-485a-959e-be8cc528cc43', '4ff0cd32-079f-43fd-84b0-b9147f74eaca'
+  '0f52d7d3-a9e7-454a-bff0-979de725e51a','a1bb62c8-fd3d-485a-959e-be8cc528cc43', '4ff0cd32-079f-43fd-84b0-b9147f74eaca'
 ];
 
 const EventDetails: React.FC<EventDetailsProps> = ({
