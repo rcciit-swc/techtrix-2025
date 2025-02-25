@@ -57,7 +57,6 @@ const EventDetails: React.FC<EventDetailsProps> = ({
   const [isRegistered, setIsRegistered] = useState(false);
   const [isFree, setIsFree] = useState(false);
   const router = useRouter();
-
   useEffect(() => {
     if (
       swcStatus &&

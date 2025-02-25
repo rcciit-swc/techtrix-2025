@@ -103,21 +103,20 @@ export const handleSaveChanges = async (
   }
 };
 
-export const getSWCData = async (collegeRoll: string) => {
+export const getSWCData = async (collegeRoll: string, email: string) => {
   try {
     const { data } = await supabase
       .from('SWC-2025')
       .select('*')
-      .eq('roll', collegeRoll);
-    if (data && data.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+      .or(`roll.ilike.${collegeRoll},email.eq.${email}`);
+    console.log('SWC Data:', data);
+    return data && data.length > 0;
   } catch (err) {
     console.log(err);
+    return false;
   }
 };
+
 
 export async function fetchRegistrationDetails(
   eventId: string,

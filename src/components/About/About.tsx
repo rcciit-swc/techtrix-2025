@@ -34,11 +34,7 @@ function Modal({ isOpen, onClose }: ModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      setLoading(true);
-      generateReferralCode()
-        .then((code) => setReferralCode(code))
-        .catch((error) => console.error('Error generating referral code:', error))
-        .finally(() => setLoading(false));
+     
     }
   }, [isOpen]);
 
