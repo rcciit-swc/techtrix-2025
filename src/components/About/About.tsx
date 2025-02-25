@@ -8,7 +8,7 @@ import { useUser } from '@/lib/stores';
 import { login } from '@/utils/functions/login';
 import { toast } from 'sonner';
 import ButtonLanding from '../Home/ButtonLanding';
-import { generateReferralCode } from '@/utils/functions/referral-code';
+// import { generateReferralCode } from '@/utils/functions/referral-code';
 
 const extendedEvents = [
   {
@@ -20,73 +20,73 @@ const extendedEvents = [
   },
 ];
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+// interface ModalProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+// }
 
-function Modal({ isOpen, onClose }: ModalProps) {
-  const [referralCode, setReferralCode] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [copied, setCopied] = useState<boolean>(false);
+// function Modal({ isOpen, onClose }: ModalProps) {
+//   const [referralCode, setReferralCode] = useState<string | null>(null);
+//   const [loading, setLoading] = useState<boolean>(false);
+//   const [copied, setCopied] = useState<boolean>(false);
 
-  const referralLink = referralCode ? `http://localhost:3000/referral?code=${referralCode}` : '';
+//   const referralLink = referralCode ? `http://localhost:3000/referral?code=${referralCode}` : '';
 
-  useEffect(() => {
-    if (isOpen) {
+//   useEffect(() => {
+//     if (isOpen) {
      
-    }
-  }, [isOpen]);
+//     }
+//   }, [isOpen]);
 
-  const copyToClipboard = () => {
-    if (referralLink) {
-      navigator.clipboard.writeText(referralLink);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
+//   const copyToClipboard = () => {
+//     if (referralLink) {
+//       navigator.clipboard.writeText(referralLink);
+//       setCopied(true);
+//       setTimeout(() => setCopied(false), 2000);
+//     }
+//   };
 
-  if (!isOpen) return null;
+//   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-[#121212] p-6 rounded-lg shadow-lg max-w-md w-full text-center">
-        <h2 className="text-2xl font-bold text-white mb-4 font-kagitingan">Refer Techtrix 2025</h2>
-        {loading ? (
-          <p className="text-gray-300">Generating referral code...</p>
-        ) : referralCode ? (
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              value={referralLink}
-              readOnly
-              className="w-full p-2 text-white bg-gray-800 rounded-md border border-gray-600 cursor-not-allowed"
-            />
-            <button
-              className="bg-pink-600 text-white px-3 py-2 rounded-md hover:bg-pink-700"
-              onClick={copyToClipboard}
-            >
-              {copied ? 'Copied!' : 'Copy'}
-            </button>
-          </div>
-        ) : (
-          <p className="text-red-500">Failed to generate referral code.</p>
-        )}
-        <button
-          className="mt-4 bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800"
-          onClick={onClose}
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+//       <div className="bg-[#121212] p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+//         <h2 className="text-2xl font-bold text-white mb-4 font-kagitingan">Refer Techtrix 2025</h2>
+//         {loading ? (
+//           <p className="text-gray-300">Generating referral code...</p>
+//         ) : referralCode ? (
+//           <div className="flex items-center space-x-2">
+//             <input
+//               type="text"
+//               value={referralLink}
+//               readOnly
+//               className="w-full p-2 text-white bg-gray-800 rounded-md border border-gray-600 cursor-not-allowed"
+//             />
+//             <button
+//               className="bg-pink-600 text-white px-3 py-2 rounded-md hover:bg-pink-700"
+//               onClick={copyToClipboard}
+//             >
+//               {copied ? 'Copied!' : 'Copy'}
+//             </button>
+//           </div>
+//         ) : (
+//           <p className="text-red-500">Failed to generate referral code.</p>
+//         )}
+//         <button
+//           className="mt-4 bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800"
+//           onClick={onClose}
+//         >
+//           Close
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
 
 export default function About() {
   const { userData } = useUser();
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="relative h-fit w-full overflow-hidden">
@@ -145,14 +145,14 @@ export default function About() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center py-10">
+      {/* <div className="flex items-center justify-center py-10">
         <ButtonLanding
           text="Refer Techtrix 2025"
           onClick={() => setIsModalOpen(true)}
         />
-      </div>
+      </div> */}
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
 
       <div className="relative z-10 container mx-auto px-6">
         <h1
