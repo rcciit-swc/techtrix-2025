@@ -119,7 +119,6 @@ export function SoloEventRegistration({
 
   const onPaymentSubmit = async (data: PaymentFormValues) => {
     let screenshotUrl = '';
-    console.log(data?.paymentScreenshot);
     try {
       screenshotUrl = await uploadPaymentScreenshot(
         data.paymentScreenshot,

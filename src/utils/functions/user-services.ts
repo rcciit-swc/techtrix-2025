@@ -109,7 +109,6 @@ export const getSWCData = async (collegeRoll: string, email: string) => {
       .from('SWC-2025')
       .select('*')
       .or(`roll.ilike.${collegeRoll},email.eq.${email}`);
-    console.log('SWC Data:', data);
     return data && data.length > 0;
   } catch (err) {
     console.log(err);
@@ -142,6 +141,5 @@ export async function fetchRegistrationDetails(
     throw new Error('Failed to fetch registration details');
   }
 
-  console.log('Registration Details:', data);
   return data;
 }

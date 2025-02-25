@@ -3,7 +3,6 @@ import { supabase } from './supabase-client';
 
 export async function uploadPaymentScreenshot(file: File, eventName: string) {
   const bucket = 'fests';
-  console.log(file);
   const fileName = `${new Date()}-${file.name}`;
   const filePath = `techtrix-2025/${eventName}/${fileName}`;
   const { data, error } = await supabase.storage

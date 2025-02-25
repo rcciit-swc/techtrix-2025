@@ -201,7 +201,6 @@ export function TeamEventRegistration({
 
   const onPaymentSubmit = async (data: PaymentFormValues) => {
     setIsRegistering(true);
-    console.log(data);
     let screenshotUrl = '';
     if (!isFree) {
       try {
