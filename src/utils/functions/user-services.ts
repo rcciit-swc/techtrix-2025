@@ -1,5 +1,6 @@
 import { toast } from 'sonner';
 import { supabase } from './supabase-client';
+import { supabaseServer } from './supabase-server';
 
 export const getUserData = async () => {
   try {
@@ -143,3 +144,14 @@ export async function fetchRegistrationDetails(
 
   return data;
 }
+
+export const verifyCommunityReferralCode = async (code: string) => {
+  try{
+    const supabase = await supabaseServer();
+    const {data,error} = await supabase.from('referral_codes').select('*').eq('code',code);
+    console.log(data);
+  }
+  catch(err){
+    console.log(err);
+  }
+};

@@ -3,10 +3,10 @@ import { HeroBg } from '@/components/Home/HeroBg';
 import { HeroGlobeText } from '@/components/Home/HeroGlobeText';
 import { EventLanding } from '@/components/Home/EventLanding';
 import Image from 'next/image';
-// import { generateReferralCode } from '@/utils/functions/referral-code';
+import { generateReferralCode } from '@/utils/functions/referral-code';
 
 const Page = async () => {
-    // const code = await generateReferralCode();
+    const code = await generateReferralCode();
   return (
     <>
       <div className="fade-in">
@@ -28,7 +28,7 @@ const Page = async () => {
             <HeroGlobeText />
           </div>
         </div>
-        <About />
+        <About refCode={code} />
         <div className="relative min-h-screen flex items-center justify-center">
           <EventLanding />
         </div>

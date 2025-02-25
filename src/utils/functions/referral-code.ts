@@ -7,9 +7,18 @@ import * as crypto from 'crypto';
 export const generateReferralCode = async (): Promise<string | null> => {
     const maxReferrals = parseInt(process.env.REFERREAL_LIMIT ?? '5', 10);
     const supabase = await supabaseServer();
-    const authUser = await supabase.auth.getUser();
-    const userId = authUser.data.user?.id;
-    const emailDomain = authUser.data.user?.email?.split("@")[1];
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+
+    if (sessionError || !sessionData?.session) {
+        return null;
+    }
+
+    const { user } = sessionData.session;
+    if (!user) {
+        throw new Error('User not authenticated');
+    }
+    const userId = user?.id;
+    const emailDomain = user?.email?.split("@")[1];
     if (!userId) {
         throw new Error('User not authenticated');
     }
