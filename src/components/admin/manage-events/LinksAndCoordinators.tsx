@@ -7,9 +7,10 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trash2 } from 'lucide-react';
-import { Coordinator, Link } from '@/lib/types/events';
+import { Coordinator, LinkType } from '@/lib/types/events';
 import { AddCoordinatorDialog } from './AddCoordinatorDialog';
 import { AddLinkDialog } from './AddLinkDialog';
+import Link from 'next/link';
 
 export function LinksAndCoordinators({
   links,
@@ -17,12 +18,12 @@ export function LinksAndCoordinators({
   coordinators,
   setCoordinators,
 }: {
-  links: Link[];
-  setLinks: (links: Link[]) => void;
+  links: LinkType[];
+  setLinks: (links: LinkType[]) => void;
   coordinators: Coordinator[];
   setCoordinators: (coordinators: Coordinator[]) => void;
 }) {
-  const addLink = (newLink: Link) => {
+  const addLink = (newLink: LinkType) => {
     setLinks([...links, newLink]);
   };
 
@@ -61,14 +62,14 @@ export function LinksAndCoordinators({
                   <h4 className="text-sm font-medium text-white">
                     {link.title}
                   </h4>
-                  <a
+                  <Link
                     href={link.url}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    // rel="noopener noreferrer"
                     className="text-xs text-blue-400 hover:underline"
                   >
                     {link.url}
-                  </a>
+                  </Link>
                 </div>
                 <Button
                   variant="ghost"
