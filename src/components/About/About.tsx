@@ -186,6 +186,7 @@ export default function About({refCode}: {refCode: string | null}) {
             src={'/assets/Home/loader.gif'}
             className="w-full h-full lg:w-[40%] lg:h-[300px]"
             alt=""
+            unoptimized
             width={1000}
             height={500}
           />

@@ -43,6 +43,7 @@ const Events = async ({ params }: { params: { categoryId: string; eventId: strin
                 src={'/assets/Home/loader.gif'}
                 className="w-full h-full lg:w-[800px] lg:h-[400px]"
                 alt=""
+                unoptimized
                 width={1000}
                 height={500}
               />;
