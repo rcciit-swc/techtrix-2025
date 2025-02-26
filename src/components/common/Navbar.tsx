@@ -130,7 +130,6 @@ const Navbar = ({ className }: Props) => {
               width={isMobile ? 100 : scrolled ? 100 : 160}
               height={isMobile ? 100 : scrolled ? 100 : 160}
             />
-
           </div>
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-6">
@@ -194,7 +193,10 @@ const Navbar = ({ className }: Props) => {
           <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
             Team
           </MobileNavLink>
-          <MobileNavLink href="/gallery" onClick={() => setMobileMenuOpen(false)}>
+          <MobileNavLink
+            href="/gallery"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Gallery
           </MobileNavLink>
           <div className="ml-4 mt-2">
