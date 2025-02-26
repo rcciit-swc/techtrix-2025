@@ -138,6 +138,7 @@ const Navbar = ({ className }: Props) => {
             <NavLink href="/events">Events</NavLink>
             <NavLink href="/team">Team</NavLink>
             <NavLink href="/gallery">Gallery</NavLink>
+            <NavLink href="/contacts">Contact Us</NavLink>
             <div className="ml-10">
               <SignInButton />
             </div>
@@ -196,6 +197,9 @@ const Navbar = ({ className }: Props) => {
           </MobileNavLink>
           <MobileNavLink href="/gallery" onClick={() => setMobileMenuOpen(false)}>
             Gallery
+          </MobileNavLink>
+          <MobileNavLink href="/contacts" onClick={() => setMobileMenuOpen(false)}>
+            Contact Us
           </MobileNavLink>
           <div className="ml-4 mt-2">
             <SignInButton />
