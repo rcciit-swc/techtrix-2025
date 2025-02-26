@@ -694,7 +694,7 @@ export function TeamEventRegistration({
               </div>
             </div>
             <h1 className="text-white text-center text-lg font-semibold">
-              Pay <span className="text-green-500">₹ {}</span>
+              Pay <span className="text-green-500">₹ {eventFees}</span>
             </h1>
             <div className="mt-6 flex items-center justify-center">
               <Image
