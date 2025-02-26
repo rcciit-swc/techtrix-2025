@@ -211,6 +211,19 @@ const EventDetails: React.FC<EventDetailsProps> = ({
               id="glowPink"
               className="text-xl tracking-widest flex flex-row sm:text-2xl md:text-3xl font-semibold text-transparent font-kagitingan text-left"
             >
+              Registration Fees :{' '}
+              <span className="text-white">
+                {' '}
+                &nbsp;
+                {isFree ? 'Free' : eventData.registration_fees}
+              </span>
+            </h1>
+          </div>
+          <div className="mt-4 sm:mt-6 text-white text-base sm:text-lg">
+            <h1
+              id="glowPink"
+              className="text-xl tracking-widest flex flex-row sm:text-2xl md:text-3xl font-semibold text-transparent font-kagitingan text-left"
+            >
               Team Size :{' '}
               <span className="text-white">
                 {' '}
