@@ -10,7 +10,7 @@ import { Loader2 } from 'lucide-react';
 import 'react-quill/dist/quill.snow.css';
 import { eventSchema } from '@/lib/schemas';
 import { useEvents } from '@/lib/stores';
-import { Coordinator, Link } from '@/lib/types/events';
+import { Coordinator, LinkType } from '@/lib/types/events';
 import { EditEventSkeleton } from '@/components/admin/manage-events/EditEventSkeleton';
 import { BasicInformation, LinksAndCoordinators, RulesAndGuidelines, ScheduleAndDescription } from '@/components/admin/manage-events';
 
@@ -19,7 +19,7 @@ export default function EditEventPage() {
   const eventId = params.eventId as string;
 
   const { eventsData, eventsLoading, updateEventsData } = useEvents();
-  const [links, setLinks] = useState<Link[]>([]);
+  const [links, setLinks] = useState<LinkType[]>([]);
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
 
   // Find the event to edit from the global events store.

@@ -7,10 +7,10 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trash2 } from 'lucide-react';
-import { Coordinator, LinkType } from '@/lib/types/events';
 import { AddCoordinatorDialog } from './AddCoordinatorDialog';
 import { AddLinkDialog } from './AddLinkDialog';
 import Link from 'next/link';
+import { Coordinator, LinkType } from '@/lib/types/events';
 
 export function LinksAndCoordinators({
   links,
