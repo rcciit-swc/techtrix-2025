@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const scrollref = useRef<HTMLDivElement | null>(null);
 
   const toggleChatBox = () => {
     setIsOpen(!isOpen);
@@ -20,10 +21,10 @@ const ChatBot = () => {
 
     try {
       const response = await fetch(
-        'https://techtrix-chatbot-2-0-2zmf.onrender.com/chat',
+        'https://nthander2002-trixbot-chat.hf.space/chat',
         {
           method: 'POST',
-          body: JSON.stringify({ message: input }),
+          body: JSON.stringify({ question: input }),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -31,6 +32,7 @@ const ChatBot = () => {
       );
 
       const data = await response.json();
+      console.log(data);
       const botMessage = { name: 'TechFest Bot', message: data.response };
       setMessages((prevMessages) => [...prevMessages, botMessage] as any);
     } catch (error) {
@@ -48,6 +50,11 @@ const ChatBot = () => {
     }
   };
 
+  useEffect(() => {
+    scrollref.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
@@ -59,18 +66,20 @@ const ChatBot = () => {
             </button>
           </div>
           <div className="flex-1 p-4 overflow-y-auto text-black">
-            {messages.map((msg: any, index) => (
-              <div
-                key={index}
-                className={`mb-2 p-2 rounded ${
-                  msg.name === 'TechFest Bot'
+            {
+              messages.map((msg: any, index) => (
+                <div
+                  key={index}
+                  className={`mb-2 p-2 rounded ${msg.name === 'TechFest Bot'
                     ? 'bg-purple-100 text-purple-800'
                     : 'bg-gray-200'
-                }`}
-              >
-                <strong>{msg.name}:</strong> {msg.message}
-              </div>
-            ))}
+                    }`}
+                >
+                  <strong>{msg.name}:</strong> {msg.message}
+                </div>
+              ))
+            }
+            <div ref={scrollref} />
           </div>
           <div className="p-4 bg-gray-100 rounded-b-lg flex">
             <input
