@@ -155,3 +155,15 @@ export const verifyCommunityReferralCode = async (code: string) => {
     console.log(err);
   }
 };
+
+export const updateReferralCode = async (code:string, id:string) => {
+  try{
+    await supabase
+    .from('users')
+    .update({ referral: code })
+    .eq('id', id);
+  }
+  catch(e){
+    console.log(e);
+  }
+};

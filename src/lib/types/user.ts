@@ -6,6 +6,7 @@ export interface userDataType {
   address: string;
   college: string;
   role: string;
+  referral_code: string;
   college_roll: string;
   created_at: string;
   updated_at: string;
