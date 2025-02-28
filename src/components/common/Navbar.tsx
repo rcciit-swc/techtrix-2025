@@ -89,8 +89,8 @@ export const SignInButton = () => {
     <button
       className="group relative scale-100 overflow-hidden rounded-lg py-2 transition-transform hover:scale-105 active:scale-95"
       onClick={async()=>{
+        const  ref = typeof window !== 'undefined' && localStorage.getItem('ref');
         await  login();
-       const  ref = typeof window !== 'undefined' && localStorage.getItem('ref');
         if (userData) {
                 const { data } = await supabase.auth.getSession();
                 const createdAt = Math.floor(new Date(userData.created_at).getTime());
