@@ -10,6 +10,11 @@ import { useEffect } from 'react';
 const SessionProvider = () => {
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
+  console.log(ref)
+  if(ref){
+    typeof window !== 'undefined' &&
+    localStorage.setItem('ref', ref);
+  }
   const { setUserData, userData } = useUser();
   const setEvents = useEvents((state) => state.setEventsData);
   useEffect(() => {
@@ -26,13 +31,14 @@ const SessionProvider = () => {
   useEffect(() => {
     const checkReferralCode = async () => {
       if (userData) {
+        const  ref = typeof window !== 'undefined' &&
+        localStorage.getItem('ref');
         const { data } = await supabase.auth.getSession();
         const createdAt = Math.floor(new Date(userData.created_at).getTime());
         const now = new Date().getTime();
         if (now - createdAt < 60 * 1000) {
           if (ref) {
             const code = await verifyCommunityReferralCode(ref);
-            console.log(code);
             if (code) {
               if (!data) {
                 typeof window !== 'undefined' &&
@@ -46,7 +52,7 @@ const SessionProvider = () => {
       }
     };
     checkReferralCode();
-  }, [userData]);
+  }, [userData,ref]);
 
   return null;
 };

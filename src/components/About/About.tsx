@@ -50,7 +50,7 @@ function Modal({ isOpen, onClose, refCode }: ModalProps) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-[#121212] p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+      {/* <div className="bg-[#121212] p-6 rounded-lg shadow-lg max-w-md w-full text-center">
         <h2 className="text-2xl font-bold text-white mb-4 font-kagitingan">Refer Techtrix 2025</h2>
         {loading ? (
           <p className="text-gray-300">Generating referral code...</p>
@@ -78,15 +78,15 @@ function Modal({ isOpen, onClose, refCode }: ModalProps) {
         >
           Close
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
 
-export default function About({refCode}: {refCode: string | null}) {
+export default function About() {
   const { userData } = useUser();
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="relative h-fit w-full overflow-hidden">
@@ -145,14 +145,14 @@ export default function About({refCode}: {refCode: string | null}) {
         </div>
       </div>
 
-      {userData?.email.includes('rcciit') && <div className="flex items-center justify-center py-10">
+      {/* {userData?.email.includes('rcciit') && <div className="flex items-center justify-center py-10">
         <ButtonLanding
           text="Refer Techtrix 2025"
           onClick={() => setIsModalOpen(true)}
         />
-      </div>}
+      </div>} */}
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} refCode={refCode} />
+      {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} refCode={refCode} /> */}
 
       <div className="relative z-10 container mx-auto px-6">
         <h1
