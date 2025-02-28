@@ -116,7 +116,7 @@ export const getApprovalDashboardData = async (
 
     const { data, error } = await supabase.rpc('get_registration_data', {
       p_fest_id: id, 
-      p_event_category_id: 'a1bb62c8-fd3d-485a-959e-be8cc528cc43', 
+      // p_event_category_id: 'a1bb62c8-fd3d-485a-959e-be8cc528cc43', 
     });
 
     if (error) {
