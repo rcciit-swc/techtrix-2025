@@ -3,7 +3,6 @@ import { supabase } from './supabase-client';
 
 export async function uploadPaymentScreenshot(file: File, eventName: string) {
   const bucket = 'fests';
-  console.log(file);
   const fileName = `${new Date()}-${file.name}`;
   const filePath = `techtrix-2025/${eventName}/${fileName}`;
   const { data, error } = await supabase.storage
@@ -33,12 +32,13 @@ export interface RegisterSoloParams {
   transactionId: string;
   transactionScreenshot: string | null;
   college: string;
+  ref?: string;
 }
 
 export async function registerSoloEvent(
   params: RegisterSoloParams
 ): Promise<any> {
-  const { userId, eventId, transactionId, transactionScreenshot, college } =
+  const { userId, eventId, transactionId, transactionScreenshot, college, ref } =
     params;
 
   // Call the RPC named 'register_solo_event' with the required parameters.
@@ -52,7 +52,7 @@ export async function registerSoloEvent(
       p_college: college,
       p_reg_mode: 'ONLINE',
       p_payment_mode: 'UPI',
-      p_referral_code: 'TECHTRIX2025',
+      p_referral_code: ref || 'TECHTRIX2025',
       p_attendance: false,
     }
   );
@@ -83,6 +83,7 @@ export interface RegisterTeamParams {
   teamLeadPhone: string;
   teamLeadEmail: string;
   teamMembers: TeamMember[];
+  ref: string;
 }
 
 export async function registerTeamWithParticipants(
@@ -131,6 +132,7 @@ export async function registerTeamWithParticipants(
     teamLeadPhone,
     teamLeadEmail,
     teamMembers,
+    ref,
   } = params;
 
   // Call the RPC function 'register_team_with_participants'
@@ -149,7 +151,7 @@ export async function registerTeamWithParticipants(
       p_team_members: teamMembers || [],
       p_reg_mode: 'ONLINE',
       p_payment_mode: 'UPI',
-      p_referral_code: 'TECHTRIX2025',
+      p_referral_code: ref || 'TECHTRIX2025',
       p_attendance: false,
     }
   );

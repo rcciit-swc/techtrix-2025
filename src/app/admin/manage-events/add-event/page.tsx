@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { eventSchema } from '@/lib/schemas';
 import Header from '@/components/admin/manage-events/Header';
 import { useState } from 'react';
-import { Coordinator, Link } from '@/lib/types/events';
+import { Coordinator, LinkType } from '@/lib/types/events';
 import { toast } from 'sonner';
 import {
   BasicInformation,
@@ -36,7 +36,7 @@ const Page = () => {
     },
   });
 
-  const [links, setLinks] = useState<Link[]>([]);
+  const [links, setLinks] = useState<LinkType[]>([]);
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
   const { postEvent, setEventsData } = useEvents();
   async function onSubmit(values: z.infer<typeof eventSchema>) {

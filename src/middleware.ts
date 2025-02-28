@@ -17,45 +17,52 @@ export async function middleware(req: NextRequest) {
     }
     return res;
   }
-
-  // Only make the DB call if the route is under '/admin'
-  if (url.pathname.startsWith('/admin')) {
-    const { data: userRoles, error } = await supabase
-      .from('roles')
-      .select(`
-        role,
-        event_categories (
-          name,
-          fests (
-            name,
-            year
-          )
-        )
-      `)
-      .eq('user_id', session.user?.id)
-      .single();
-
-      if(userRoles?.role === 'super_admin') {
-        return NextResponse.next();
-      }
-    // Redirect if there's an error, no role data, or the role doesn't match.
-    if (error || !userRoles) {
-      return NextResponse.redirect(new URL('/unauthorized', req.url));
-    }
-
-    // Check for general admin access.
-    if (userRoles.role !== 'super_admin' && userRoles.role !== 'convenor') {
-      return NextResponse.redirect(new URL('/unauthorized', req.url));
-    }
-
-    // Additional check for the add-event route.
-    if (
-      url.pathname.startsWith('/admin/manage-events/add-event') &&
-      userRoles.role !== 'super_admin'
-    ) {
-      return NextResponse.redirect(new URL('/unauthorized', req.url));
+  if(url.pathname.startsWith('/admin')){
+    const {data:userRoles,error} = await supabase.from('roles').select(`role`).eq('user_id',session.user?.id).single();
+    if(userRoles?.role === 'super_admin'){
+      return NextResponse.next();
     }
   }
+
+  // Only make the DB call if the route is under '/admin'
+  // if (url.pathname.startsWith('/admin')) {
+  //   const { data: userRoles, error } = await supabase
+  //     .from('roles')
+  //     .select(`
+  //       role,
+  //       event_categories (
+  //         name,
+  //         fests (
+  //           name,
+  //           year
+  //         )
+  //       )
+  //     `)
+  //     .eq('user_id', session.user?.id)
+  //     .single();
+  //     console.log(userRoles);
+
+  //     if(userRoles?.role === 'super_admin') {
+  //       return NextResponse.next();
+  //     }
+  //   // Redirect if there's an error, no role data, or the role doesn't match.
+  //   if (error || !userRoles) {
+  //     return NextResponse.redirect(new URL('/unauthorized', req.url));
+  //   }
+
+  //   // Check for general admin access.
+  //   if (userRoles.role !== 'super_admin' && userRoles.role !== 'convenor') {
+  //     return NextResponse.redirect(new URL('/unauthorized', req.url));
+  //   }
+
+  //   // Additional check for the add-event route.
+  //   if (
+  //     url.pathname.startsWith('/admin/manage-events/add-event') &&
+  //     userRoles.role !== 'super_admin'
+  //   ) {
+  //     return NextResponse.redirect(new URL('/unauthorized', req.url));
+  //   }
+  // }
 
   // If all checks pass, continue to the next middleware or route.
   return NextResponse.next();

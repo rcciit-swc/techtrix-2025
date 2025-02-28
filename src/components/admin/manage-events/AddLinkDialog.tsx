@@ -10,10 +10,10 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Link } from '@/lib/types/events';
+import { LinkType } from '@/lib/types/events';
 
 interface AddLinkDialogProps {
-  addLink: (link: Link) => void;
+  addLink: (link: LinkType) => void;
 }
 
 export function AddLinkDialog({ addLink }: AddLinkDialogProps) {

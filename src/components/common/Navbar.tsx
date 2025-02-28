@@ -17,6 +17,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { supabase } from '@/utils/functions/supabase-client';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { verifyCommunityReferralCode } from '@/lib/actions';
+import { updateReferralCode } from '@/utils/functions';
 
 type Props = {
   className?: string;
@@ -86,7 +88,29 @@ export const SignInButton = () => {
   return (
     <button
       className="group relative scale-100 overflow-hidden rounded-lg py-2 transition-transform hover:scale-105 active:scale-95"
-      onClick={login}
+      onClick={async()=>{
+        await  login();
+       const  ref = typeof window !== 'undefined' && localStorage.getItem('ref');
+        if (userData) {
+                const { data } = await supabase.auth.getSession();
+                const createdAt = Math.floor(new Date(userData.created_at).getTime());
+                const now = new Date().getTime();
+                if (now - createdAt < 60 * 1000) {
+                  if (ref) {
+                    const code = await verifyCommunityReferralCode(ref);
+                    console.log(code);
+                    if (code) {
+                      if (!data) {
+                        typeof window !== 'undefined' &&
+                          localStorage.setItem('ref', ref);
+                      } else {
+                        await updateReferralCode(ref, userData.id);
+                      }
+                    }
+                  }
+                }
+              }
+      }}
     >
       <span className="relative z-10 text-white/90 transition-colors group-hover:text-white bg-blue-500 font-bold rounded-full px-4 py-2">
         Login
@@ -130,13 +154,13 @@ const Navbar = ({ className }: Props) => {
               width={isMobile ? 100 : scrolled ? 100 : 160}
               height={isMobile ? 100 : scrolled ? 100 : 160}
             />
-
           </div>
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
             <NavLink href="/team">Team</NavLink>
+            <NavLink href="/gallery">Gallery</NavLink>
             <div className="ml-10">
               <SignInButton />
             </div>
@@ -192,6 +216,12 @@ const Navbar = ({ className }: Props) => {
           </MobileNavLink>
           <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>
             Team
+          </MobileNavLink>
+          <MobileNavLink
+            href="/gallery"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Gallery
           </MobileNavLink>
           <div className="ml-4 mt-2">
             <SignInButton />

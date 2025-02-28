@@ -57,7 +57,6 @@ const EventDetails: React.FC<EventDetailsProps> = ({
   const [isRegistered, setIsRegistered] = useState(false);
   const [isFree, setIsFree] = useState(false);
   const router = useRouter();
-
   useEffect(() => {
     if (
       swcStatus &&
@@ -70,7 +69,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({
 
   useEffect(() => {
     if (eventsData) {
-      const event = eventsData.find((event: any) => event.id === eventId);
+      const event = eventsData?.find((event: any) => event.id === eventId);
       if (event) {
         setIsRegistered(event.registered || false);
       }
@@ -112,6 +111,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({
           src={'/assets/Home/loader.gif'}
           className="w-full h-full lg:w-[800px] lg:h-[400px]"
           alt=""
+          unoptimized
           width={1000}
           height={500}
         />
@@ -180,12 +180,20 @@ const EventDetails: React.FC<EventDetailsProps> = ({
               <div className="flex flex-row items-center justify-center gap-4">
                 <RulesDialog rules={eventData.rules} />
                 <div className=" text-center">
-                  <button
+                  {eventId==='d363c243-1db6-4ba4-b8bd-a53c5384234b' ?  
+                  <Link
+                  href={'https://forms.gle/HajdFmCWVEsKgjRMA'}
+                  target='_blank'
+                  className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
+                >
+                  {'Fill the Form'}
+                </Link>
+                  : <button
                     onClick={isRegistered ? () => {} : handleRegister}
                     className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
                   >
                     {isRegistered ? 'Registered' : 'Register Now'}
-                  </button>
+                  </button>}
                   {/* <button
                   onClick={()=>{
                     toast.success('Registration will be open soon !');
@@ -203,9 +211,28 @@ const EventDetails: React.FC<EventDetailsProps> = ({
               id="glowPink"
               className="text-xl tracking-widest flex flex-row sm:text-2xl md:text-3xl font-semibold text-transparent font-kagitingan text-left"
             >
-              Team Size : <span className='text-white'> &nbsp;{eventData.min_team_size} - {eventData.max_team_size}</span>
+              Registration Fees :{' '}
+              <span className="text-white">
+                {' '}
+                &nbsp;
+                {isFree ? 'Free' : eventData.registration_fees}
+              </span>
             </h1>
-            
+          </div>
+          <div className="mt-4 sm:mt-6 text-white text-base sm:text-lg">
+            <h1
+              id="glowPink"
+              className="text-xl tracking-widest flex flex-row sm:text-2xl md:text-3xl font-semibold text-transparent font-kagitingan text-left"
+            >
+              Team Size :{' '}
+              <span className="text-white">
+                {' '}
+                &nbsp;
+                {eventData.min_team_size === eventData.max_team_size
+                  ? eventData.max_team_size
+                  : `${eventData.min_team_size} - ${eventData.max_team_size}`}
+              </span>
+            </h1>
           </div>
           <div className="mt-4 sm:mt-6 text-white text-base sm:text-lg">
             <h1

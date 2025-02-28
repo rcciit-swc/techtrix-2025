@@ -1,5 +1,6 @@
 import { toast } from 'sonner';
 import { supabase } from './supabase-client';
+import { supabaseServer } from './supabase-server';
 
 export const getUserData = async () => {
   try {
@@ -103,21 +104,19 @@ export const handleSaveChanges = async (
   }
 };
 
-export const getSWCData = async (collegeRoll: string) => {
+export const getSWCData = async (collegeRoll: string, email: string) => {
   try {
     const { data } = await supabase
       .from('SWC-2025')
       .select('*')
-      .eq('roll', collegeRoll);
-    if (data && data.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+      .or(`roll.ilike.${collegeRoll},email.eq.${email}`);
+    return data && data.length > 0;
   } catch (err) {
     console.log(err);
+    return false;
   }
 };
+
 
 export async function fetchRegistrationDetails(
   eventId: string,
@@ -143,6 +142,28 @@ export async function fetchRegistrationDetails(
     throw new Error('Failed to fetch registration details');
   }
 
-  console.log('Registration Details:', data);
   return data;
 }
+
+export const verifyCommunityReferralCode = async (code: string) => {
+  try{
+    const supabase = await supabaseServer();
+    const {data,error} = await supabase.from('referral_codes').select('*').eq('code',code);
+    console.log(data);
+  }
+  catch(err){
+    console.log(err);
+  }
+};
+
+export const updateReferralCode = async (code:string, id:string) => {
+  try{
+    await supabase
+    .from('users')
+    .update({ referral: code })
+    .eq('id', id);
+  }
+  catch(e){
+    console.log(e);
+  }
+};
