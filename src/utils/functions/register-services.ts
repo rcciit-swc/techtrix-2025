@@ -170,3 +170,22 @@ export async function registerTeamWithParticipants(
     return data;
   }
 }
+
+export const approveRegistration = async(registrationId: string) => {
+  try{
+    const now = new Date();
+    let isoString = now.toISOString();
+    const { data, error } = await supabase.from('teams').update({
+      transaction_verified: isoString,
+    }).eq('team_id', registrationId);
+
+    if(error){
+      throw error;
+    }
+
+    return data;
+  }
+  catch(error){
+    console.error(error);
+  }
+};

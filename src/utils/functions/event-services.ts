@@ -71,15 +71,17 @@ export const getEventsData = async () => {
   }
 };
 
-export const getEventsForAdmin = async (role:string, id:string) => {
-  try{
-    const { data, error } = role==='convenor' ? (await supabase.from('events').select('*').eq('event_category_id', id)) : (await supabase.from('events').select('*').eq('event_id', id));
+export const getEventsForAdmin = async (role: string, id: string) => {
+  try {
+    const { data, error } =
+      role === 'convenor'
+        ? await supabase.from('events').select('*').eq('event_category_id', id)
+        : await supabase.from('events').select('*').eq('event_id', id);
     console.log(data);
-  }
-  catch(error: any){
+  } catch (error: any) {
     console.log(error.message);
   }
-}
+};
 
 export const updateEventById = async (
   id: string,
@@ -106,17 +108,20 @@ export const updateEventById = async (
 };
 
 export const getApprovalDashboardData = async (
-  id?: string
+  fest_id?: string,
+  event_category_id?: string,
+  event_id?: string
 ): Promise<EventData[] | null> => {
   try {
-    if (!id) {
+    if (!fest_id) {
       console.warn('No fest ID provided');
       return null;
     }
 
     const { data, error } = await supabase.rpc('get_registration_data', {
-      p_fest_id: id, 
-      // p_event_category_id: 'a1bb62c8-fd3d-485a-959e-be8cc528cc43', 
+      p_fest_id: fest_id,
+      p_event_category_id: event_category_id || null,
+      p_event_id: event_id || null,
     });
 
     if (error) {

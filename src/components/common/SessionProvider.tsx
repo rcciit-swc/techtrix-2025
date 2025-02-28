@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 const SessionProvider = () => {
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
-  console.log(ref)
   if(ref){
     typeof window !== 'undefined' &&
     localStorage.setItem('ref', ref);

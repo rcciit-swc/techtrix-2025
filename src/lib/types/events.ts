@@ -69,7 +69,7 @@ export interface EventsStateType {
   eventData: any;
   eventDetailsLoading: boolean;
   eventsLoading: boolean;
-  approvalDashboardData: EventData[];
+  approvalDashboardData: any[];
   approvalDashboardLoading: boolean;
 }
 
@@ -81,5 +81,5 @@ export interface EventsActionsType {
   markEventAsRegistered: (eventId: string) => void;
   updateRegisterStatus: (id: string, status: boolean) => void;
   updateEventsData: (id: string, data: any) => void;
-  getApprovalDashboardData: (id?: string) => void;
+  getApprovalDashboardData: (fest_id: string, event_category_id?:string, event_id?:string) => void;
 }

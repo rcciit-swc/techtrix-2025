@@ -53,10 +53,19 @@ export const updatePopulateEvents = async (set: any, id: string, data: any) => {
   set({ eventsData: updatedData, eventsLoading: false });
 };
 
-export const populateApprovalDashboard = async (set: any, id?: string) => {
+export const populateApprovalDashboard = async (
+  set: any,
+  fest_id?: string,
+  event_category_id?: string,
+  event_id?: string
+) => {
   try {
     set({ approvalDashboardLoading: true });
-    const res = await getApprovalDashboardData(id);
+    const res = await getApprovalDashboardData(
+      fest_id,
+      event_category_id,
+      event_id
+    );
     if (!res) {
       set({ approvalDashboardData: [], approvalDashboardLoading: false });
     } else {

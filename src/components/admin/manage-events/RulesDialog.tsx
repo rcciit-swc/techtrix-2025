@@ -18,7 +18,7 @@ export const RulesDialog = ({ rules }: RulesDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="px-6 font-kagitingan text-xl lg:text-2xl lg:py-7 bg-yellow-200 hover:bg-yellow-300 text-black">
+        <Button className="px-6 font-kagitingan text-xl lg:text-xl lg:py-4 bg-yellow-200 hover:bg-yellow-300 text-black">
           View Rules
         </Button>
       </DialogTrigger>

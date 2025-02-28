@@ -19,13 +19,16 @@ import { EventData } from '@/lib/types/events';
 import { TeamMembersDialog } from './TeamMembersDialog';
 import TableSkeleton from './TableSkeleton';
 import { useEvents } from '@/lib/stores';
+import { toast } from 'sonner';
+import { approveRegistration } from '@/utils/functions';
 
 const COLUMN_WIDTHS = [
   100, 180, 400, 240, 220, 240, 240, 240, 360, 240, 320, 280,
 ];
 const TABLE_WIDTH = COLUMN_WIDTHS.reduce((a, b) => a + b, 0);
 
-export default function EventsTable() {
+export default function EventsTable({ rolesData }: { rolesData: any }) {
+  const festId = '44bb2093-d229-4385-8f08-3fe7da3521c8';
   const [searchQuery, setSearchQuery] = useState('');
   const [paymentStatusFilter, setPaymentStatusFilter] = useState('');
   const [eventFilter, setEventFilter] = useState('');
@@ -39,10 +42,14 @@ export default function EventsTable() {
   } = useEvents();
 
   const refreshData = async () => {
-    getApprovalDashboardData('44bb2093-d229-4385-8f08-3fe7da3521c8');
+    getApprovalDashboardData(
+      festId,
+      rolesData?.event_category_id,
+      rolesData?.event_id
+    );
   };
   useEffect(() => {
-    getApprovalDashboardData('44bb2093-d229-4385-8f08-3fe7da3521c8');
+    refreshData();
   }, []);
 
   const filteredData = useMemo(() => {
@@ -214,24 +221,57 @@ export default function EventsTable() {
           </div>
         ))}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent>
+          <DialogContent className="max-h-[60vh] overflow-y-scroll">
             <DialogHeader>
               <h1 className="text-2xl font-bold text-gray-900">
                 Transaction Screenshot
               </h1>
             </DialogHeader>
-            <Image
-              src={item.transaction_screenshot || '/placeholder.svg'}
-              alt="Transaction Screenshot"
-              layout="responsive"
-              loading="lazy"
-              width={800}
-              height={600}
-              objectFit="contain"
-            />
-            <Button onClick={() => setIsDialogOpen(false)} className="mt-4">
+            {!item.transaction_screenshot ? (
+              <div className="flex flex-col items-center justify-center gap-2 text-red-600 font-semibold">
+                SWC Paid Transaction !
+              </div>
+            ) : (
+              <Image
+                src={item.transaction_screenshot || '/placeholder.svg'}
+                alt="Transaction Screenshot"
+                layout="responsive"
+                loading="lazy"
+                width={800}
+                height={600}
+                objectFit="contain"
+              />
+            )}
+            {
+              <div className="flex flex-row items-center justify-center gap-2">
+                <Button
+                  onClick={async () => {
+                    try {
+                      const approvalData = await approveRegistration(
+                        item.team_id
+                      );
+                      refreshData();
+                      toast.success('Payment Accepted Successfully');
+                      setIsDialogOpen(false);
+                    } catch (error) {
+                      toast.error('Error in accepting the payment');
+                    }
+                  }}
+                >
+                  Accept
+                </Button>
+                <Button
+                  onClick={() => {
+                    setIsDialogOpen(false);
+                  }}
+                >
+                  Reject
+                </Button>
+              </div>
+            }
+            {/* <Button onClick={() => setIsDialogOpen(false)} className="mt-4">
               Close
-            </Button>
+            </Button> */}
           </DialogContent>
         </Dialog>
       </div>
