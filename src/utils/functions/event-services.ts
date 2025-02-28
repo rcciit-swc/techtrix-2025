@@ -71,6 +71,16 @@ export const getEventsData = async () => {
   }
 };
 
+export const getEventsForAdmin = async (role:string, id:string) => {
+  try{
+    const { data, error } = role==='convenor' ? (await supabase.from('events').select('*').eq('event_category_id', id)) : (await supabase.from('events').select('*').eq('event_id', id));
+    console.log(data);
+  }
+  catch(error: any){
+    console.log(error.message);
+  }
+}
+
 export const updateEventById = async (
   id: string,
   data: Partial<events>
@@ -105,7 +115,8 @@ export const getApprovalDashboardData = async (
     }
 
     const { data, error } = await supabase.rpc('get_registration_data', {
-      p_fest_id: id, // Passing the fest_id parameter
+      p_fest_id: id, 
+      p_event_category_id: 'a1bb62c8-fd3d-485a-959e-be8cc528cc43', 
     });
 
     if (error) {

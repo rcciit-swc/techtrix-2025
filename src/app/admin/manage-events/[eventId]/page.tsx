@@ -23,7 +23,7 @@ export default function EditEventPage() {
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
 
   // Find the event to edit from the global events store.
-  const eventToEdit = eventsData.find((event) => event.id === eventId);
+  const eventToEdit = eventsData?.find((event) => event.id === eventId);
 
   const form = useForm<z.infer<typeof eventSchema>>({
     resolver: zodResolver(eventSchema),

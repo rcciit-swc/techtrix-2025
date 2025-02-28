@@ -140,6 +140,7 @@ export function SoloEventRegistration({
       name: soloLeadData!.name,
       phone: soloLeadData!.phone,
       email: soloLeadData!.email,
+      ref: userData?.referral_code,
     };
 
     try {
@@ -166,6 +167,7 @@ export function SoloEventRegistration({
       name: userData!.name,
       phone: userData!.phone,
       email: userData!.email,
+      ref: userData?.referral_code,
     };
 
     try {
@@ -375,7 +377,7 @@ export function SoloEventRegistration({
                 className="rounded-lg w-[250px]"
               />
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <Button
                 type="button"

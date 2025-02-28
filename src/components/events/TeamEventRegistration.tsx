@@ -229,6 +229,7 @@ export function TeamEventRegistration({
       teamLeadPhone: teamLeadData!.phone,
       teamLeadEmail: teamLeadData!.email,
       teamMembers: teamMembers,
+      ref: userData?.referral_code || 'TECHTRIX2025',
     };
 
     try {
@@ -261,6 +262,7 @@ export function TeamEventRegistration({
       teamLeadPhone: teamLeadData!.phone,
       teamLeadEmail: teamLeadData!.email,
       teamMembers: teamMembers,
+      ref: userData?.referral_code || 'TECHTRIX2025',
     };
     try {
       // Call the registerTeamWithParticipants function.

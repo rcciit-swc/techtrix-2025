@@ -16,17 +16,23 @@ export const update_and_populate = async (set: any, data: any) => {
   set({ userLoading: true });
   await updateUserData(data);
   const updatedData = await getUserData();
-  set({ userData: updatedData, userLoading: false });
+  const isSWCPaid = await getSWCData(
+    updatedData.college_roll,
+    updatedData?.email
+  );
+  set({ userData: updatedData, swcStatus: isSWCPaid, userLoading: false });
 };
 
 export const verifyCommunityReferralCode = async (refCode: string) => {
-  try{
-    const { data } = await supabase.from('referral_codes').select('*').eq('referral_code', refCode);
-    if(data){
-      return data?.length > 0 ;
+  try {
+    const { data } = await supabase
+      .from('referral_codes')
+      .select('*')
+      .eq('referral_code', refCode);
+    if (data) {
+      return data?.length > 0;
     }
-  }
-  catch(e){
+  } catch (e) {
     console.error(e);
   }
 };

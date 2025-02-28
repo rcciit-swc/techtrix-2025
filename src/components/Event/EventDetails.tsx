@@ -69,7 +69,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({
 
   useEffect(() => {
     if (eventsData) {
-      const event = eventsData.find((event: any) => event.id === eventId);
+      const event = eventsData?.find((event: any) => event.id === eventId);
       if (event) {
         setIsRegistered(event.registered || false);
       }
