@@ -167,10 +167,8 @@ export const updateReferralCode = async (code: string, id: string) => {
 
 export const getRoles = async () => {
   try {
-    const supabase = await supabaseServer();
     const { data: sessionData, error: sessionError } =
       await supabase.auth.getSession();
-    console.log(sessionData);
     const { data: rolesData, error: rolesError } = await supabase
       .from('roles')
       .select('*')

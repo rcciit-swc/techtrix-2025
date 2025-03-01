@@ -49,7 +49,7 @@ const Page = () => {
         coordinators: coordinators,
       };
       postEvent(eventData);
-      setEventsData();
+      setEventsData(true);
       toast.success('Event created!');
       form.reset();
       setLinks([]);

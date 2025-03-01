@@ -13,6 +13,7 @@ import { useEvents } from '@/lib/stores';
 import { Coordinator, LinkType } from '@/lib/types/events';
 import { EditEventSkeleton } from '@/components/admin/manage-events/EditEventSkeleton';
 import { BasicInformation, LinksAndCoordinators, RulesAndGuidelines, ScheduleAndDescription } from '@/components/admin/manage-events';
+import { toast } from 'sonner';
 
 export default function EditEventPage() {
   const params = useParams();
@@ -22,9 +23,7 @@ export default function EditEventPage() {
   const [links, setLinks] = useState<LinkType[]>([]);
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
 
-  // Find the event to edit from the global events store.
   const eventToEdit = eventsData?.find((event) => event.id === eventId);
-
   const form = useForm<z.infer<typeof eventSchema>>({
     resolver: zodResolver(eventSchema),
     defaultValues: {
@@ -42,7 +41,6 @@ export default function EditEventPage() {
     },
   });
 
-  // When the event is found, reset the form and update local state.
   useEffect(() => {
     if (eventToEdit) {
       form.reset({
@@ -50,6 +48,7 @@ export default function EditEventPage() {
         registration_fees: eventToEdit.registration_fees,
         prize_pool: eventToEdit.prize_pool,
         image_url: eventToEdit.image_url,
+        // event_category_id: eventToEdit.event_category_id,
         min_team_size: Number(eventToEdit.min_team_size),
         max_team_size: Number(eventToEdit.max_team_size),
         schedule: eventToEdit.schedule,
@@ -73,7 +72,15 @@ export default function EditEventPage() {
 
   async function onSubmit(values: z.infer<typeof eventSchema>) {
     try {
-      updateEventsData(eventId, values);
+      const eventData = {
+        ...values,
+        min_team_size: Number(values.min_team_size),
+        max_team_size: Number(values.max_team_size),
+        links: links,
+        coordinators: coordinators,
+      };
+      updateEventsData(eventId, eventData);
+      toast.success('Event updated!');
     } catch (error: any) {
       console.error(error);
     }
@@ -92,9 +99,13 @@ export default function EditEventPage() {
                 Edit event by filling out the details below.
               </p>
             </div>
-            <Button
+
+          </div>
+
+          <BasicInformation form={form} />
+          <button
               type="submit"
-              size="lg"
+              // size="lg"
               className="bg-gradient-to-r from-[#a383e6] via-[#9158FF] to-[#9158FF] hover:opacity-90 transition-opacity"
               disabled={form.formState.isSubmitting}
             >
@@ -102,10 +113,7 @@ export default function EditEventPage() {
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               )}
               Save Changes
-            </Button>
-          </div>
-
-          <BasicInformation form={form} />
+            </button>
           <ScheduleAndDescription form={form} />
           <RulesAndGuidelines form={form} />
           <LinksAndCoordinators

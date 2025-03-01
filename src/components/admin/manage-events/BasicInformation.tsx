@@ -45,7 +45,8 @@ export function BasicInformation({ form }: { form: any }) {
           <FormField
             control={form.control}
             name="name"
-            render={({ field }) => (
+            render={({ field }) => {
+              return(
               <FormItem>
                 <FormLabel className="text-gray-300">Event Name</FormLabel>
                 <FormControl>
@@ -57,12 +58,13 @@ export function BasicInformation({ form }: { form: any }) {
                 </FormControl>
                 <FormMessage />
               </FormItem>
-            )}
+            )}}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="event_category_id"
-            render={({ field }) => (
+            render={({ field }) => {
+              return(
               <FormItem>
                 <FormLabel className="text-gray-300">Event Category</FormLabel>
                 <FormControl>
@@ -85,8 +87,8 @@ export function BasicInformation({ form }: { form: any }) {
                 </FormControl>
                 <FormMessage />
               </FormItem>
-            )}
-          />
+            )}}
+          /> */}
 
           <FormField
             control={form.control}

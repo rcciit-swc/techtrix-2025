@@ -74,12 +74,12 @@ export interface EventsStateType {
 }
 
 export interface EventsActionsType {
-  setEventsData: () => void;
+  setEventsData: (all:boolean) => void;
   postEvent: (eventsData: events) => void;
   getEventCategories: () => void;
   getEventByID: (id: string) => void;
   markEventAsRegistered: (eventId: string) => void;
   updateRegisterStatus: (id: string, status: boolean) => void;
   updateEventsData: (id: string, data: any) => void;
-  getApprovalDashboardData: (fest_id: string, event_category_id?:string, event_id?:string) => void;
+  getApprovalDashboardData: () => void;
 }

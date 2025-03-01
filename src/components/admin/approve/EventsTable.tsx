@@ -43,9 +43,6 @@ export default function EventsTable({ rolesData }: { rolesData: any }) {
 
   const refreshData = async () => {
     getApprovalDashboardData(
-      festId,
-      rolesData?.event_category_id,
-      rolesData?.event_id
     );
   };
   useEffect(() => {

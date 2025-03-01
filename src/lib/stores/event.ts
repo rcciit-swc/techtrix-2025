@@ -23,7 +23,7 @@ const eventState: EventsStateType = {
 };
 export const useEvents = create<EventsStoreType>((set) => ({
   ...eventState,
-  setEventsData: () => populateEventDetails(set),
+  setEventsData: (all:boolean = true) => populateEventDetails(set,all),
   getEventByID: (id: string) => populateEventDetailsByID(set, id),
   getEventCategories: () => populateCategories(set),
   postEvent: (eventData: events) => addEvent(set, eventData),
@@ -31,7 +31,7 @@ export const useEvents = create<EventsStoreType>((set) => ({
     updateRegisterStatus(set, id, status),
   updateEventsData: () => (id: string, data: any) =>
     updatePopulateEvents(set, id, data),
-  getApprovalDashboardData: (fest_id?: string, event_category_id?:string, event_id?:string) => populateApprovalDashboard(set, fest_id, event_category_id, event_id),
+  getApprovalDashboardData: () => populateApprovalDashboard(set),
   markEventAsRegistered: (eventId: string) =>
     set((state) => ({
       eventsData: state.eventsData.map((event) =>

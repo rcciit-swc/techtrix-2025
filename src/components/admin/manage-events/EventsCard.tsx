@@ -68,7 +68,7 @@ export function EventCards() {
   const { eventsData, eventsLoading, setEventsData, updateRegisterStatus } = useEvents();
 
   useEffect(() => {
-    setEventsData();
+    setEventsData(false);
   }, [setEventsData]);
 
   if (eventsLoading) {
@@ -156,12 +156,12 @@ export function EventCards() {
                     </Button>
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button
+                        {/* <Button
                           variant="destructive"
                           className="bg-red-500 hover:bg-red-600 font-kagitingan text-xl lg:text-xl"
                         >
                           Delete Event
-                        </Button>
+                        </Button> */}
                       </AlertDialogTrigger>
                       <AlertDialogContent className="bg-[#1e2432] text-white border-gray-700">
                         <AlertDialogHeader>

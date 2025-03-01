@@ -9,9 +9,9 @@ import {
 } from '@/utils/functions';
 import { events } from '../types/events';
 
-export const populateEventDetails = async (set: any) => {
+export const populateEventDetails = async (set: any, all: boolean = true) => {
   set({ eventsLoading: true });
-  const data = await getEventsData();
+  const data = await getEventsData(all);
   set({ eventsData: data, eventsLoading: false });
 };
 
@@ -48,6 +48,7 @@ export const updateRegisterStatus = async (
 
 export const updatePopulateEvents = async (set: any, id: string, data: any) => {
   set({ eventsLoading: true });
+  console.log('updatePopulateEvents', id, data);
   await updateEventById(id, data);
   const updatedData = await getEventsData();
   set({ eventsData: updatedData, eventsLoading: false });
@@ -55,16 +56,11 @@ export const updatePopulateEvents = async (set: any, id: string, data: any) => {
 
 export const populateApprovalDashboard = async (
   set: any,
-  fest_id?: string,
-  event_category_id?: string,
-  event_id?: string
 ) => {
   try {
     set({ approvalDashboardLoading: true });
     const res = await getApprovalDashboardData(
-      fest_id,
-      event_category_id,
-      event_id
+      
     );
     if (!res) {
       set({ approvalDashboardData: [], approvalDashboardLoading: false });
