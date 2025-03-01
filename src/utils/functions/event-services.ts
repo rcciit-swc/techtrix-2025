@@ -2,6 +2,7 @@ import { EventData, events } from '@/lib/types/events';
 import { supabase } from './supabase-client';
 import { toast } from 'sonner';
 import { supabaseServer } from './supabase-server';
+import { getRoles } from './user-services';
 
 export const getEventCategories = async () => {
   try {
@@ -43,10 +44,10 @@ export const updateRegisterStatusDb = async (id: string, status: boolean) => {
   }
 };
 
-export const getEventsData = async () => {
+export const getEventsData = async (all: boolean = true) => {
   try {
-    const { data: sessionData, error: sessionError } =
-      await supabase.auth.getSession();
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    
     if (sessionError) {
       console.error('Error getting session:', sessionError);
       return null;
@@ -54,16 +55,52 @@ export const getEventsData = async () => {
 
     const p_user_id = sessionData?.session?.user?.id || null;
     const p_fest_id = '44bb2093-d229-4385-8f08-3fe7da3521c8';
+    const rolesData = await getRoles(); // Expecting this to return an array of roles
 
-    const { data, error } = await supabase.rpc('get_events_by_fest', {
-      p_fest_id,
-      p_user_id,
-    });
-    if (error) {
-      console.error('Error fetching events:', error);
-      return null;
+    let data, error;
+
+    if (all || !rolesData || rolesData.length === 0) {
+      // Fetch all events if `all` is true or rolesData is empty/null
+      ({ data, error } = await supabase.rpc('get_events_by_fest', {
+        p_fest_id,
+        p_user_id
+      }));
+    } else {
+      // Determine the highest privileged role
+      const roles = rolesData.map(role => role.role);
+      
+      if (roles.includes('super_admin')) {
+        ({ data, error } = await supabase.rpc('get_events_by_fest', {
+          p_fest_id,
+          p_user_id,
+        }));
+      } else if (roles.includes('convenor')) {
+        const eventCategoryIds = rolesData
+          .filter(role => role.role === 'convenor')
+          .map(role => role.event_category_id);
+
+        ({ data, error } = await supabase
+          .from('events')
+          .select('*')
+          .in('event_category_id', eventCategoryIds));
+      } else if (roles.includes('coordinator')) {
+        const eventIds = rolesData
+          .filter(role => role.role === 'coordinator')
+          .map(role => role.event_id);
+
+        ({ data, error } = await supabase
+          .from('events')
+          .select('*')
+          .in('id', eventIds));
+      } else {
+        throw new Error('Invalid role');
+      }
     }
 
+    if (error) {
+      throw new Error(error.message);
+    }
+    
     return data;
   } catch (err) {
     console.error('Unexpected error:', err);
@@ -71,11 +108,68 @@ export const getEventsData = async () => {
   }
 };
 
+
+
+export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_id?: string) => {
+  try {
+    const rolesData = await getRoles(); // Expecting an array of roles
+
+    if (!rolesData || rolesData.length === 0) {
+      throw new Error('No roles found');
+    }
+
+    let data, error;
+    const roles = rolesData.map(role => role.role);
+
+    if (roles.includes('super_admin')) {
+      if (!p_fest_id || !p_user_id) {
+        throw new Error('Missing parameters for super_admin');
+      }
+      ({ data, error } = await supabase.rpc('get_events_by_fest', {
+        p_fest_id,
+        p_user_id,
+      }));
+    } else if (roles.includes('convenor')) {
+      const eventCategoryIds = rolesData
+        .filter(role => role.role === 'convenor')
+        .map(role => role.event_category_id);
+
+      ({ data, error } = await supabase
+        .from('events')
+        .select('*')
+        .in('event_category_id', eventCategoryIds));
+    } else if (roles.includes('coordinator')) {
+      const eventIds = rolesData
+        .filter(role => role.role === 'coordinator')
+        .map(role => role.event_id);
+
+      ({ data, error } = await supabase
+        .from('events')
+        .select('*')
+        .in('id', eventIds));
+    } else {
+      throw new Error('Invalid role');
+    }
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
+  } catch (error: any) {
+    console.error('Error fetching events:', error.message);
+    return null;
+  }
+};
+
+
+
 export const updateEventById = async (
   id: string,
   data: Partial<events>
 ): Promise<events | null> => {
   try {
+
     const { data: updatedData, error } = await supabase
       .from('events')
       .update(data)
@@ -96,16 +190,18 @@ export const updateEventById = async (
 };
 
 export const getApprovalDashboardData = async (
-  id?: string
 ): Promise<EventData[] | null> => {
   try {
-    if (!id) {
-      console.warn('No fest ID provided');
-      return null;
-    }
-
-    const { data, error } = await supabase.rpc('get_registration_data', {
-      p_fest_id: id, // Passing the fest_id parameter
+    const rolesData = await getRoles();
+    const roleCategory = rolesData?.map((roles)=>roles.event_category_id !== null ? roles.event_category_id : null)[0];
+    const eventIds = rolesData
+  ?.map((role) => role.event_id !== null ? role.event_id : null)
+  .filter((id) => id !== null);
+  const finalEventIds = eventIds!.length > 0 ? eventIds : null;
+    const { data, error } = await supabase.rpc('get_registrations_by_event_ids', {
+      p_fest_id: '44bb2093-d229-4385-8f08-3fe7da3521c8',
+      p_event_category_id: roleCategory || null,
+      p_event_id: finalEventIds || null,
     });
 
     if (error) {

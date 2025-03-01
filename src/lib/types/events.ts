@@ -1,4 +1,4 @@
-export interface Link {
+export interface LinkType {
   title: string;
   url: string;
 }
@@ -69,17 +69,17 @@ export interface EventsStateType {
   eventData: any;
   eventDetailsLoading: boolean;
   eventsLoading: boolean;
-  approvalDashboardData: EventData[];
+  approvalDashboardData: any[];
   approvalDashboardLoading: boolean;
 }
 
 export interface EventsActionsType {
-  setEventsData: () => void;
+  setEventsData: (all:boolean) => void;
   postEvent: (eventsData: events) => void;
   getEventCategories: () => void;
   getEventByID: (id: string) => void;
   markEventAsRegistered: (eventId: string) => void;
   updateRegisterStatus: (id: string, status: boolean) => void;
   updateEventsData: (id: string, data: any) => void;
-  getApprovalDashboardData: (id?: string) => void;
+  getApprovalDashboardData: () => void;
 }

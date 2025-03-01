@@ -65,11 +65,10 @@ function EventCardSkeleton() {
 }
 
 export function EventCards() {
-  const { eventsData, eventsLoading, setEventsData, updateRegisterStatus } =
-    useEvents();
+  const { eventsData, eventsLoading, setEventsData, updateRegisterStatus } = useEvents();
 
   useEffect(() => {
-    setEventsData();
+    setEventsData(false);
   }, [setEventsData]);
 
   if (eventsLoading) {
@@ -91,20 +90,20 @@ export function EventCards() {
             className="bg-[#1e2432] text-white border-gray-700 w-full overflow-hidden"
           >
             <div className="flex flex-col md:flex-row">
-              <div className="flex-grow p-8 w-[70%]">
+              <div className="flex-grow px-4 w-[70%]">
                 <CardHeader>
-                  <CardTitle className="text-3xl font-bold text-white">
+                  <CardTitle className="text-4xl font-kagitingan tracking-wider font-bold text-white">
                     {event.name}
                   </CardTitle>
-                  <CardDescription className="text-gray-300 text-lg">
+                  <CardDescription className="text-gray-300 text-lg font-alexandria">
                     {parseWithQuillStyles(event.schedule)}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="py-6">
-                  <div className="mb-6 text-gray-100 leading-relaxed">
+                <CardContent>
+                  <div className=" text-gray-100 leading-relaxed">
                     {parseWithQuillStyles(event.description)}
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-3 font-alexandria">
                     <div>
                       <span className="font-semibold">Fees:</span>{' '}
                       {event.registration_fees}
@@ -146,23 +145,23 @@ export function EventCards() {
                   </div>
                   <div className="flex space-x-3">
                     <RulesDialog rules={event.rules} />
-                    <Button
+                    {/* <Button
                       variant="outline"
-                      className="bg-white text-gray-900 hover:bg-gray-100"
+                      className="px-6 font-kagitingan text-xl lg:text-xl lg:py-4 bg-green-200 hover:bg-green-300 text-black"
                       asChild
                     >
                       <Link href={`/admin/manage-events/${event.id}`}>
                         Edit Event
                       </Link>
-                    </Button>
+                    </Button> */}
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button
+                        {/* <Button
                           variant="destructive"
-                          className="bg-red-500 hover:bg-red-600"
+                          className="bg-red-500 hover:bg-red-600 font-kagitingan text-xl lg:text-xl"
                         >
                           Delete Event
-                        </Button>
+                        </Button> */}
                       </AlertDialogTrigger>
                       <AlertDialogContent className="bg-[#1e2432] text-white border-gray-700">
                         <AlertDialogHeader>
@@ -191,13 +190,14 @@ export function EventCards() {
                   </div>
                 </CardFooter>
               </div>
-              <div className="md:w-[30%] relative min-h-[300px] md:min-h-full">
+              <div className="md:w-[50%]  relative  md:min-h-full">
                 <Image
                   width={300}
                   height={300}
                   src={event.image_url}
                   alt={event.name}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  quality={100}
+                  className="w-full object-cover"
                 />
               </div>
             </div>

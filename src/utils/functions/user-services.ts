@@ -117,7 +117,6 @@ export const getSWCData = async (collegeRoll: string, email: string) => {
   }
 };
 
-
 export async function fetchRegistrationDetails(
   eventId: string,
   userId: string
@@ -146,12 +145,35 @@ export async function fetchRegistrationDetails(
 }
 
 export const verifyCommunityReferralCode = async (code: string) => {
-  try{
+  try {
     const supabase = await supabaseServer();
-    const {data,error} = await supabase.from('referral_codes').select('*').eq('code',code);
-    console.log(data);
-  }
-  catch(err){
+    const { data, error } = await supabase
+      .from('referral_codes')
+      .select('*')
+      .eq('code', code);
+  } catch (err) {
     console.log(err);
+  }
+};
+
+export const updateReferralCode = async (code: string, id: string) => {
+  try {
+    await supabase.from('users').update({ referral: code }).eq('id', id);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getRoles = async () => {
+  try {
+    const { data: sessionData, error: sessionError } =
+      await supabase.auth.getSession();
+    const { data: rolesData, error: rolesError } = await supabase
+      .from('roles')
+      .select('*')
+      .eq('user_id', sessionData?.session?.user?.id);
+    return rolesData;
+  } catch (e) {
+    console.log(e);
   }
 };
