@@ -151,7 +151,6 @@ export const verifyCommunityReferralCode = async (code: string) => {
       .from('referral_codes')
       .select('*')
       .eq('code', code);
-    console.log(data);
   } catch (err) {
     console.log(err);
   }

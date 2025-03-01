@@ -155,7 +155,6 @@ export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_i
       throw new Error(error.message);
     }
 
-    console.log(data);
     return data;
   } catch (error: any) {
     console.error('Error fetching events:', error.message);
@@ -170,7 +169,7 @@ export const updateEventById = async (
   data: Partial<events>
 ): Promise<events | null> => {
   try {
-    console.log(id,data)
+
     const { data: updatedData, error } = await supabase
       .from('events')
       .update(data)

@@ -21,7 +21,7 @@ export function TeamMembersDialog({ members }: { members: TeamMember[] }) {
           View Members
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-[#0B0F17] text-gray-100 border-gray-800 max-w-[67vw]">
+      <DialogContent className="bg-[#0B0F17] max-w-fit text-gray-100 border-gray-800 ">
         <DialogHeader>
           <DialogTitle>Team Members</DialogTitle>
         </DialogHeader>

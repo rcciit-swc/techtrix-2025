@@ -29,7 +29,7 @@ export default function RootLayout({
             <Button
               className={`w-full md:w-auto text-xl py-7 px-8 bg-yellow-200 text-black hover:bg-yellow-300`}
             >
-              Approve Registrations
+              Registrations
             </Button>
           </Link>
         </div>

@@ -18,7 +18,7 @@ import { supabase } from '@/utils/functions/supabase-client';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { verifyCommunityReferralCode } from '@/lib/actions';
-import { updateReferralCode } from '@/utils/functions';
+import { getRoles, updateReferralCode } from '@/utils/functions';
 
 type Props = {
   className?: string;
@@ -29,6 +29,7 @@ export const SignInButton = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const readUserSession = async () => {
@@ -98,7 +99,6 @@ export const SignInButton = () => {
                 if (now - createdAt < 60 * 1000) {
                   if (ref) {
                     const code = await verifyCommunityReferralCode(ref);
-                    console.log(code);
                     if (code) {
                       if (!data) {
                         typeof window !== 'undefined' &&
@@ -124,8 +124,13 @@ const Navbar = ({ className }: Props) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
+    const verifyRoles = async () => {
+      const rolesData = await getRoles();
+      rolesData!.length > 0 && setIsAdmin(true);
+    }
+    verifyRoles();
     const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll);
 
@@ -161,6 +166,7 @@ const Navbar = ({ className }: Props) => {
             <NavLink href="/events">Events</NavLink>
             <NavLink href="/team">Team</NavLink>
             <NavLink href="/gallery">Gallery</NavLink>
+            {isAdmin && <NavLink href="/admin/manage-events">Admin</NavLink>}
             <div className="ml-10">
               <SignInButton />
             </div>
@@ -223,6 +229,12 @@ const Navbar = ({ className }: Props) => {
           >
             Gallery
           </MobileNavLink>
+         {isAdmin && <MobileNavLink
+            href="/admin/manage-events"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Admin
+          </MobileNavLink>}
           <div className="ml-4 mt-2">
             <SignInButton />
           </div>

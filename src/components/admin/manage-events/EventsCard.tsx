@@ -71,12 +71,6 @@ export function EventCards() {
     setEventsData(false);
   }, [setEventsData]);
 
-  useEffect(() => {
-    if (eventsData) {
-      console.log(eventsData);
-    }
-  }, [eventsData]);
-
   if (eventsLoading) {
     return (
       <div className="space-y-6 w-full max-w-6xl">
