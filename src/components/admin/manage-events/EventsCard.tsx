@@ -71,6 +71,12 @@ export function EventCards() {
     setEventsData(false);
   }, [setEventsData]);
 
+  useEffect(() => {
+    if (eventsData) {
+      console.log(eventsData);
+    }
+  }, [eventsData]);
+
   if (eventsLoading) {
     return (
       <div className="space-y-6 w-full max-w-6xl">
@@ -145,7 +151,7 @@ export function EventCards() {
                   </div>
                   <div className="flex space-x-3">
                     <RulesDialog rules={event.rules} />
-                    <Button
+                    {/* <Button
                       variant="outline"
                       className="px-6 font-kagitingan text-xl lg:text-xl lg:py-4 bg-green-200 hover:bg-green-300 text-black"
                       asChild
@@ -153,7 +159,7 @@ export function EventCards() {
                       <Link href={`/admin/manage-events/${event.id}`}>
                         Edit Event
                       </Link>
-                    </Button>
+                    </Button> */}
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
                         {/* <Button

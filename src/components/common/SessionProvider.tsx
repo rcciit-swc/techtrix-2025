@@ -4,12 +4,13 @@ import { useEvents } from '@/lib/stores';
 import { useUser } from '@/lib/stores/user';
 import { updateReferralCode } from '@/utils/functions';
 import { supabase } from '@/utils/functions/supabase-client';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 const SessionProvider = () => {
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
+  const pathname = usePathname();
   if(ref){
     typeof window !== 'undefined' &&
     localStorage.setItem('ref', ref);
@@ -24,8 +25,12 @@ const SessionProvider = () => {
       }
     };
     readUserSession();
-    setEvents();
-  }, [setUserData]);
+    if((pathname?.includes('admin'))){
+     setEvents(false);
+    }else{
+      setEvents(true);
+    }
+  }, [setUserData, pathname]);
 
   useEffect(() => {
     const checkReferralCode = async () => {

@@ -173,7 +173,7 @@ export const getRoles = async () => {
       .from('roles')
       .select('*')
       .eq('user_id', sessionData?.session?.user?.id);
-    return rolesData?.[0];
+    return rolesData;
   } catch (e) {
     console.log(e);
   }

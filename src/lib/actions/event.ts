@@ -9,7 +9,7 @@ import {
 } from '@/utils/functions';
 import { events } from '../types/events';
 
-export const populateEventDetails = async (set: any, all: boolean = true) => {
+export const populateEventDetails = async (set: any, all: boolean) => {
   set({ eventsLoading: true });
   const data = await getEventsData(all);
   set({ eventsData: data, eventsLoading: false });

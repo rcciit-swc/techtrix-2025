@@ -239,7 +239,7 @@ export default function EventsTable({ rolesData }: { rolesData: any }) {
                 objectFit="contain"
               />
             )}
-            {
+            {rolesData?.find((role:any) => role.role === 'super_admin') && 
               <div className="flex flex-row items-center justify-center gap-2">
                 <Button
                   onClick={async () => {

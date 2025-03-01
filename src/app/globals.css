@@ -154,16 +154,7 @@
   background-color: #fff59d;
 }
 
-/* Admin Button Styles */
-.adminButton {
-  background: radial-gradient(ellipse at center, #a383e6, #9158ff, #9158ff);
-  color: white;
-  transition: all 0.3s;
-}
 
-.adminButton:hover {
-  box-shadow: 0 4px 6px -1px rgba(63, 42, 103, 0.9);
-}
 
 #glowPink {
   color: #fff;
