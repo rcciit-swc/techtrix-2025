@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = constructMetaData({
-  title: 'Admin | Game Of Thrones 2025',
-  description: 'For Admins of Game Of Thrones RCCIIT 2025.',
+  title: 'Admin | Techtrix 2025',
+  description: 'For Admins of Techtrix RCCIIT 2025.',
 });
 
 export default function RootLayout({
