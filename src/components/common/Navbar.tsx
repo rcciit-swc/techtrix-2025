@@ -261,7 +261,7 @@ const NavLink = ({
   onClick,
 }: NavLinkProps) => {
   const commonClasses =
-    'relative overflow-hidden min-w-[200px] px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center';
+    'relative overflow-hidden  px-10 py-2 rounded-full bg-black text-white text-base font-semibold border-2 border-gray-600 hover:bg-gray-900 transition-colors duration-300 text-center';
 
   const shimmerEffect = (
     <span className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 hover:opacity-100 animate-glitter"></span>
