@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
@@ -326,18 +327,19 @@ export function TeamEventRegistration({
         className="sm:max-w-[500px] bg-black border  border-yellow-200 rounded-xl p-6 modal"
       >
         <DialogHeader>
-          <DialogTitle className="text-white text-2xl font-kagitingan tracking-wider">
+          <DialogTitle className="text-white text-sm lg:text-2xl font-kagitingan tracking-wider">
             Registration for <br />{' '}
-            <span className="text-yellow-200 text-3xl">{eventName}</span>
+            <span className="text-yellow-200 text-xl lg:text-3xl">{eventName}</span>
           </DialogTitle>
         </DialogHeader>
-        <p className="text-white font-alexandria tracking-widest text-lg ">
+        
+        <p className="text-white font-alexandria tracking-widest text-sm lg:text-lg ">
           Team Members: {totalTeamCount} <br />
           (Min: {minTeamSize}, Max: {maxTeamSize})
         </p>
         {teamMembers.length > 0 && (
           <span
-            className="text-yellow-200 font-alexandria cursor-pointer hover:underline"
+            className="text-yellow-200 font-alexandria cursor-pointer text-sm lg:text-lg hover:underline"
             onClick={() => {
               setShowConfirmTeam(false);
               setIsSheetOpen(true);
@@ -353,9 +355,9 @@ export function TeamEventRegistration({
             onSubmit={handleTeamLeadSubmit(onTeamLeadSubmit)}
             className="overflow-y-auto my-scrollbar max-h-[65vh]"
           >
-            <div className="grid gap-6 py-4">
+            <div className="grid gap-2 lg:gap-6 py-4">
               {/* New Team Name Field */}
-              <div className="grid gap-2">
+              <div className="grid gap-2 text-sm">
                 <label
                   htmlFor="teamName"
                   id="glowPink"
@@ -367,7 +369,7 @@ export function TeamEventRegistration({
                   id="teamName"
                   {...registerTeamLead('teamName')}
                   defaultValue={teamLeadData?.teamName}
-                  className="bg-black border border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
+                  className="bg-black border  border-gray-500 focus:border-yellow-200 focus:outline-none text-white rounded-md font-alexandria tracking-wider"
                   placeholder="Enter your team name"
                 />
                 {teamLeadErrors.teamName && (
@@ -514,7 +516,7 @@ export function TeamEventRegistration({
 
         {/* Step 2: Manage Team Members */}
         {step === 2 && (
-          <div className="overflow-y-auto my-scrollbar max-h-[65vh]">
+          <div className="overflow-y-auto my-scrollbar max-h-[60vh]">
             {isAddingMember ? (
               <form
                 onSubmit={handleTeamMemberSubmit((data) => {
@@ -528,7 +530,7 @@ export function TeamEventRegistration({
                   }
                   setIsAddingMember(false);
                 })}
-                className="grid gap-6 py-4"
+                className="grid gap-2 lg:gap-6 py-4"
               >
                 <div className="grid gap-2">
                   <label
@@ -592,7 +594,7 @@ export function TeamEventRegistration({
                     </p>
                   )}
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                <div className="flex flex-row flex-wrap gap-4 mt-4">
                   <Button
                     type="button"
                     variant="outline"
@@ -600,13 +602,13 @@ export function TeamEventRegistration({
                       setIsAddingMember(false);
                       setEditingMemberIndex(null);
                     }}
-                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl"
+                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl"
                   >
                     Cancel
                   </Button>
                   <Button
                     type="submit"
-                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
+                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
                   >
                     {editingMemberIndex !== null ? 'Update' : 'Save'}
                   </Button>
@@ -618,7 +620,7 @@ export function TeamEventRegistration({
                   <Button
                     type="button"
                     onClick={() => setIsAddingMember(true)}
-                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
+                    className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
                   >
                     Add New Member
                   </Button>
@@ -626,7 +628,7 @@ export function TeamEventRegistration({
                 <Button
                   type="button"
                   onClick={handleProceedToPayment}
-                  className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
+                  className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
                   disabled={
                     totalTeamCount < minTeamSize || totalTeamCount > maxTeamSize
                   }
@@ -637,7 +639,7 @@ export function TeamEventRegistration({
                   type="button"
                   variant="outline"
                   onClick={() => setStep(1)}
-                  className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
+                  className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
                 >
                   Back
                 </Button>
@@ -650,9 +652,26 @@ export function TeamEventRegistration({
         {step === 3 && (
           <form
             onSubmit={handlePaymentSubmit(onPaymentSubmit)}
-            className="overflow-y-auto max-h-[65vh]"
+            className="overflow-y-auto max-h-[60vh]"
           >
-            <div className="grid gap-6 py-4">
+                        <div className="flex flex-row gap-4 mt-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setStep(2)}
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
+              >
+                Back
+              </Button>
+              <Button
+                type="submit"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
+                disabled={isRegistering}
+              >
+                {isRegistering ? 'Registering...' : 'Register'}
+              </Button>
+            </div>
+            <div className="grid gap-2 lg:gap-6 py-4">
               <div className="grid gap-2">
                 <label
                   htmlFor="transactionId"
@@ -707,23 +726,7 @@ export function TeamEventRegistration({
                 className="rounded-lg"
               />
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setStep(2)}
-                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
-              >
-                Back
-              </Button>
-              <Button
-                type="submit"
-                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
-                disabled={isRegistering}
-              >
-                {isRegistering ? 'Registering...' : 'Register'}
-              </Button>
-            </div>
+
           </form>
         )}
       </DialogContent>
