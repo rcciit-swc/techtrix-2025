@@ -1,48 +1,48 @@
 export const teams = [
-    // {
-    //     category: "Faculty",
-    //     id: "faculty",
-    //     path: "/team/faculty",
-    //     members: [
-    //         {
-    //             name: "Dr. Anirban Mukherjee",
-    //             role: "Principal , RCCIIT",
-    //             image: "https://i.postimg.cc/90XVTrYM/Shin2_0060.jpg",
-    //         },
-    //         {
-    //             name: "Mr. Harinandan Tunga",
-    //             role: "Faculty-In-Charge SA & SW , Associate Professor, RCCIIT ",
-    //             image: "https://i.postimg.cc/52RgvTbW/Hari_Sir_.jpeg.jpg",
-    //         },
-    //         {
-    //           name: "Mr. Somenath Nag Choudhury",
-    //           role: "Faculty Coordinator (Cultural) , Assistant Professor, RCCIIT",
-    //           image: "https://i.postimg.cc/pLTkmRNB/WhatsApp_Image_2024-05-05_at_14.24.45_490163ed.jpg",
-    //       },
-    //         {
-    //           name: "Mr. Sandip Saha",
-    //           role: "Registrar, RCCIIT",
-    //           image: "https://i.postimg.cc/7Lqz5NTr/WhatsApp_Image_2024-05-06_at_00.54.21_e51a6ee6.jpg",
-    //       },
-    //           {
-    //             name: "Mr. Pradip Kumar Das",
-    //             role: "Deputy Registrar, RCCIIT",
-    //             image: "https://i.postimg.cc/N0FVvRfB/WhatsApp_Image_2024-05-06_at_00.41.14_5e8d2db7.jpg",
-    //         },
+    {
+        category: "Faculty",
+        id: "faculty",
+        path: "/team/faculty",
+        members: [
+            {
+                name: "Dr. Anirban Mukherjee",
+                role: "Principal , RCCIIT",
+                image: "https://i.postimg.cc/90XVTrYM/Shin2_0060.jpg",
+            },
+            {
+                name: "Mr. Harinandan Tunga",
+                role: "Faculty-In-Charge SA & SW , Associate Professor, RCCIIT ",
+                image: "https://i.postimg.cc/52RgvTbW/Hari_Sir_.jpeg.jpg",
+            },
+            {
+              name: "Mr. Somenath Nag Choudhury",
+              role: "Faculty Coordinator (Cultural) , Assistant Professor, RCCIIT",
+              image: "https://i.postimg.cc/pLTkmRNB/WhatsApp_Image_2024-05-05_at_14.24.45_490163ed.jpg",
+          },
+            {
+              name: "Mr. Sandip Saha",
+              role: "Registrar, RCCIIT",
+              image: "https://i.postimg.cc/7Lqz5NTr/WhatsApp_Image_2024-05-06_at_00.54.21_e51a6ee6.jpg",
+          },
+              {
+                name: "Mr. Pradip Kumar Das",
+                role: "Deputy Registrar, RCCIIT",
+                image: "https://i.postimg.cc/N0FVvRfB/WhatsApp_Image_2024-05-06_at_00.41.14_5e8d2db7.jpg",
+            },
   
-    //         {
-    //             name: "Mr. Sarbojit Mukherjee",
-    //             role: "Faculty-In-Charge Alumni , Assistant Professor, RCCIIT",
-    //             image: "https://i.postimg.cc/VvD2ngKr/Whats-App-Image-2024-04-27-at-09-25-34-03d51234.jpg",
-    //         },
-    //         {
-    //           name: "Dr. Hiranmoy Roy",
-    //           role: "Faculty Coordinator (Tech) , Associate Professor, RCCIIT",
-    //           image: "https://i.postimg.cc/J4DJBn6K/292054614-5223971747639481-406795100662764473-n.jpg",
-    //       },
+            {
+                name: "Mr. Sarbojit Mukherjee",
+                role: "Faculty-In-Charge Alumni , Assistant Professor, RCCIIT",
+                image: "https://i.postimg.cc/VvD2ngKr/Whats-App-Image-2024-04-27-at-09-25-34-03d51234.jpg",
+            },
+            {
+              name: "Dr. Hiranmoy Roy",
+              role: "Faculty Coordinator (Tech) , Associate Professor, RCCIIT",
+              image: "https://i.postimg.cc/J4DJBn6K/292054614-5223971747639481-406795100662764473-n.jpg",
+          },
   
-    //     ],
-    // },
+        ],
+    },
     //lead team completed
     {
       category: "Lead Team",

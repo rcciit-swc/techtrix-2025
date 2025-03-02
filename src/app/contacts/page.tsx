@@ -30,7 +30,7 @@ const page = () => {
             {data.name}
           </h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16 p-4 mb-4 justify-items-center">
+          <div className="flex flex-row justify-center items-center flex-wrap gap-16 p-4 mb-4 justify-items-center">
             {data.contacts.map((contact, contactIndex) => (
               <ContactCard
                 key={contactIndex}

@@ -34,9 +34,10 @@ id="glowPink"
         <Image
             src={image}
             alt="profile"
-            width={80}
-            height={80}
-            className="size-40 z-40 border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
+            width={120}
+            height={120}
+            quality={100}
+            className="size-40 z-40 object-cover border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
             />
       <div
         className="absolute bg-[#d661ed] z-10 size-[60%] w-full group-hover:size-[1%] group-hover:transition-all group-hover:duration-300 transition-all duration-300 delay-600 group-hover:delay-0"
