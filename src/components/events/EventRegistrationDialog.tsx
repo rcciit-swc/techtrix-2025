@@ -322,6 +322,22 @@ export function SoloEventRegistration({
             onSubmit={handlePaymentSubmit(onPaymentSubmit)}
             className="overflow-y-auto max-h-[65vh]"
           >
+                        <div className="flex flex-row flex-wrap gap-4 mt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setStep(1)}
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
+              >
+                Back
+              </Button>
+              <Button
+                type="submit"
+                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-sm lg:text-xl border-0"
+              >
+                Register
+              </Button>
+            </div>
             <div className="grid gap-6 py-4">
               <div className="grid gap-2">
                 <label
@@ -378,22 +394,7 @@ export function SoloEventRegistration({
               />
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setStep(1)}
-                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
-              >
-                Back
-              </Button>
-              <Button
-                type="submit"
-                className="bg-yellow-200 text-black hover:bg-yellow-100 font-kagitingan tracking-wider text-xl border-0"
-              >
-                Register
-              </Button>
-            </div>
+
           </form>
         )}
       </DialogContent>
