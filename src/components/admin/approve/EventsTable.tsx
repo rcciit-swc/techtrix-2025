@@ -20,16 +20,17 @@ import { TeamMembersDialog } from './TeamMembersDialog';
 import TableSkeleton from './TableSkeleton';
 import { useEvents } from '@/lib/stores';
 import { toast } from 'sonner';
-import { approveRegistration } from '@/utils/functions';
+import { approveRegistration, getRoles } from '@/utils/functions';
 
 const COLUMN_WIDTHS = [
   100, 180, 400, 240, 220, 240, 240, 240, 360, 240, 320, 280,
 ];
 const TABLE_WIDTH = COLUMN_WIDTHS.reduce((a, b) => a + b, 0);
 
-export default function EventsTable({ rolesData }: { rolesData: any }) {
+export default function EventsTable() {
   const festId = '44bb2093-d229-4385-8f08-3fe7da3521c8';
   const [searchQuery, setSearchQuery] = useState('');
+  const [rolesData, setRolesData] = useState([]);
   const [paymentStatusFilter, setPaymentStatusFilter] = useState('');
   const [eventFilter, setEventFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
@@ -47,6 +48,13 @@ export default function EventsTable({ rolesData }: { rolesData: any }) {
   };
   useEffect(() => {
     refreshData();
+
+    const getRolesData = async()=>{
+      const roles:any = await getRoles();
+      const roles2 = roles.find((role:any) => role.role === 'super_admin');
+      setRolesData(roles2);
+    }
+    getRolesData();
   }, []);
 
   const filteredData = useMemo(() => {
@@ -147,7 +155,6 @@ export default function EventsTable({ rolesData }: { rolesData: any }) {
   }) => {
     const item = filteredData[index];
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-
     return (
       <div
         style={{ ...style, width: TABLE_WIDTH }}
@@ -239,7 +246,7 @@ export default function EventsTable({ rolesData }: { rolesData: any }) {
                 objectFit="contain"
               />
             )}
-            {rolesData?.find((role:any) => role.role === 'super_admin') && 
+            {rolesData && 
               <div className="flex flex-row items-center justify-center gap-2">
                 <Button
                   onClick={async () => {

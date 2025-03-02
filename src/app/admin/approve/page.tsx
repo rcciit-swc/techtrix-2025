@@ -5,14 +5,13 @@ import { Suspense } from 'react';
 
 export default async function EventsDashboard() {
   // Call the RPC function to fetch approval table data
-  const data = await getRoles();
   return (
     <div className="w-full p-4 bg-black">
       <h1 className="text-3xl font-sargento mb-4 text-white">
         Approve Registrations
       </h1>
       <Suspense fallback={<TableSkeleton />}>
-        <EventsTable rolesData={data} />
+        <EventsTable />
       </Suspense>
     </div>
   );
