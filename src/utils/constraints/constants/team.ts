@@ -10,6 +10,12 @@ export const teams = [
                 image: "https://i.postimg.cc/90XVTrYM/Shin2_0060.jpg",
             },
             {
+              "name": "Mr. Rajib Saha",
+              "role": "Faculty Coordinator Technical, Associate Professor, RCCIIT",
+              "image": "https://i.postimg.cc/nrJFqwRV/d45a6a91-8afa-4e51-983b-963301a16cd4.jpg",
+              "phone": "+91 98303 73904",
+          },
+            {
                 name: "Mr. Harinandan Tunga",
                 role: "Faculty-In-Charge SA & SW , Associate Professor, RCCIIT ",
                 image: "https://i.postimg.cc/52RgvTbW/Hari_Sir_.jpeg.jpg",
@@ -24,34 +30,67 @@ export const teams = [
               role: "Registrar, RCCIIT",
               image: "https://i.postimg.cc/7Lqz5NTr/WhatsApp_Image_2024-05-06_at_00.54.21_e51a6ee6.jpg",
           },
-              {
-                name: "Mr. Pradip Kumar Das",
-                role: "Deputy Registrar, RCCIIT",
-                image: "https://i.postimg.cc/N0FVvRfB/WhatsApp_Image_2024-05-06_at_00.41.14_5e8d2db7.jpg",
-            },
+          //     {
+          //       name: "Mr. Pradip Kumar Das",
+          //       role: "Deputy Registrar, RCCIIT",
+          //       image: "https://i.postimg.cc/N0FVvRfB/WhatsApp_Image_2024-05-06_at_00.41.14_5e8d2db7.jpg",
+          //   },
   
-            {
-                name: "Mr. Sarbojit Mukherjee",
-                role: "Faculty-In-Charge Alumni , Assistant Professor, RCCIIT",
-                image: "https://i.postimg.cc/VvD2ngKr/Whats-App-Image-2024-04-27-at-09-25-34-03d51234.jpg",
-            },
-            {
-              name: "Dr. Hiranmoy Roy",
-              role: "Faculty Coordinator (Tech) , Associate Professor, RCCIIT",
-              image: "https://i.postimg.cc/J4DJBn6K/292054614-5223971747639481-406795100662764473-n.jpg",
-          },
+          //   {
+          //       name: "Mr. Sarbojit Mukherjee",
+          //       role: "Faculty-In-Charge Alumni , Assistant Professor, RCCIIT",
+          //       image: "https://i.postimg.cc/VvD2ngKr/Whats-App-Image-2024-04-27-at-09-25-34-03d51234.jpg",
+          //   },
+          //   {
+          //     name: "Dr. Hiranmoy Roy",
+          //     role: "Faculty Coordinator (Tech) , Associate Professor, RCCIIT",
+          //     image: "https://i.postimg.cc/J4DJBn6K/292054614-5223971747639481-406795100662764473-n.jpg",
+          // },
   
         ],
     },
-    //lead team completed
+    //SWC team completed
     {
-      category: "Lead Team",
-      id: "leads",
-      path: "/team/leads",
+      category: "SWC",
+      id: "swc",
+      path: "/team/swc",
       members: [
         {
-          name: "Shreya Dutta",
-          role: "Lead Organizer",
+          "name": "Ankita Dhara",
+          "role": "A.G.S. Tech",
+          "image": "https://i.postimg.cc/4d9j63DS/IMG_1674_(1)_-_ANKITA_DHARA.jpg",
+          "phone": "+91 8820534958",
+      },
+      {
+        "name": "Basanta Kumar Shaw",
+        "role": "General Secretary",
+        "image": "https://i.imgur.com/rOJZqPR.jpg",
+        "phone": "+91 7547927975",
+    },
+      {
+          "name": "Manish Saha",
+          "role": "A.G.S. Cultural",
+          "image": "https://i.postimg.cc/SsynMHHh/image.png",
+          "phone": "+91 9876543210",
+      },
+      {
+          "name": "Subhranil Saha",
+          "role": "A.G.S. Sports",
+          "image": "https://i.postimg.cc/1Rvqp59Y/IMG-1419-SUBHRANIL-SAHA.webp",
+          "phone": "+91 81016 96445",
+      },
+    
+      ],
+    },
+    //convener team completed
+    {
+      category: "Conveners",
+      id: "conveners",
+      path: "/team/conveners",
+      members: [
+        {
+          name: "Soumyajit Biswas",
+          role: "Automata: Convener",
           image: "https://i.postimg.cc/nzydg3Bh/DSC-0256-1.jpg",
         },
         {
@@ -607,6 +646,48 @@ export const teams = [
         },
       ],
     },
+    //PR team completed
+    {
+      category: "PR Team",
+      id: "pr",
+      path: "/team/pr",
+      members: [
+        {
+          name: "Shreya Dutta",
+          role: "Social Media Team Lead",
+          image: "https://i.postimg.cc/k5VBGsRC/20240313132409-IMG-6995.jpg",
+        },
+        {
+          name: "Shibangi Chatterjee",
+          role: "Social Media Team Lead",
+          image: "https://i.postimg.cc/NG27S8dW/PSX-20240905-092949.jpg",
+        },
+        {
+          name: "Aditi Ghosh",
+          role: "Social Media Team Member",
+          image:
+            "https://i.postimg.cc/mrbW6gR5/IMG-20240824-WA0071-Aditi-Ghosh.jpg",
+        },
+        {
+          name: "Shoptorshi Mondal",
+          role: "Social Media Team Member",
+          image:
+            "https://i.postimg.cc/3RddqTH2/Whats-App-Image-2024-09-06-at-20-32-24.jpg",
+        },
+        {
+          name: "Deep Rajak",
+          role: "Social Media Team Member",
+          image:
+            "https://i.postimg.cc/Dw6qLxzb/IMG-20240906-190609-Deep-Rajak.jpg",
+        },
+        {
+          name: "Anushka Ghosh",
+          role: "Social Media Team Member",
+          image:
+            "https://i.postimg.cc/hjNd0wxp/Whats-App-Image-2024-09-06-at-19-45-07.jpg",
+        },
+      ],
+    },
     // social media team completed
     {
       category: "Social Media Team",
@@ -681,6 +762,34 @@ export const teams = [
           role: "Logistics Team Member",
           image:
             "https://i.postimg.cc/sfW7wjXz/Whats-App-Image-2024-09-06-at-19-14-06.jpg",
+        },
+      ],
+    },
+    //sponsorship team completed
+    {
+      category: "Sponsorship Team",
+      id: "food",
+      path: "/team/sponsorship",
+      members: [
+        {
+          name: "Sunanda Das",
+          role: "Food & Refreshments Team Lead",
+          image: "https://i.postimg.cc/YCHTWxjv/SUNANDA-DAS.jpg",
+        },
+        {
+          name: "Diptodeep Biswas",
+          role: "Food & Refreshments Team Lead",
+          image: "https://i.postimg.cc/05hKwLd4/IMG-20230105-212922.jpg",
+        },
+        {
+          name: "Sambhabi Das",
+          role: "Food & Refreshments Team Member",
+          image: "https://i.postimg.cc/mrZqd2YR/Sambhabi-Das.jpg",
+        },
+        {
+          name: "Nikiza Biswas",
+          role: "Food & Refreshments Team Member",
+          image: "https://i.postimg.cc/1zWdbhBF/NIKIZA-BISWAS.jpg",
         },
       ],
     },
