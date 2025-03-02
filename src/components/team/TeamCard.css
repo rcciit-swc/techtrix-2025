@@ -1,9 +1,8 @@
-/* From Uiverse.io by Smit-Prajapati */ 
 .card {
   width: 300px;
-  height: 300px;
-  background-image: url('https://i.pinimg.com/736x/8f/25/28/8f252885748bc324b7dcbbb56c67bdaf.jpg');
+  height: 400px;
   background-size: cover;
+  background-image: url('https://i.pinimg.com/736x/8f/25/28/8f252885748bc324b7dcbbb56c67bdaf.jpg');
   background-position: center;
   border-radius: 32px;
   padding: 3px;
@@ -12,172 +11,106 @@
   transition: all 0.5s ease-in-out;
 }
 
-  
-  .card .mail {
-    position: absolute;
-    right: 2rem;
-    top: 1.4rem;
-    background: transparent;
-    border: none;
-  }
-  
-  .card .mail svg {
-    stroke: #fff59d;
-    stroke-width: 3px;
-  }
-  
-  .card .mail svg:hover {
-    stroke: #f55d56;
-  }
-  
-  .card .profile-pic {
-    position: absolute;
-    width: calc(100% - 6px);
-    height: calc(100% - 6px);
-    top: 3px;
-    left: 3px;
-    border-radius: 29px;
-    z-index: 1;
-    border: 0px solid #fff59d;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
-  }
-  
-  .card .profile-pic img {
-    -o-object-fit: cover;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    -o-object-position: 0px 0px;
-    object-position: 0px 0px;
-    transition: all 0.5s ease-in-out 0s;
-  }
-  
-  .card .profile-pic svg {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: 0px 0px;
-    object-position: 0px 0px;
-    transform-origin: 45% 20%;
-    transition: all 0.5s ease-in-out 0s;
-  }
-  
-  .card .bottom {
-    position: absolute;
-    bottom: 3px;
-    left: 3px;
-    right: 3px;
-    background: #e7e1a6;
-    top: 85%;
-    border-radius: 29px;
-    z-index: 2;
-    box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-  }
-  
-  .card .bottom .content {
-    position: absolute;
-    bottom: 0;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 80px;
-  }
-  
-  .card .bottom .content .name {
-    display: block;
-    font-size: 1.2rem;
-    color: black;
-    font-weight: bold;
-  }
-  
-  .card .bottom .content .about-me {
-    display: block;
-    font-size: 1.2rem;
-    color: black;
-    margin-top: 1rem;
-  }
-  
-  .card .bottom .bottom-bottom {
-    position: absolute;
-    bottom: .2rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .card .bottom .bottom-bottom .social-links-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .4rem;
-  }
-  
-  .card .bottom .bottom-bottom .social-links-container svg {
-    height: 10px;
-    fill: black;
-    filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
-  }
-  
-  .card .bottom .bottom-bottom .social-links-container svg:hover {
-    fill: #f55d56;
-    transform: scale(1.2);
-  }
-  
-  .card .bottom .bottom-bottom .button {
-    background: black;
-    color: #fff59d;
-    border: none;
-    border-radius: 20px;
-    font-size: 0.6rem;
-    padding: 0.4rem 0.6rem;
-    box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
-  }
-  
-  .card .bottom .bottom-bottom .button:hover {
-    background: #f55d56;
-    color: black;
-  }
-  
-  .card:hover {
-    border-top-left-radius: 55px;
-  }
-  
-  .card:hover .bottom {
-    top: 40%;
-    border-radius: 80px 29px 29px 29px;
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
-  }
-  
-  .card:hover .profile-pic {
-    width: 150px;
-    height: 150px;
-    aspect-ratio: 1;
-    top: 10px;
-    left: 10px;
-    border-radius: 50%;
-    z-index: 3;
-    border: 7px solid #fff59d;
-    box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
-    transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
-  }
-  
-  .card:hover .profile-pic:hover {
-    transform: scale(1.3);
-    border-radius: 0px;
-  }
-  
-  .card:hover .profile-pic img {
-    transform: scale(1.0);
-    -o-object-position: cover;
-    object-position: cover;
-    transition: all 0.5s ease-in-out 0.5s;
-  }
-  .card:hover .profile-pic svg {
-    transform: scale(1.5);
-    transition: all 0.5s ease-in-out 0.5s;
-  }
+.card .profile-pic {
+  position: absolute;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+}
+
+.card .profile-pic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.card .bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: #e7e1a6;
+  min-height: 28%;
+  height: auto;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(96, 75, 74, 0.19) 0px 5px 5px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 15px;
+}
+
+.card .bottom .content {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.card .bottom .content .name {
+  display: block;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card .bottom .content .about-me {
+  display: block;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.card:hover {
+  border-top-left-radius: 55px;
+  transform: translateY(-5px);
+  box-shadow: #604b4a50 0px 80px 40px -50px;
+}
+
+.card:hover .bottom {
+  top: auto;
+  height: auto;
+  min-height: 50%;
+  border-radius: 90px 90px 29px 29px;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+  padding-top: 100px;
+}
+
+.card:hover .profile-pic {
+  width: 260px;
+  height: 260px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  z-index: 3;
+  border: 7px solid #fff59d;
+  box-shadow: rgba(96, 75, 74, 0.3) 0px 8px 15px 0px;
+  transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+}
+
+.card:hover .profile-pic img {
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+/* New hover effect for profile pic */
+.card:hover .profile-pic:hover {
+  transform: translateX(-50%) scale(1.05);
+  overflow: hidden;
+}
+
+.card:hover .profile-pic:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}

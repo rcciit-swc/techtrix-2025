@@ -35,6 +35,7 @@ const page = ({ params: { category } }: Params) => {
             <div className="mt-5 flex flex-row flex-wrap justify-center gap-10 md:gap-40">
               {team?.members.map((member, index) => (
                 <div key={index}>
+                  
                   <TeamCard
                     name={member.name}
                     imageUrl={member.image}
