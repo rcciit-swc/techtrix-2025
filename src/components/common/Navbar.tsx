@@ -164,7 +164,7 @@ const Navbar = ({ className }: Props) => {
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/events">Events</NavLink>
-            <NavLink href="/team/leads">Team</NavLink>
+            <NavLink href="/team/swc">Team</NavLink>
             <NavLink href="/gallery">Gallery</NavLink>
             {isAdmin && <NavLink href="/admin/manage-events">Admin</NavLink>}
             <NavLink href="/contacts">Contact Us</NavLink>
@@ -221,7 +221,7 @@ const Navbar = ({ className }: Props) => {
           >
             Events
           </MobileNavLink>
-          <MobileNavLink href="/team/leads" onClick={() => setMobileMenuOpen(false)}>
+          <MobileNavLink href="/team/swc" onClick={() => setMobileMenuOpen(false)}>
             Team
           </MobileNavLink>
           <MobileNavLink

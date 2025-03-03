@@ -56,7 +56,7 @@ export const contactData = [
         contacts: [
             {
                 "name": "Arghya Dutta",
-                "role": "TECH TEAM MEMBER",
+                "role": "TECH TEAM LEAD",
                 "image": "https://i.postimg.cc/v8CZRWMc/PSX-20231022-195203-Arghya-Dutta.jpg",
                 "phone": "+91 9051244326",
             },
