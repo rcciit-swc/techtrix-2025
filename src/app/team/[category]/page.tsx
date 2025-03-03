@@ -25,8 +25,8 @@ const page = ({ params: { category } }: Params) => {
         loop
         muted
       />
-      {/* <ComingSoon /> */}
-      <TeamWrapper>
+      <ComingSoon />
+      {/* <TeamWrapper>
         <div className="oveflow-x-hidden flex min-h-[60vh] flex-col items-center gap-10">
           <div className="mt-5 flex flex-col items-center  justify-center gap-5">
             <h1 id="glowPink" className="text-center text-3xl font-bold font-kagitingan text-white">
@@ -46,7 +46,7 @@ const page = ({ params: { category } }: Params) => {
             </div>
           </div>
         </div>
-      </TeamWrapper>
+      </TeamWrapper> */}
     </div>
   );
 };
