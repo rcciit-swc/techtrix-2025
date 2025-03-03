@@ -12,7 +12,7 @@ export const teams = [
       {
         name: 'Mr. Harinandan Tunga',
         role: 'Faculty-In-Charge SA & SW ',
-        image: 'https://i.postimg.cc/52RgvTbW/Hari_Sir_.jpeg.jpg',
+        image: 'https://i.postimg.cc/K8KbFGrp/78becf57-0d9d-45c3-8dcb-d2de974fe10f.jpg',
       },
       {
         name: 'Mr. Rajib Saha',
@@ -37,7 +37,7 @@ export const teams = [
         name: 'Mr. Somenath Nag Choudhury',
         role: 'Faculty Coordinator, Cultural',
         image:
-          'https://i.postimg.cc/pLTkmRNB/WhatsApp_Image_2024-05-05_at_14.24.45_490163ed.jpg',
+          'https://i.postimg.cc/Kz5SQRxj/c19f02d0-7e52-4c90-bcb7-daa0f53cb1e1.jpg',
       },
 
       {
@@ -116,7 +116,7 @@ export const teams = [
         name: 'Arghya Dutta',
         role: 'Flagship Convenor',
         image:
-          'https://i.postimg.cc/v8CZRWMc/PSX-20231022-195203-Arghya-Dutta.jpg',
+          'https://i.postimg.cc/dQhs9jgT/IMG-20250202-133035.jpg',
       },
       {
         name: 'Nasiruddin Thander',
@@ -159,7 +159,13 @@ export const teams = [
         name: 'Arghya Dutta',
         role: 'Tech Team Lead',
         image:
-          'https://i.postimg.cc/v8CZRWMc/PSX-20231022-195203-Arghya-Dutta.jpg',
+          'https://i.postimg.cc/dQhs9jgT/IMG-20250202-133035.jpg',
+      },
+      {
+        name: 'Nasiruddin Thander',
+        role: 'Tech Team Member',
+        image:
+          'https://i.postimg.cc/L6TNgZ5Y/Nasiruddin-Thander-NASIRUDDIN-THANDER.jpg',
       },
       {
         name: 'Soumyaraj Bag',
@@ -183,6 +189,12 @@ export const teams = [
           'https://i.postimg.cc/3RX1g4ZN/Whats-App-Image-2024-07-19-at-18-29-51.jpg',
       },
       {
+        name: 'Palas Saha',
+        role: 'Tech Team Member',
+        image:
+          'https://i.postimg.cc/HLJ2NZ2X/IMG-20240404-123644-PALAS-SAHA.jpg',
+      },
+      {
         name: 'Arnab Mondal',
         role: 'Tech Team Member',
         image: 'https://i.postimg.cc/7Y2yc7kh/IMG-20231016-215431-1.jpg',
@@ -193,6 +205,16 @@ export const teams = [
         image:
           'https://i.postimg.cc/SR5rWwPQ/IMG-20240830-WA0150-Sutanuka-Chakraborty.jpg',
       },
+      {
+        name: 'Rishi Paul',
+        role: 'Tech Team Member',
+        image: 'https://i.postimg.cc/zBVyKZny/7be2c20b-8d97-4bc2-9d98-c17432dcae92.jpg',
+      },
+      // {
+      //   name: 'Aditi Ghosh',
+      //   role: 'Tech Team Member',
+      //   image: 'https://i.postimg.cc/7Y2yc7kh/IMG-20231016-215431-1.jpg',
+      // },
     ],
   },
   {
@@ -271,7 +293,7 @@ export const teams = [
         name: 'Soumyadeep Basu',
         role: 'TECH QUIZ',
         image:
-          'https://i.postimg.cc/CM4jcpg9/Untitled-design-SOUMYADEEP-BASU.png',
+          'https://i.postimg.cc/mgjq10Zf/SBasu-1.jpg',
       },
       {
         name: 'Anish Mukherjee',
@@ -373,7 +395,7 @@ export const teams = [
         name: 'Soham Mallick',
         role: 'BGMI - TDM & SQUAD',
         image:
-          'https://i.postimg.cc/jdJz6wMd/96-C22626-BE0-C-42-C1-8861-F35-D4173-CEC6-SOHAM-MALLICK.jpg',
+          'https://i.postimg.cc/y8tts0v2/image.png',
       },
       {
         name: 'Shayak Pal',
@@ -381,11 +403,11 @@ export const teams = [
         image:
           'https://i.postimg.cc/DfSCDzxR/IMG-20250222-032610-SHAYAK-PAL.jpg',
       },
-      // {
-      //   name: "Bibasan Mitra",
-      //   role: "FIFA 24",
-      //   image: "https://i.postimg.cc/nzydg3Bh/DSC-0256-1.jpg",
-      // },
+      {
+        name: "Bibasan Mitra",
+        role: "FIFA 24",
+        image: "https://i.postimg.cc/m2cPtsTJ/IMG-20250303-091158-BIBASAN-MITRA.jpg",
+      },
       {
         name: 'Agnit Pradhan',
         role: 'E-FOOTBALL',
@@ -404,10 +426,15 @@ export const teams = [
       },
       {
         name: 'Rwitam Ray',
-        role: 'MORTAL KOMBAT (8 KG)',
+        role: 'MORTAL KOMBAT (8 KG) & ROAD RASH',
         image:
           'https://i.postimg.cc/MpYBwCYc/IMG-20240401-WA0013-1-Rwitam-Ray.jpg',
       },
+      // {
+      //   name: "Pratik Chowdhury",
+      //   role: "ROAD RASH",
+      //   image: "https://i.postimg.cc/cHDj3q2h/Ankan-Ghosh.jpg",
+      // },
       // {
       //   name: "Suvam Chanda",
       //   role: "ROBO SUMO (4 KG)",
@@ -430,17 +457,6 @@ export const teams = [
         image:
           'https://i.postimg.cc/NjqRdsn8/IMG-20240916-WA0008-TITASH-MAJUMDER.jpg',
       },
-      // {
-      //   name: "Pratik Chowdhury",
-      //   role: "ROAD RASH",
-      //   image: "https://i.postimg.cc/cHDj3q2h/Ankan-Ghosh.jpg",
-      // },
-      // {
-      //   name: "Rwitam Ray",
-      //   role: "ROAD RASH",
-      //   image:
-      //     "https://i.postimg.cc/85ymhtPC/IMG-20240906-WA0003-Pratyush-Pal.jpg",
-      // },
       {
         name: 'Soham Guin',
         role: 'NEED FOR SPEED',
@@ -458,22 +474,22 @@ export const teams = [
         image:
           'https://i.postimg.cc/PxQ8VYB1/IMG-20250224-135621-Ankit-Das.jpg',
       },
-      // {
-      //   name: "Bratati Basu",
-      //   role: "MAZE SOLVER",
-      //   image: "https://i.postimg.cc/SKvKpFkn/SOHAM-GUIN.jpg",
-      // },
+      {
+        name: "Anish Mondal",
+        role: "MAZE SOLVER",
+        image: "https://i.postimg.cc/gkk2ZPmm/b9c9a380-9d63-43f4-8e57-4aa04ace8653.jpg",
+      },
       {
         name: 'Hirak Sabui',
         role: 'PACMAN',
         image:
           'https://i.postimg.cc/N0N4Chmg/IMG-20250222-WA0025-HIRAK-SABUI.jpg',
       },
-      // {
-      //   name: "Arijit Sarkar",
-      //   role: "PACMAN",
-      //   image: "https://i.postimg.cc/SKvKpFkn/SOHAM-GUIN.jpg",
-      // },
+      {
+        name: "Arijit Sarkar",
+        role: "PACMAN",
+        image: "https://i.postimg.cc/g2F3pJ3N/58c0f42e-0fa1-4342-9330-447b802dd50e.jpg",
+      },
     ],
   },
   //volunteers completed
