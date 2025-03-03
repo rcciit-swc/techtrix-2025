@@ -306,7 +306,7 @@ export function TeamEventRegistration({
     const updatedMembers = [...teamMembers];
     updatedMembers.splice(index, 1);
     setTeamMembers(updatedMembers);
-  } 
+  };
 
   return (
     <Dialog
@@ -329,10 +329,12 @@ export function TeamEventRegistration({
         <DialogHeader>
           <DialogTitle className="text-white text-sm lg:text-2xl font-kagitingan tracking-wider">
             Registration for <br />{' '}
-            <span className="text-yellow-200 text-xl lg:text-3xl">{eventName}</span>
+            <span className="text-yellow-200 text-xl lg:text-3xl">
+              {eventName}
+            </span>
           </DialogTitle>
         </DialogHeader>
-        
+
         <p className="text-white font-alexandria tracking-widest text-sm lg:text-lg ">
           Team Members: {totalTeamCount} <br />
           (Min: {minTeamSize}, Max: {maxTeamSize})
@@ -489,7 +491,7 @@ export function TeamEventRegistration({
         )}
         {
           <ViewTeamMembers
-          isFree={isFree}
+            isFree={isFree}
             isOpen={isSheetOpen}
             onOpenChange={setIsSheetOpen}
             teamMembers={teamMembers}
@@ -654,7 +656,7 @@ export function TeamEventRegistration({
             onSubmit={handlePaymentSubmit(onPaymentSubmit)}
             className="overflow-y-auto max-h-[60vh]"
           >
-                        <div className="flex flex-row gap-4 mt-2">
+            <div className="flex flex-row gap-4 mt-2">
               <Button
                 type="button"
                 variant="outline"
@@ -726,7 +728,6 @@ export function TeamEventRegistration({
                 className="rounded-lg"
               />
             </div>
-
           </form>
         )}
       </DialogContent>

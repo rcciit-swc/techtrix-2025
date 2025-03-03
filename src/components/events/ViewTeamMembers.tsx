@@ -81,20 +81,20 @@ export function ViewTeamMembers({
           <p className="text-white font-semibold">Name: {member.name}</p>
           <p className="text-gray-400">Email: {member.email}</p>
           <p className="text-gray-400">Phone: {member.phone}</p>
-         <div className='flex flex-row items-center gap-5'>
-         <Button
-            onClick={() => onEditMember(index)}
-            className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
-          >
-            Edit
-          </Button>
-          <Button
-            onClick={() => onRemoveMember(index)}
-            className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
-          >
-            Remove
-          </Button>
-         </div>
+          <div className="flex flex-row items-center gap-5">
+            <Button
+              onClick={() => onEditMember(index)}
+              className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={() => onRemoveMember(index)}
+              className="mt-2 bg-yellow-200 text-black hover:bg-yellow-200/90 border-0"
+            >
+              Remove
+            </Button>
+          </div>
         </div>
       ))}
       {showConfirmTeam && (

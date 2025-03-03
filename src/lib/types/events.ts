@@ -74,7 +74,7 @@ export interface EventsStateType {
 }
 
 export interface EventsActionsType {
-  setEventsData: (all:boolean) => void;
+  setEventsData: (all: boolean) => void;
   postEvent: (eventsData: events) => void;
   getEventCategories: () => void;
   getEventByID: (id: string) => void;

@@ -23,7 +23,7 @@ const eventState: EventsStateType = {
 };
 export const useEvents = create<EventsStoreType>((set) => ({
   ...eventState,
-  setEventsData: (all:boolean = true) => populateEventDetails(set,all),
+  setEventsData: (all: boolean = true) => populateEventDetails(set, all),
   getEventByID: (id: string) => populateEventDetailsByID(set, id),
   getEventCategories: () => populateCategories(set),
   postEvent: (eventData: events) => addEvent(set, eventData),

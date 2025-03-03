@@ -12,7 +12,12 @@ import { eventSchema } from '@/lib/schemas';
 import { useEvents } from '@/lib/stores';
 import { Coordinator, LinkType } from '@/lib/types/events';
 import { EditEventSkeleton } from '@/components/admin/manage-events/EditEventSkeleton';
-import { BasicInformation, LinksAndCoordinators, RulesAndGuidelines, ScheduleAndDescription } from '@/components/admin/manage-events';
+import {
+  BasicInformation,
+  LinksAndCoordinators,
+  RulesAndGuidelines,
+  ScheduleAndDescription,
+} from '@/components/admin/manage-events';
 import { toast } from 'sonner';
 
 export default function EditEventPage() {
@@ -99,21 +104,20 @@ export default function EditEventPage() {
                 Edit event by filling out the details below.
               </p>
             </div>
-
           </div>
 
           <BasicInformation form={form} />
           <button
-              type="submit"
-              // size="lg"
-              className="bg-gradient-to-r from-[#a383e6] via-[#9158FF] to-[#9158FF] hover:opacity-90 transition-opacity"
-              disabled={form.formState.isSubmitting}
-            >
-              {form.formState.isSubmitting && (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              )}
-              Save Changes
-            </button>
+            type="submit"
+            // size="lg"
+            className="bg-gradient-to-r from-[#a383e6] via-[#9158FF] to-[#9158FF] hover:opacity-90 transition-opacity"
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting && (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            Save Changes
+          </button>
           <ScheduleAndDescription form={form} />
           <RulesAndGuidelines form={form} />
           <LinksAndCoordinators

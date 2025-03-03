@@ -8,36 +8,39 @@ export async function middleware(req: NextRequest) {
   const url = new URL(req.nextUrl);
 
   // Get the session from Supabase.
-  const { data: { session } } = await supabase.auth.getSession();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   // Redirect unauthenticated users trying to access admin or profile routes.
   if (!session) {
-    if (url.pathname.startsWith('/admin') || url.pathname.startsWith('/profile')) {
+    if (
+      url.pathname.startsWith('/admin') ||
+      url.pathname.startsWith('/profile')
+    ) {
       return NextResponse.redirect(new URL('/', req.url));
     }
     return res;
   }
-  if(url.pathname.startsWith('/admin')){
-    const {data:userRoles,error} = await supabase.from('roles').select(`role`).eq('user_id',session.user?.id);
-    const roles = userRoles!.map(role => role.role);
-    if(url.pathname.includes('/admin/manage-events/add-event')){
-        if(roles.includes('super_admin')){
-          return NextResponse.next();
-        }else{
-          return NextResponse.redirect(new URL('/unauthorized',
-          req.url));
-        }
-    }
-    if(userRoles && userRoles?.length > 0){
+  if (url.pathname.startsWith('/admin')) {
+    const { data: userRoles, error } = await supabase
+      .from('roles')
+      .select(`role`)
+      .eq('user_id', session.user?.id);
+    const roles = userRoles!.map((role) => role.role);
+    if (url.pathname.includes('/admin/manage-events/add-event')) {
+      if (roles.includes('super_admin')) {
         return NextResponse.next();
-    }else{
-      return NextResponse.redirect(new URL('/unauthorized',
-      req.url));
+      } else {
+        return NextResponse.redirect(new URL('/unauthorized', req.url));
+      }
     }
-
+    if (userRoles && userRoles?.length > 0) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL('/unauthorized', req.url));
+    }
   }
-
-
 
   // Only make the DB call if the route is under '/admin'
   // if (url.pathname.startsWith('/admin')) {

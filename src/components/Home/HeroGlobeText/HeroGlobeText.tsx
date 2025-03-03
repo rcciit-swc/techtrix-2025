@@ -32,11 +32,12 @@ const HeroGlobeText = () => {
             Annual Technical Fest of RCCIIT
           </div>
         </div>
-        <ButtonLanding onClick={
-  ()=>{
-    router.push('/events');
-  }
-        } text="Explore" />
+        <ButtonLanding
+          onClick={() => {
+            router.push('/events');
+          }}
+          text="Explore"
+        />
         <Countdown />
       </div>
     </div>

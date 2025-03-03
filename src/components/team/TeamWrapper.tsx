@@ -1,15 +1,13 @@
-
 import { teams } from '@/utils/constraints/constants/team';
-import React from 'react'
+import React from 'react';
 import TeamTab from './TeamTab';
 
-
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const TeamWrapper = ({children}: Props) => {
-  return ( 
+const TeamWrapper = ({ children }: Props) => {
+  return (
     <div className="mx-auto flex flex-col items-center gap-5 scroll-smooth">
       <h1
         id="glowPink"
@@ -22,9 +20,9 @@ const TeamWrapper = ({children}: Props) => {
           <TeamTab key={index} team={teamItem} />
         ))}
       </div>
-      <div className='mb-4'>{children}</div>
+      <div className="mb-4">{children}</div>
     </div>
   );
-}
+};
 
-export default TeamWrapper
+export default TeamWrapper;

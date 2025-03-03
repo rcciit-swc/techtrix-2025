@@ -43,17 +43,16 @@ export default function EventsTable() {
   } = useEvents();
 
   const refreshData = async () => {
-    getApprovalDashboardData(
-    );
+    getApprovalDashboardData();
   };
   useEffect(() => {
     refreshData();
 
-    const getRolesData = async()=>{
-      const roles:any = await getRoles();
-      const roles2 = roles.find((role:any) => role.role === 'super_admin');
+    const getRolesData = async () => {
+      const roles: any = await getRoles();
+      const roles2 = roles.find((role: any) => role.role === 'super_admin');
       setRolesData(roles2);
-    }
+    };
     getRolesData();
   }, []);
 
@@ -246,7 +245,7 @@ export default function EventsTable() {
                 objectFit="contain"
               />
             )}
-            {rolesData && 
+            {rolesData && (
               <div className="flex flex-row items-center justify-center gap-2">
                 <Button
                   onClick={async () => {
@@ -272,7 +271,7 @@ export default function EventsTable() {
                   Reject
                 </Button>
               </div>
-            }
+            )}
             {/* <Button onClick={() => setIsDialogOpen(false)} className="mt-4">
               Close
             </Button> */}

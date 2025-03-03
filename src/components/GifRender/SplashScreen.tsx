@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface SplashScreenProps {
   onFinish?: () => void;
@@ -24,7 +24,7 @@ const SplashScreen = ({ onFinish }: SplashScreenProps) => {
   if (!visible) return null;
 
   return (
-    <div 
+    <div
       className={`fixed inset-0 flex items-center justify-center bg-black z-50 
         transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
     >

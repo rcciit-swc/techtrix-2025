@@ -154,8 +154,6 @@
   background-color: #fff59d;
 }
 
-
-
 #glowPink {
   color: #fff;
   text-shadow: 0 0 28px #ff4ea9;
@@ -179,14 +177,20 @@
 .fade-in {
   animation: fadeIn 1s ease-in-out;
 }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .modal {
   background: url('https://i.pinimg.com/736x/90/59/3b/90593b288869fe650f17b101322ee12d.jpg')
     no-repeat center center;
   background-size: cover;
 }
-
 
 /* 
 @layer base {
@@ -234,10 +238,10 @@
   width: 200%;
   height: 200%;
   background: linear-gradient(
-    0deg, 
-    transparent, 
-    transparent 30%, 
-    rgba(0,255,255,0.3)
+    0deg,
+    transparent,
+    transparent 30%,
+    rgba(0, 255, 255, 0.3)
   );
   transform: rotate(-45deg);
   transition: all 0.5s ease;

@@ -53,7 +53,10 @@ export default function Footer() {
           </Link>
         </div>
         <div className="relative flex justify-center items-center">
-          <SVGIcon iconName="logo" className="block w-[300px] h-[200px] md:w-[480px] md:h-[280px]" />
+          <SVGIcon
+            iconName="logo"
+            className="block w-[300px] h-[200px] md:w-[480px] md:h-[280px]"
+          />
           <SVGIcon
             iconName="techtrix"
             className="absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[70px] md:w-full md:h-[100px] z-10"

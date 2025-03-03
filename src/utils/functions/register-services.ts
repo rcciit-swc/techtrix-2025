@@ -38,8 +38,14 @@ export interface RegisterSoloParams {
 export async function registerSoloEvent(
   params: RegisterSoloParams
 ): Promise<any> {
-  const { userId, eventId, transactionId, transactionScreenshot, college, ref } =
-    params;
+  const {
+    userId,
+    eventId,
+    transactionId,
+    transactionScreenshot,
+    college,
+    ref,
+  } = params;
 
   // Call the RPC named 'register_solo_event' with the required parameters.
   const { data, error } = await supabase.rpc(
@@ -171,21 +177,23 @@ export async function registerTeamWithParticipants(
   }
 }
 
-export const approveRegistration = async(registrationId: string) => {
-  try{
+export const approveRegistration = async (registrationId: string) => {
+  try {
     const now = new Date();
     let isoString = now.toISOString();
-    const { data, error } = await supabase.from('teams').update({
-      transaction_verified: isoString,
-    }).eq('team_id', registrationId);
+    const { data, error } = await supabase
+      .from('teams')
+      .update({
+        transaction_verified: isoString,
+      })
+      .eq('team_id', registrationId);
 
-    if(error){
+    if (error) {
       throw error;
     }
 
     return data;
-  }
-  catch(error){
+  } catch (error) {
     console.error(error);
   }
 };

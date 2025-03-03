@@ -322,7 +322,7 @@ export function SoloEventRegistration({
             onSubmit={handlePaymentSubmit(onPaymentSubmit)}
             className="overflow-y-auto max-h-[65vh]"
           >
-                        <div className="flex flex-row flex-wrap gap-4 mt-4">
+            <div className="flex flex-row flex-wrap gap-4 mt-4">
               <Button
                 type="button"
                 variant="outline"
@@ -393,8 +393,6 @@ export function SoloEventRegistration({
                 className="rounded-lg w-[250px]"
               />
             </div>
-
-
           </form>
         )}
       </DialogContent>

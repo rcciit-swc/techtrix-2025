@@ -65,7 +65,8 @@ function EventCardSkeleton() {
 }
 
 export function EventCards() {
-  const { eventsData, eventsLoading, setEventsData, updateRegisterStatus } = useEvents();
+  const { eventsData, eventsLoading, setEventsData, updateRegisterStatus } =
+    useEvents();
 
   useEffect(() => {
     setEventsData(false);

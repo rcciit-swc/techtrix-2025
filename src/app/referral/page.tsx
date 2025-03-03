@@ -6,7 +6,11 @@ import { verifyReferralCode } from '@/utils/functions/referral-code';
 import { login } from '@/utils/functions/login';
 import { Loader2 } from 'lucide-react';
 
-const ReferralPage = ({ searchParams }: { searchParams: { code?: string } }) => {
+const ReferralPage = ({
+  searchParams,
+}: {
+  searchParams: { code?: string };
+}) => {
   const [user, setUser] = useState(null);
   const { code } = searchParams;
 
@@ -24,7 +28,7 @@ const ReferralPage = ({ searchParams }: { searchParams: { code?: string } }) => 
         const loginAndVerify = async () => {
           await login();
           await verifyReferralCode(code);
-        }
+        };
         loginAndVerify();
       } else {
         verifyReferralCode(code);

@@ -46,19 +46,20 @@ export function BasicInformation({ form }: { form: any }) {
             control={form.control}
             name="name"
             render={({ field }) => {
-              return(
-              <FormItem>
-                <FormLabel className="text-gray-300">Event Name</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter event name"
-                    {...field}
-                    className="bg-[#1e2432] text-white border-gray-600 focus-visible:ring-[#9158FF] focus-visible:border-[#9158FF]"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}}
+              return (
+                <FormItem>
+                  <FormLabel className="text-gray-300">Event Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter event name"
+                      {...field}
+                      className="bg-[#1e2432] text-white border-gray-600 focus-visible:ring-[#9158FF] focus-visible:border-[#9158FF]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           />
           {/* <FormField
             control={form.control}

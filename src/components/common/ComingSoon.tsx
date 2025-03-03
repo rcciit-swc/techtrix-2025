@@ -4,7 +4,7 @@ import ButtonLanding from '../Home/ButtonLanding';
 
 const ComingSoon = () => {
   return (
-    <div className='flex justify-center items-center w-full h-full relative min-h-screen'>
+    <div className="flex justify-center items-center w-full h-full relative min-h-screen">
       {/* Background */}
 
       <video

@@ -46,8 +46,9 @@ export const updateRegisterStatusDb = async (id: string, status: boolean) => {
 
 export const getEventsData = async (all: boolean = true) => {
   try {
-    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-    
+    const { data: sessionData, error: sessionError } =
+      await supabase.auth.getSession();
+
     if (sessionError) {
       console.error('Error getting session:', sessionError);
       return null;
@@ -63,12 +64,12 @@ export const getEventsData = async (all: boolean = true) => {
       // Fetch all events if `all` is true or rolesData is empty/null
       ({ data, error } = await supabase.rpc('get_events_by_fest', {
         p_fest_id,
-        p_user_id
+        p_user_id,
       }));
     } else {
       // Determine the highest privileged role
-      const roles = rolesData.map(role => role.role);
-      
+      const roles = rolesData.map((role) => role.role);
+
       if (roles.includes('super_admin')) {
         ({ data, error } = await supabase.rpc('get_events_by_fest', {
           p_fest_id,
@@ -76,8 +77,8 @@ export const getEventsData = async (all: boolean = true) => {
         }));
       } else if (roles.includes('convenor')) {
         const eventCategoryIds = rolesData
-          .filter(role => role.role === 'convenor')
-          .map(role => role.event_category_id);
+          .filter((role) => role.role === 'convenor')
+          .map((role) => role.event_category_id);
 
         ({ data, error } = await supabase
           .from('events')
@@ -85,8 +86,8 @@ export const getEventsData = async (all: boolean = true) => {
           .in('event_category_id', eventCategoryIds));
       } else if (roles.includes('coordinator')) {
         const eventIds = rolesData
-          .filter(role => role.role === 'coordinator')
-          .map(role => role.event_id);
+          .filter((role) => role.role === 'coordinator')
+          .map((role) => role.event_id);
 
         ({ data, error } = await supabase
           .from('events')
@@ -100,7 +101,7 @@ export const getEventsData = async (all: boolean = true) => {
     if (error) {
       throw new Error(error.message);
     }
-    
+
     return data;
   } catch (err) {
     console.error('Unexpected error:', err);
@@ -108,9 +109,11 @@ export const getEventsData = async (all: boolean = true) => {
   }
 };
 
-
-
-export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_id?: string) => {
+export const getEventsForAdmin = async (
+  id: string,
+  p_fest_id?: string,
+  p_user_id?: string
+) => {
   try {
     const rolesData = await getRoles(); // Expecting an array of roles
 
@@ -119,7 +122,7 @@ export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_i
     }
 
     let data, error;
-    const roles = rolesData.map(role => role.role);
+    const roles = rolesData.map((role) => role.role);
 
     if (roles.includes('super_admin')) {
       if (!p_fest_id || !p_user_id) {
@@ -131,8 +134,8 @@ export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_i
       }));
     } else if (roles.includes('convenor')) {
       const eventCategoryIds = rolesData
-        .filter(role => role.role === 'convenor')
-        .map(role => role.event_category_id);
+        .filter((role) => role.role === 'convenor')
+        .map((role) => role.event_category_id);
 
       ({ data, error } = await supabase
         .from('events')
@@ -140,8 +143,8 @@ export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_i
         .in('event_category_id', eventCategoryIds));
     } else if (roles.includes('coordinator')) {
       const eventIds = rolesData
-        .filter(role => role.role === 'coordinator')
-        .map(role => role.event_id);
+        .filter((role) => role.role === 'coordinator')
+        .map((role) => role.event_id);
 
       ({ data, error } = await supabase
         .from('events')
@@ -162,14 +165,11 @@ export const getEventsForAdmin = async (id: string, p_fest_id?: string, p_user_i
   }
 };
 
-
-
 export const updateEventById = async (
   id: string,
   data: Partial<events>
 ): Promise<events | null> => {
   try {
-
     const { data: updatedData, error } = await supabase
       .from('events')
       .update(data)
@@ -189,20 +189,26 @@ export const updateEventById = async (
   }
 };
 
-export const getApprovalDashboardData = async (
-): Promise<EventData[] | null> => {
+export const getApprovalDashboardData = async (): Promise<
+  EventData[] | null
+> => {
   try {
     const rolesData = await getRoles();
-    const roleCategory = rolesData?.map((roles)=>roles.event_category_id !== null ? roles.event_category_id : null)[0];
+    const roleCategory = rolesData?.map((roles) =>
+      roles.event_category_id !== null ? roles.event_category_id : null
+    )[0];
     const eventIds = rolesData
-  ?.map((role) => role.event_id !== null ? role.event_id : null)
-  .filter((id) => id !== null);
-  const finalEventIds = eventIds!.length > 0 ? eventIds : null;
-    const { data, error } = await supabase.rpc('get_registrations_by_event_ids', {
-      p_fest_id: '44bb2093-d229-4385-8f08-3fe7da3521c8',
-      p_event_category_id: roleCategory || null,
-      p_event_id: finalEventIds || null,
-    });
+      ?.map((role) => (role.event_id !== null ? role.event_id : null))
+      .filter((id) => id !== null);
+    const finalEventIds = eventIds!.length > 0 ? eventIds : null;
+    const { data, error } = await supabase.rpc(
+      'get_registrations_by_event_ids',
+      {
+        p_fest_id: '44bb2093-d229-4385-8f08-3fe7da3521c8',
+        p_event_category_id: roleCategory || null,
+        p_event_id: finalEventIds || null,
+      }
+    );
 
     if (error) {
       console.error('Error fetching event table data:', error);

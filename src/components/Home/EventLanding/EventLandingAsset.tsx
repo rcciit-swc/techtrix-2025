@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import Image from "next/image";
+import { Suspense } from 'react';
+import Image from 'next/image';
 
 const EventLandingAsset = () => {
   return (
@@ -8,7 +8,7 @@ const EventLandingAsset = () => {
         <div className="w-screen h-full">
           <Image
             alt=""
-            src={"https://i.postimg.cc/qqZZmV0n/board.png"}
+            src={'https://i.postimg.cc/qqZZmV0n/board.png'}
             width={100}
             height={100}
             quality={100}

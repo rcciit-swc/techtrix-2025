@@ -5,7 +5,9 @@ import { Toaster } from 'sonner';
 import { Footer, Navbar } from '@/components/common';
 import ChatBot from '@/components/Chatbot/bot';
 import dynamic from 'next/dynamic';
-const SessionProvider = dynamic(() => import('@/components/common/SessionProvider'));
+const SessionProvider = dynamic(
+  () => import('@/components/common/SessionProvider')
+);
 
 export const metadata: Metadata = constructMetaData({
   title: 'Techtrix 2025',

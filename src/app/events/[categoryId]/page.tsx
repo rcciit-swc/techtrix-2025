@@ -34,7 +34,7 @@ const Events = ({ params }: { params: { categoryId: any } }) => {
     <div className="flex justify-center items-center w-full h-full relative">
       <video
         className="absolute inset-0 w-full h-full object-cover -z-10"
-        src="/assets/Home/bg2.mp4" 
+        src="/assets/Home/bg2.mp4"
         autoPlay
         loop
         muted

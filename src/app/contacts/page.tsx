@@ -7,7 +7,7 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div className='w-full h-full relative flex flex-col min-h-screen max-lg:pt-40 pt-40 pb-20 items-center justify-center'>
+    <div className="w-full h-full relative flex flex-col min-h-screen max-lg:pt-40 pt-40 pb-20 items-center justify-center">
       <video
         className="absolute inset-0 w-full h-full object-cover -z-10"
         src="/assets/Home/bg2.mp4" // Change this to your video file path
@@ -29,7 +29,7 @@ const page = () => {
           >
             {data.name}
           </h1>
-          
+
           <div className="flex flex-row justify-center items-center flex-wrap gap-16 p-4 mb-4 justify-items-center">
             {data.contacts.map((contact, contactIndex) => (
               <ContactCard

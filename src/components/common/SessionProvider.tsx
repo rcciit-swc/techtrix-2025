@@ -11,9 +11,8 @@ const SessionProvider = () => {
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
   const pathname = usePathname();
-  if(ref){
-    typeof window !== 'undefined' &&
-    localStorage.setItem('ref', ref);
+  if (ref) {
+    typeof window !== 'undefined' && localStorage.setItem('ref', ref);
   }
   const { setUserData, userData } = useUser();
   const setEvents = useEvents((state) => state.setEventsData);
@@ -25,9 +24,9 @@ const SessionProvider = () => {
       }
     };
     readUserSession();
-    if((pathname?.includes('admin'))){
-     setEvents(false);
-    }else{
+    if (pathname?.includes('admin')) {
+      setEvents(false);
+    } else {
       setEvents(true);
     }
   }, [setUserData, pathname]);
@@ -35,8 +34,8 @@ const SessionProvider = () => {
   useEffect(() => {
     const checkReferralCode = async () => {
       if (userData) {
-        const  ref = typeof window !== 'undefined' &&
-        localStorage.getItem('ref');
+        const ref =
+          typeof window !== 'undefined' && localStorage.getItem('ref');
         const { data } = await supabase.auth.getSession();
         const createdAt = Math.floor(new Date(userData.created_at).getTime());
         const now = new Date().getTime();
@@ -56,7 +55,7 @@ const SessionProvider = () => {
       }
     };
     checkReferralCode();
-  }, [userData,ref]);
+  }, [userData, ref]);
 
   return null;
 };

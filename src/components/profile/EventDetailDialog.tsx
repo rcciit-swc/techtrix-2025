@@ -160,13 +160,16 @@ export function EventDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent   style={{
+      <DialogContent
+        style={{
           backgroundImage:
             "url('https://i.pinimg.com/736x/90/59/3b/90593b288869fe650f17b101322ee12d.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-        }} className=" text-white border-yellow-200 min-w-xl max-w-3xl">
-        <DialogHeader className='font-kagitingan tracking-widest'>
+        }}
+        className=" text-white border-yellow-200 min-w-xl max-w-3xl"
+      >
+        <DialogHeader className="font-kagitingan tracking-widest">
           <DialogTitle className="text-2xl text-yellow-200 font-got !tracking-widest">
             {event.name}
           </DialogTitle>

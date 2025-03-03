@@ -1,6 +1,6 @@
-import Image from "next/image";
-import React from "react";
-import "./TeamCard.css";
+import Image from 'next/image';
+import React from 'react';
+import './TeamCard.css';
 
 const TeamCard = ({
   name,
@@ -14,7 +14,13 @@ const TeamCard = ({
   return (
     <div className="card">
       <div className="profile-pic">
-        <Image src={imageUrl} alt={`${name}'s profile`} width={200} height={200} />
+        <Image
+          src={imageUrl}
+          alt={`${name}'s profile`}
+          width={200}
+          height={200}
+          quality={100}
+        />
       </div>
       <div className="bottom">
         <div className="content">

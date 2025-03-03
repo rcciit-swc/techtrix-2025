@@ -41,7 +41,9 @@ type EventDetailsProps = {
 };
 
 const freeCategories: string[] = [
-  '0f52d7d3-a9e7-454a-bff0-979de725e51a','a1bb62c8-fd3d-485a-959e-be8cc528cc43', '4ff0cd32-079f-43fd-84b0-b9147f74eaca'
+  '0f52d7d3-a9e7-454a-bff0-979de725e51a',
+  'a1bb62c8-fd3d-485a-959e-be8cc528cc43',
+  '4ff0cd32-079f-43fd-84b0-b9147f74eaca',
 ];
 
 const EventDetails: React.FC<EventDetailsProps> = ({
@@ -180,20 +182,22 @@ const EventDetails: React.FC<EventDetailsProps> = ({
               <div className="flex flex-row items-center justify-center gap-4">
                 <RulesDialog rules={eventData.rules} />
                 <div className=" text-center">
-                  {eventId==='d363c243-1db6-4ba4-b8bd-a53c5384234b' ?  
-                  <Link
-                  href={'https://forms.gle/HajdFmCWVEsKgjRMA'}
-                  target='_blank'
-                  className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
-                >
-                  {'Fill the Form'}
-                </Link>
-                  : <button
-                    onClick={isRegistered ? () => {} : handleRegister}
-                    className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
-                  >
-                    {isRegistered ? 'Registered' : 'Register Now'}
-                  </button>}
+                  {eventId === 'd363c243-1db6-4ba4-b8bd-a53c5384234b' ? (
+                    <Link
+                      href={'https://forms.gle/HajdFmCWVEsKgjRMA'}
+                      target="_blank"
+                      className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
+                    >
+                      {'Fill the Form'}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={isRegistered ? () => {} : handleRegister}
+                      className=" px-6 sm:px-10 py-2 sm:py-3 font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
+                    >
+                      {isRegistered ? 'Registered' : 'Register Now'}
+                    </button>
+                  )}
                   {/* <button
                   onClick={()=>{
                     toast.success('Registration will be open soon !');

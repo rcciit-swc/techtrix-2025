@@ -15,7 +15,9 @@ const Page = async () => {
     <div className="w-full flex flex-col items-center justify-center">
       {isAdmin && (
         <Link href="/admin/manage-events/add-event">
-          <Button className="mt-3 mb-4  p-6 bg-yellow-200 text-black hover:bg-yellow-300">Add Event</Button>
+          <Button className="mt-3 mb-4  p-6 bg-yellow-200 text-black hover:bg-yellow-300">
+            Add Event
+          </Button>
         </Link>
       )}
       <EventCards />

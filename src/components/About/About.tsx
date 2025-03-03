@@ -30,11 +30,12 @@ function Modal({ isOpen, onClose, refCode }: ModalProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
 
-  const referralLink = refCode ? `http://localhost:3000/referral?code=${refCode}` : '';
+  const referralLink = refCode
+    ? `http://localhost:3000/referral?code=${refCode}`
+    : '';
 
   useEffect(() => {
     if (isOpen) {
-     
     }
   }, [isOpen]);
 

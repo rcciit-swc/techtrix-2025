@@ -89,27 +89,28 @@ export const SignInButton = () => {
   return (
     <button
       className="group relative scale-100 overflow-hidden rounded-lg py-2 transition-transform hover:scale-105 active:scale-95"
-      onClick={async()=>{
-        const  ref = typeof window !== 'undefined' && localStorage.getItem('ref');
-        await  login();
+      onClick={async () => {
+        const ref =
+          typeof window !== 'undefined' && localStorage.getItem('ref');
+        await login();
         if (userData) {
-                const { data } = await supabase.auth.getSession();
-                const createdAt = Math.floor(new Date(userData.created_at).getTime());
-                const now = new Date().getTime();
-                if (now - createdAt < 60 * 1000) {
-                  if (ref) {
-                    const code = await verifyCommunityReferralCode(ref);
-                    if (code) {
-                      if (!data) {
-                        typeof window !== 'undefined' &&
-                          localStorage.setItem('ref', ref);
-                      } else {
-                        await updateReferralCode(ref, userData.id);
-                      }
-                    }
-                  }
+          const { data } = await supabase.auth.getSession();
+          const createdAt = Math.floor(new Date(userData.created_at).getTime());
+          const now = new Date().getTime();
+          if (now - createdAt < 60 * 1000) {
+            if (ref) {
+              const code = await verifyCommunityReferralCode(ref);
+              if (code) {
+                if (!data) {
+                  typeof window !== 'undefined' &&
+                    localStorage.setItem('ref', ref);
+                } else {
+                  await updateReferralCode(ref, userData.id);
                 }
               }
+            }
+          }
+        }
       }}
     >
       <span className="relative z-10 text-white/90 transition-colors group-hover:text-white bg-blue-500 font-bold rounded-full px-4 py-2">
@@ -129,7 +130,7 @@ const Navbar = ({ className }: Props) => {
     const verifyRoles = async () => {
       const rolesData = await getRoles();
       rolesData!.length > 0 && setIsAdmin(true);
-    }
+    };
     verifyRoles();
     const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll);
@@ -221,7 +222,10 @@ const Navbar = ({ className }: Props) => {
           >
             Events
           </MobileNavLink>
-          <MobileNavLink href="/team/swc" onClick={() => setMobileMenuOpen(false)}>
+          <MobileNavLink
+            href="/team/swc"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Team
           </MobileNavLink>
           <MobileNavLink
@@ -230,13 +234,18 @@ const Navbar = ({ className }: Props) => {
           >
             Gallery
           </MobileNavLink>
-         {isAdmin && <MobileNavLink
-            href="/admin/manage-events"
+          {isAdmin && (
+            <MobileNavLink
+              href="/admin/manage-events"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Admin
+            </MobileNavLink>
+          )}
+          <MobileNavLink
+            href="/contacts"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Admin
-          </MobileNavLink>}
-          <MobileNavLink href="/contacts" onClick={() => setMobileMenuOpen(false)}>
             Contact Us
           </MobileNavLink>
           <div className="ml-4 mt-2">

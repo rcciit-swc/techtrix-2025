@@ -37,7 +37,7 @@ const EventCard: React.FC<EventCardProps> = ({
       onTouchStart={() => setIsActive(!isActive)}
     >
       <div className={`${styles.cardContent} relative h-full w-full`}>
-      {isLoading && (
+        {isLoading && (
           <div className="absolute inset-0 bg-gray-800 animate-pulse" />
         )}
 

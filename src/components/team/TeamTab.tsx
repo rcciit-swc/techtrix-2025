@@ -1,19 +1,18 @@
-"use client";
-import React, { use } from "react";
+'use client';
+import React, { use } from 'react';
 import Link from 'next/link';
-import { usePathname } from "next/navigation";
-import { Button } from "../ui/button";
-import EncryptButton from "../common/Button";
+import { usePathname } from 'next/navigation';
+import { Button } from '../ui/button';
+import EncryptButton from '../common/Button';
 
 type Props = {
   team: {
     category: string;
     path: string;
-  }
-}
+  };
+};
 
 const TeamTab = ({ team }: Props) => {
-
   const pathname = usePathname();
   return (
     <Link href={team.path} className="cursor-pointer">
@@ -27,6 +26,6 @@ const TeamTab = ({ team }: Props) => {
       <EncryptButton title={team.category} />
     </Link>
   );
-}
+};
 
-export default TeamTab
+export default TeamTab;

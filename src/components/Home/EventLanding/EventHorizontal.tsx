@@ -2,21 +2,24 @@ import React from 'react';
 import SVGIcon from '@/components/SVGIcon';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-const EventLandingAsset = dynamic(() => import("@/components/Home/EventLanding/EventLandingAsset"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-screen h-full flex items-center justify-center">
-      <Image
-        alt="Loading..."
-        src="https://i.postimg.cc/qqZZmV0n/board.png"
-        width={100}
-        height={100}
-        quality={100}
-        className="w-[1000px] h-full"
-      />
-    </div>
-  ),
-});
+const EventLandingAsset = dynamic(
+  () => import('@/components/Home/EventLanding/EventLandingAsset'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-screen h-full flex items-center justify-center">
+        <Image
+          alt="Loading..."
+          src="https://i.postimg.cc/qqZZmV0n/board.png"
+          width={100}
+          height={100}
+          quality={100}
+          className="w-[1000px] h-full"
+        />
+      </div>
+    ),
+  }
+);
 const EventHorizontal = () => {
   return (
     <div className="relative min-w-screen  flex flex-col items-center justify-center">

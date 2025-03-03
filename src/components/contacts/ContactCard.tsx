@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 // {
 //     "name": "Shinjini Ghosh",
@@ -11,45 +11,49 @@ import React from "react";
 //     "phone": "+91 9876543210",
 // },
 interface ContactCardProps {
-    image: string;
-    name: string;
-    role: string;
-    phone: string;
+  image: string;
+  name: string;
+  role: string;
+  phone: string;
 }
 
-const ContactCard: React.FC<ContactCardProps> = ({ image, name, role, phone }) => {
-    return (
-        <>
-
- <div
-id="glowPink"
-  className="profile-card md:w-[350px] w-[250px] rounded-md shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-black flex flex-col items-center justify-center gap-3 transition-all duration-300 group border-4 border-purple-500"
->
-  <div
-    className="avatar w-full pt-5 flex items-center justify-center flex-col gap-1"
-  >
-    <div
-      className="img_container w-full flex items-center justify-center relative z-40 after:absolute after:h-[6px] after:w-full after:bg-[#d661ed] after:top-4 after:group-hover:size-[1%] after:delay-300 after:group-hover:delay-0 after:group-hover:transition-all after:group-hover:duration-300 after:transition-all after:duration-300 before:absolute before:h-[6px] before:w-full before:bg-[#d661ed] before:bottom-4 before:group-hover:size-[1%] before:delay-300 before:group-hover:delay-0 before:group-hover:transition-all before:group-hover:duration-300 before:transition-all before:duration-300"
-    >
-        <Image
-            src={image}
-            alt="profile"
-            width={120}
-            height={120}
-            quality={100}
-            className="size-40 z-40 object-cover border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
-            />
+const ContactCard: React.FC<ContactCardProps> = ({
+  image,
+  name,
+  role,
+  phone,
+}) => {
+  return (
+    <>
       <div
-        className="absolute bg-[#d661ed] z-10 size-[60%] w-full group-hover:size-[1%] group-hover:transition-all group-hover:duration-300 transition-all duration-300 delay-600 group-hover:delay-0"
-      ></div>
-    </div>
-  </div>
-  <div className="headings *:text-center *:leading-4">
-    <p className="text-xl font-kagitingan font-semibold text-white mb-1">{name}</p>
-    <p className="text-sm font-kagitingan font-semibold text-white mb-1">{role}</p>
-    <Link href={`tel:${phone}`}><p className="font-kagitingan mb-1">{phone}</p></Link>
-  </div>
-  {/* <div className="w-full items-center justify-center flex">
+        id="glowPink"
+        className="profile-card md:w-[350px] w-[250px] rounded-md shadow-xl overflow-hidden relative cursor-pointer snap-start shrink-0 bg-black flex flex-col items-center justify-center gap-3 transition-all duration-300 group border-4 border-purple-500"
+      >
+        <div className="avatar w-full pt-5 flex items-center justify-center flex-col gap-1">
+          <div className="img_container w-full flex items-center justify-center relative z-40 after:absolute after:h-[6px] after:w-full after:bg-[#d661ed] after:top-4 after:group-hover:size-[1%] after:delay-300 after:group-hover:delay-0 after:group-hover:transition-all after:group-hover:duration-300 after:transition-all after:duration-300 before:absolute before:h-[6px] before:w-full before:bg-[#d661ed] before:bottom-4 before:group-hover:size-[1%] before:delay-300 before:group-hover:delay-0 before:group-hover:transition-all before:group-hover:duration-300 before:transition-all before:duration-300">
+            <Image
+              src={image}
+              alt="profile"
+              width={120}
+              height={120}
+              quality={100}
+              className="size-40 z-40 object-cover border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
+            />
+            <div className="absolute bg-[#d661ed] z-10 size-[60%] w-full group-hover:size-[1%] group-hover:transition-all group-hover:duration-300 transition-all duration-300 delay-600 group-hover:delay-0"></div>
+          </div>
+        </div>
+        <div className="headings *:text-center *:leading-4">
+          <p className="text-xl font-kagitingan font-semibold text-white mb-1">
+            {name}
+          </p>
+          <p className="text-sm font-kagitingan font-semibold text-white mb-1">
+            {role}
+          </p>
+          <Link href={`tel:${phone}`}>
+            <p className="font-kagitingan mb-1">{phone}</p>
+          </Link>
+        </div>
+        {/* <div className="w-full items-center justify-center flex">
     <ul
       className="flex flex-col items-start gap-2 has-[:last]:border-b-0 *:inline-flex *:gap-2 *:items-center *:justify-center *:border-b-[1.5px] *:border-b-stone-700 *:border-dotted *:text-xs *:font-semibold *:text-white pb-3"
     >
@@ -93,14 +97,12 @@ id="glowPink"
      
     </ul>
   </div> */}
-  {/* <hr
+        {/* <hr
     className="w-full group-hover:h-5 h-3 bg-[#8633a6] group-hover:transition-all group-hover:duration-300 transition-all duration-300"
   /> */}
-</div>
-
-
-        </>
-    );
+      </div>
+    </>
+  );
 };
 
 export default ContactCard;
@@ -137,7 +139,7 @@ export default ContactCard;
 //       <h3 className="bg-clip-text text-transparent bg-gradient-to-l from-[#005BC4] to-[#27272A] text-lg font-bold">{role}</h3>
 //         <h3 className="text-gray-500 text-xs">{phone}</h3>
 //     </div>
-    
+
 //   </section>
 // </div>
 

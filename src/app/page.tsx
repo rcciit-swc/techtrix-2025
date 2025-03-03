@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { generateReferralCode } from '@/utils/functions/referral-code';
 
 const Page = async () => {
-    // const code = await generateReferralCode();
+  // const code = await generateReferralCode();
   return (
     <>
       <div className="fade-in">
