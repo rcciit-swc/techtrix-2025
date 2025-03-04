@@ -251,7 +251,7 @@ export const teams = [
         name: 'Surjendu Manna',
         role: 'BUILD THE ELECTRO-BRICKS & DIGITAL CIRCUIT',
         image:
-          'https://i.postimg.cc/28m05xkN/Screenshot-2025-02-22-170902-Surjendu-Manna.png',
+          'https://i.postimg.cc/HnkyDJTv/7312c68f-0670-48fd-a6c7-a712edb22c98.jpg',
       },
       {
         name: 'Sarmistha Moharer',
@@ -430,11 +430,11 @@ export const teams = [
         image:
           'https://i.postimg.cc/MpYBwCYc/IMG-20240401-WA0013-1-Rwitam-Ray.jpg',
       },
-      // {
-      //   name: "Pratik Chowdhury",
-      //   role: "ROAD RASH",
-      //   image: "https://i.postimg.cc/cHDj3q2h/Ankan-Ghosh.jpg",
-      // },
+      {
+        name: "Pratik Chowdhury",
+        role: "ROAD RASH",
+        image: "https://i.postimg.cc/Bv5Lj56w/20250304-142312-ANUSHKA-GHOSH.jpg",
+      },
       // {
       //   name: "Suvam Chanda",
       //   role: "ROBO SUMO (4 KG)",
@@ -967,6 +967,12 @@ export const teams = [
           'https://i.postimg.cc/xCTF4TBF/IMG-20250222-WA0046-1-DEBDYUTI-MONDAL.jpg',
       },
       {
+        name: 'Aritri Mondal',
+        role: 'PR & Outreach Team',
+        image:
+          'https://i.postimg.cc/hvNPyhvd/096330a4-6f58-411d-9f7d-feaed16bd750.jpg',
+      },
+      {
         name: 'Deepjyoti Dey',
         role: 'PR & Outreach Team',
         image: 'https://i.postimg.cc/KzqsSh2c/IMG-0007-DEEPJYOTI-DEY.jpg',
@@ -1002,7 +1008,7 @@ export const teams = [
       {
         name: 'Megha Roy',
         role: 'PR & Outreach Team',
-        image: 'https://i.postimg.cc/FFCww3rb/1740331644677-jpeg-Megha-Roy.jpg',
+        image: 'https://i.postimg.cc/QxBFQZC7/f12d805a-3e7c-4f31-83a5-ea13aede9158.jpg',
       },
       {
         name: 'Debarghya Sarkar',
@@ -1161,6 +1167,18 @@ export const teams = [
         image: 'https://i.postimg.cc/ydzhWVmY/IMG-1178-SAMBHABI-DAS.jpg',
       },
       {
+        name: 'Debdyuti Mondal',
+        role: 'Registration Team Member',
+        image:
+          'https://i.postimg.cc/xCTF4TBF/IMG-20250222-WA0046-1-DEBDYUTI-MONDAL.jpg',
+      },
+      {
+        name: 'Arijit Saha',
+        role: 'Registration Team Member',
+        image:
+          'https://i.postimg.cc/J7xN68Rd/da0248d4-5b5b-4da6-ab89-290ad76e8c58.jpg',
+      },
+      {
         name: 'Debatree Chanda',
         role: 'Registration Team Member',
         image:
@@ -1171,12 +1189,6 @@ export const teams = [
         role: 'Registration Team Member',
         image:
           'https://i.postimg.cc/pdjY29n6/DSC-1397-KASTURI-BHATTACHARYA.jpg',
-      },
-      {
-        name: 'Debdyuti Mondal',
-        role: 'Registration Team Member',
-        image:
-          'https://i.postimg.cc/xCTF4TBF/IMG-20250222-WA0046-1-DEBDYUTI-MONDAL.jpg',
       },
       {
         name: 'Sreejit Mondal ',
