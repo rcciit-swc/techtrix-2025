@@ -435,11 +435,11 @@ export const teams = [
         role: "ROAD RASH",
         image: "https://i.postimg.cc/Bv5Lj56w/20250304-142312-ANUSHKA-GHOSH.jpg",
       },
-      // {
-      //   name: "Suvam Chanda",
-      //   role: "ROBO SUMO (4 KG)",
-      //   image: "https://i.postimg.cc/hG7xRVb0/DEBOJIT-MAKHAL.jpg",
-      // },
+      {
+        name: "Suvam Chanda",
+        role: "ROBO SUMO (4 KG)",
+        image: "https://i.postimg.cc/PrHzXMM9/b2142664-17f8-4984-bbda-b7d7ef955471.jpg",
+      },
       {
         name: 'Kanishk Jain',
         role: 'ROBO SUMO (4 KG)',
