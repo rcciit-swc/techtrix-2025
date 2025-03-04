@@ -961,13 +961,19 @@ export const teams = [
           'https://i.postimg.cc/rwRd51mf/B612-20250209-181129-486-MEGHNA-SANTRA-1-1.jpg',
       },
       {
+        name: 'Tarif Chowdhury',
+        role: 'PR & Outreach Team',
+        image:
+          'https://i.postimg.cc/52X2Ch4r/9b562a9e-eeb4-4170-b15c-694e8c584c30.jpg',
+      },
+      {
         name: 'Debdyuti Mondal',
         role: 'PR & Outreach Team',
         image:
           'https://i.postimg.cc/xCTF4TBF/IMG-20250222-WA0046-1-DEBDYUTI-MONDAL.jpg',
       },
       {
-        name: 'Aritri Mondal',
+        name: 'Aritree Saha',
         role: 'PR & Outreach Team',
         image:
           'https://i.postimg.cc/hvNPyhvd/096330a4-6f58-411d-9f7d-feaed16bd750.jpg',
