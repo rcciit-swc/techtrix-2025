@@ -386,7 +386,7 @@ export function SoloEventRegistration({
             </h1>
             <div className="mt-6 flex items-center justify-center">
               <Image
-                src="https://i.postimg.cc/CLkk57DC/dhara.jpg"
+                src="https://i.postimg.cc/FzmR52M7/Whats-App-Image-2025-03-04-at-12-40-36-PM.jpg"
                 alt="Payment QR Code"
                 width={200}
                 height={200}
