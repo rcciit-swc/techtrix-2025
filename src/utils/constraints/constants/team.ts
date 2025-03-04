@@ -122,7 +122,7 @@ export const teams = [
         name: 'Nasiruddin Thander',
         role: 'Flagship Convenor',
         image:
-          'https://i.postimg.cc/L6TNgZ5Y/Nasiruddin-Thander-NASIRUDDIN-THANDER.jpg',
+          'https://i.postimg.cc/zBN3CyM2/c9c7ea6c-2709-4d2a-b77d-bddfa7565194.jpg',
       },
       {
         name: 'Rishav Aich',
