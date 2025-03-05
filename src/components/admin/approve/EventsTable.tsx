@@ -148,14 +148,16 @@ export default function EventsTable() {
 
   const [teamsWithMembers, setTeamsWithMembers] = useState([]);
 
-  useEffect(()=>{
-    console.log(filteredData)
-    // const  csvData =  filteredData.map((item)=>{
-    //   teamName: item.teamname,
-    //   // name:  
-    // })
-    // setTeamsWithMembers((members)=> )
-  },[filteredData])
+  useEffect(() => {
+    if (filteredData.length > 0) {
+      const totalMembers = filteredData.reduce((sum, team) => {
+        return sum + (team.teammembers ? team.teammembers.length : 0);
+      }, 0);
+  
+      console.log("Total team members:", totalMembers);
+    }
+  }, [filteredData]);
+  
 
   const Row = ({
     index,

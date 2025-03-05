@@ -721,7 +721,7 @@ export function TeamEventRegistration({
             </h1>
             <div className="mt-6 flex items-center justify-center">
               <Image
-                src="https://imgur.com/a/suEVE6G"
+                src="https://i.imgur.com/J3lbfWy.jpg"
                 alt="Payment QR Code"
                 width={200}
                 height={200}
