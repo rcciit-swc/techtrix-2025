@@ -181,7 +181,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({
               </div>
               <div className="flex flex-row items-center justify-center gap-4">
                 <RulesDialog rules={eventData.rules} />
-                <div className=" text-center">
+             {eventData?.reg_status  ?   <div className=" text-center">
                   {eventId === 'd363c243-1db6-4ba4-b8bd-a53c5384234b' ? (
                     <Link
                       href={'https://forms.gle/HajdFmCWVEsKgjRMA'}
@@ -206,7 +206,16 @@ const EventDetails: React.FC<EventDetailsProps> = ({
                 >
                   Register Soon
                 </button> */}
-                </div>
+                </div>  : 
+                 <div
+                 onClick={()=>{
+                  toast.info('Registration Closed !');
+                 }}
+                 className=" px-6 sm:px-10 py-2 sm:py-3 cursor-pointer font-kagitingan text-sm lg:text-xl tracking-widest text-black rounded-full bg-gradient-to-b from-[#B700FF] via-[#D966FF] to-[#F4A1FF]"
+               >
+                 {'Registration Closed !'}
+               </div>
+                }
               </div>
             </div>
           </div>

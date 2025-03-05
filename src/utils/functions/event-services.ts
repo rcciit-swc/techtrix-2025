@@ -234,15 +234,9 @@ export const getEventByID = async (id: string): Promise<events | null> => {
     return null;
   }
 
-  const p_user_id = sessionData?.session?.user?.id || null;
+  // const p_user_id = sessionData?.session?.user?.id || null;
 
-  const { data, error } = await serverClient.rpc(
-    'get_event_by_id_with_registration',
-    {
-      p_event_id,
-      p_user_id,
-    }
-  );
+  const { data, error } = await serverClient.from('events').select('*').eq('id', p_event_id);
 
   if (error) {
     console.error('Error fetching event:', error);
