@@ -105,7 +105,7 @@ export const teams = [
       {
         name: 'Achyut Kundu',
         role: 'Out of the Box Convenor',
-        image: 'https://i.postimg.cc/Y09qKdL4/achyut.png',
+        image: 'https://i.postimg.cc/3RwMsfW9/achyut.jpg',
       },
       {
         name: 'Rajdeep Biswas',
@@ -493,344 +493,356 @@ export const teams = [
     ],
   },
   //volunteers completed
-  // {
-  //   category: "Volunteers",
-  //   id: "volunteers",
-  //   path: "/team/volunteers",
-  //   members: [
-  //     {
-  //       name: "Kankona Chakraborty",
-  //       role: "BUILD THE ELECTRO-BRICKS & DIGITAL CIRCUIT",
-  //       image: "https://i.postimg.cc/RhJBQJRk/1711401841035-AMAYA-MONDAL.jpg",
-  //     },
-  //     {
-  //       name: "Sreejit Mondal",
-  //       role: "BUILD THE ELECTRO-BRICKS & DIGITAL CIRCUIT",
-  //       image:
-  //         "https://i.postimg.cc/LXbS13zk/IMG-20240906-WA0001-AMAYA-MONDAL.jpg",
-  //     },
-  //     {
-  //       name: "Debjoy Sarkar",
-  //       role: "BUG HUNT",
-  //       image:
-  //         "https://i.postimg.cc/BbFvZVdP/20240402-192257-ARCHISHA-UPADHYAYA.jpg",
-  //     },
-  //     {
-  //       name: "Antara Karmakar",
-  //       role: "BUG HUNT",
-  //       image:
-  //         "https://i.postimg.cc/tTwTjjmH/fotor-1725473770974-SMARANIKA-POREL.jpg",
-  //     },
-  //     {
-  //       name: "Prachi Ghosh",
-  //       role: "CAPTURE THE FLAG",
-  //       image: "https://i.postimg.cc/7Y2yc7kh/IMG-20231016-215431-1.jpg",
-  //     },
-  //     {
-  //       name: "Satyam Kumar Jha",
-  //       role: "CAPTURE THE FLAG",
-  //       image:
-  //         "https://i.postimg.cc/Qddr0z0g/IMG20240128190241-AATREYEE-MISRA.avif",
-  //     },
-  //     {
-  //       name: "Smaranika Porel",
-  //       role: "CODATHON",
-  //       image:
-  //         "https://i.postimg.cc/zDwCk2LG/Screenshot-2024-09-05-23-29-10-07-965bbf4d18d205f782c6b8409c5773a4-Rishi-Paul.jpg",
-  //     },
-  //     {
-  //       name: "Trishul Bose",
-  //       role: "CODATHON",
-  //       image:
-  //         "https://i.postimg.cc/2SwssN09/IMG20240902125411-Jyotishka-Ghosh.jpg",
-  //     },
-  //     {
-  //       name: "Rivu Chatterjee",
-  //       role: "TECH QUIZ",
-  //       image:
-  //         "https://i.postimg.cc/Px9Rz3N4/IMG-20231115-203637-946-MEGHNA-SANTRA.jpg",
-  //     },
-  //     {
-  //       name: "Bhumika Tewari",
-  //       role: "TECH QUIZ",
-  //       image:
-  //         "https://i.postimg.cc/8zmxQmnp/1659446877438-edit-ANIRBAN-MAJUMDER.jpg",
-  //     },
-  //     {
-  //       name: "Debarati Seal",
-  //       role: "TECH QUIZ",
-  //       image: "https://i.postimg.cc/4xypsJWY/IMG-2646-SAMPRIT-RUP.jpg",
-  //     },
-  //     {
-  //       name: "Amaya Mondal",
-  //       role: "CODE AND SEEK",
-  //       image:
-  //         "https://i.postimg.cc/m287vcyx/IMG-20240905-233811-AVILASH-MAJUMDER.jpg",
-  //     },
-  //     {
-  //       name: "Tanisa Dey",
-  //       role: "CODE AND SEEK",
-  //       image:
-  //         "https://i.postimg.cc/g2Q7FcvD/IMG-20240906-004540-SURYA-DEY.jpg",
-  //     },
-  //     {
-  //       name: "Prerna Kumari",
-  //       role: "CODE AND SEEK",
-  //       image:
-  //         "https://i.postimg.cc/BbC2QtWK/IMG-20240419-203130-980-04-ABHRADEEP-MAITRA.jpg",
-  //     },
-  //     {
-  //       name: "Shoptorshi Mondal",
-  //       role: "SHUTTERSCAPE",
-  //       image:
-  //         "https://i.postimg.cc/ZnmrSpQm/IMG-20240119-WA0035-1-TIRTHA-ROY-CHOWDHURY.jpg",
-  //     },
-  //     {
-  //       name: "Bhumika Das",
-  //       role: "SHUTTERSCAPE",
-  //       image:
-  //         "https://i.postimg.cc/4NJz2vtb/IMG-20240711-143858616-HDR-2-TRISHUL-BOSE.jpg",
-  //     },
-  //     {
-  //       name: "Swastika Karmakar",
-  //       role: "FANDOM QUIZ",
-  //       image:
-  //         "https://i.postimg.cc/prLBgK7S/IMG-20240905-WA0147-Antara-Karmakar.jpg",
-  //     },
-  //     {
-  //       name: "Aritree Saha",
-  //       role: "FANDOM QUIZ",
-  //       image:
-  //         "https://i.postimg.cc/SKcV8SCg/Shirshika-fancy-Shirshika-Ghosh.jpg",
-  //     },
-  //     {
-  //       name: "Samprit Rup",
-  //       role: "CRACK THE INTERVIEW",
-  //       image:
-  //         "https://i.postimg.cc/k5pnvZG2/Whats-App-Image-2024-09-08-at-22-38-12.jpg",
-  //     },
-  //     {
-  //       name: "Aatreyee Misra",
-  //       role: "CRACK THE INTERVIEW",
-  //       image:
-  //         "https://i.postimg.cc/fRz05MGH/IMG-20240906-WA0065-Swarnali-Nayek.jpg",
-  //     },
-  //     {
-  //       name: "Sutanuka Chakraborty",
-  //       role: "SOFTWARE DEVELOPMENT - WEB/APP/WEB3",
-  //       image:
-  //         "https://i.postimg.cc/rFCrSDP0/Screenshot-20240725-132114-Whats-App-ISHITA-SAHA.jpg",
-  //     },
-  //     {
-  //       name: "Debayudh Basu",
-  //       role: "SOFTWARE DEVELOPMENT - WEB/APP/WEB3",
-  //       image: "https://i.postimg.cc/J4WXDNPC/IMG-5848-Biswajyoti-Dutta.jpg",
-  //     },
-  //     {
-  //       name: "Shreya Shaw",
-  //       role: "SOFTWARE DEVELOPMENT - WEB/APP/WEB3",
-  //       image:
-  //         "https://i.postimg.cc/d1r8p44n/IMG-20240905-233842-SAGNIK-PAUL.jpg",
-  //     },
-  //     {
-  //       name: "Subhankar Chakrabarti",
-  //       role: "SOFTWARE DEVELOPMENT - AI/ML",
-  //       image:
-  //         "https://i.postimg.cc/Jn1gzDvN/IMG-20240905-130432-Kaushiki-Baidya.jpg",
-  //     },
-  //     {
-  //       name: "Rishi Paul",
-  //       role: "SOFTWARE DEVELOPMENT - AI/ML",
-  //       image:
-  //         "https://i.postimg.cc/tgdwbtSR/IMG-20240308-091159-001-TRISHA-SADHUKHAN.webp",
-  //     },
-  //     {
-  //       name: "Megha Sardar",
-  //       role: "MIND’S EYE",
-  //       image:
-  //         "https://i.postimg.cc/DZBNJf3t/1693285888331-DITIPRIYA-SARKAR.jpg",
-  //     },
-  //     {
-  //       name: "Swastika Pramanik",
-  //       role: "MIND’S EYE",
-  //       image:
-  //         "https://i.postimg.cc/zBjjtxdW/IMG-20240228-212849-836-SOUMITA-MUKHERJEE.webp",
-  //     },
-  //     {
-  //       name: "Rajarshi Das",
-  //       role: "VALORANT",
-  //       image:
-  //         "https://i.postimg.cc/B6spBrC4/IMG-20240814-WA0016-Asmita-Pramanick.jpg",
-  //     },
-  //     {
-  //       name: "Monaj Barman",
-  //       role: "VALORANT",
-  //       image: "https://i.postimg.cc/5tPGjNVD/CSE2023025-ARIJIT-MANDAL.jpg",
-  //     },
-  //     {
-  //       name: "Sayandeep Sen",
-  //       role: "BGMI -  TDM & SQUAD",
-  //       image:
-  //         "https://i.postimg.cc/bwVhGj1D/IMG-20240906-190414-Sambit-Ganguly.jpg",
-  //     },
-  //     {
-  //       name: "Sraman Pati",
-  //       role: "BGMI -  TDM & SQUAD",
-  //       image:
-  //         "https://i.postimg.cc/C586vGqV/sayantan10-20240703-0001-Sayantan-Biswas.jpg",
-  //     },
-  //     {
-  //       name: "Omi Dhir",
-  //       role: "FIFA 24",
-  //       image:
-  //         "https://i.postimg.cc/0Qb4SR5j/IMG-20240905-WA0009-Anurag-Dolui.jpg",
-  //     },
-  //     {
-  //       name: "Binay Dhar",
-  //       role: "FIFA 24",
-  //       image:
-  //         "https://i.postimg.cc/T114r8Rh/Picsart-23-10-22-18-04-52-259-SOUMYADEEP-SARDAR.jpg",
-  //     },
-  //     {
-  //       name: "Kanchan Debnath",
-  //       role: "E-FOOTBALL",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Sayan Kumar Das",
-  //       role: "E-FOOTBALL",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Raushan Pandey",
-  //       role: "MORTAL KOMBAT (8 KG)",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Somsubhra Misra",
-  //       role: "MORTAL KOMBAT (8 KG)",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Tarif Chowdhury",
-  //       role: "MORTAL KOMBAT (8 KG)",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Sagnik Bose",
-  //       role: "MORTAL KOMBAT (8 KG)",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Rupam Mondal",
-  //       role: "ROBO SUMO (4 KG)",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Somen Saha",
-  //       role: "ROBO SUMO (4 KG)",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Sanket Deyasi",
-  //       role: "ROBO SOCCER",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Sagnik Paul",
-  //       role: "ROBO SOCCER",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Adrika Mukherjee",
-  //       role: "ROBO SOCCER",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Pratik Kharadhara",
-  //       role: "ROAD RASH",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Shriza Baidya",
-  //       role: "ROAD RASH",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Sourodeep Paul",
-  //       role: "ROAD RASH",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Shreekant Pathak",
-  //       role: "ROAD RASH",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Sayani Halder",
-  //       role: "NEED FOR SPEED",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Aheli Saha",
-  //       role: "NEED FOR SPEED",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Aditya Chakraborty",
-  //       role: "NEED FOR SPEED",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Diptish De",
-  //       role: "NEED FOR SPEED",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Anirban Majumder",
-  //       role: "MAZE SOLVER",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Meghna Santra",
-  //       role: "MAZE SOLVER",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Archisha Upadhyaya",
-  //       role: "PACMAN",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //     {
-  //       name: "Arpan Aon",
-  //       role: "PACMAN",
-  //       image:
-  //         "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
-  //     },
-  //   ],
-  // },
+  {
+    category: "Volunteers",
+    id: "volunteers",
+    path: "/team/volunteers",
+    members: [
+      {
+        name: "Kankona Chakraborty",
+        role: "BUILD THE ELECTRO-BRICKS & DIGITAL CIRCUIT",
+        image: "https://i.postimg.cc/cH63vZr3/IMG-20250223-210543-KANKONA-CHAKRABORTY.jpg",
+      },
+      {
+        name: "Sreejit Mondal",
+        role: "BUILD THE ELECTRO-BRICKS & DIGITAL CIRCUIT",
+        image:
+          "https://i.postimg.cc/k5JKdWCf/New-Doc-10-23-2024-22-56-removebg-preview-SREEJIT-MONDAL.png",
+      },
+      {
+        name: "Debjoy Sarkar",
+        role: "BUG HUNT",
+        image:
+          "https://i.postimg.cc/ZqWpwphg/IMG-20241008-115709-168-DEBJOY-SARKAR.jpg",
+      },
+      {
+        name: "Antara Karmakar",
+        role: "BUG HUNT",
+        image:
+          "https://i.postimg.cc/RZsw1G2K/IMG-20240905-WA0147-ANTARA-KARMAKAR.jpg",
+      },
+      {
+        name: "Koyel Ghosh",
+        role: "BUG HUNT",
+        image:
+          "https://i.postimg.cc/LXzTVLtS/IMG-20250303-084042-KOYEL-GHOSH.jpg",
+      },
+      // {
+      //   name: "Prachi Ghosh",
+      //   role: "CAPTURE THE FLAG",
+      //   image: "https://i.postimg.cc/7Y2yc7kh/IMG-20231016-215431-1.jpg",
+      // },
+      {
+        name: "Satyam Kumar Jha",
+        role: "CAPTURE THE FLAG",
+        image:
+          "https://i.postimg.cc/6p5dGFbB/IMG-20241008-WA0060-SATYAM-JKUMAR-HA.jpg",
+      },
+      {
+        name: "Smaranika Porel",
+        role: "CODATHON",
+        image:
+          "https://i.postimg.cc/KYCLwjGY/SHIN-0143-SMARANIKA-POREL.jpg",
+      },
+      // {
+      //   name: "Trishul Bose",
+      //   role: "CODATHON",
+      //   image:
+      //     "https://i.postimg.cc/2SwssN09/IMG20240902125411-Jyotishka-Ghosh.jpg",
+      // },
+      {
+        name: "Rivu Chatterjee",
+        role: "TECH QUIZ",
+        image:
+          "https://i.postimg.cc/Yq7Ntv1G/IMG-20250223-220948-RIVU-CHATTOPADHYAY.jpg",
+      },
+      {
+        name: "Bhumika Tewari",
+        role: "TECH QUIZ",
+        image:
+          "https://i.postimg.cc/hvWLzj6Y/IMG-20250223-WA0023-Bhumika-Tewari.jpg",
+      },
+      {
+        name: "Debarati Seal",
+        role: "TECH QUIZ",
+        image: "https://i.postimg.cc/7h3gg4yZ/imresizer-1740336282987-Debarati-Seal.jpg",
+      },
+      {
+        name: "Amaya Mondal",
+        role: "CODE AND SEEK",
+        image:
+          "https://i.postimg.cc/3rmCMXDQ/IMG-20241203-034950-AMAYA-MONDAL.jpg",
+      },
+      {
+        name: "Tanisa Dey",
+        role: "CODE AND SEEK",
+        image:
+          "https://i.postimg.cc/3xv39xc1/IMG-20250222-WA0070.jpg",
+      },
+      {
+        name: "Prerna Kumari",
+        role: "CODE AND SEEK",
+        image:
+          "https://i.postimg.cc/9f0tssyL/IMG-20250223-WA0013-PRERNA-KUMARI.jpg",
+      },
+      {
+        name: "Shoptorshi Mondal",
+        role: "SHUTTERSCAPE",
+        image:
+          "https://i.postimg.cc/CK2H0JNS/IMG-0897-SHOPTORSHI-MONDAL.jpg",
+      },
+      {
+        name: "Bhumika Das",
+        role: "SHUTTERSCAPE",
+        image:
+          "https://i.postimg.cc/v8N1SpDq/IMG-20250125-WA0068-1-BHUMIKA-DAS.jpg",
+      },
+      {
+        name: "Swastika Karmakar",
+        role: "FANDOM QUIZ",
+        image:
+          "https://i.postimg.cc/BnqCBjb9/IMG-20241007-WA0229-3-SWASTIKA-KARMAKAR.jpg",
+      },
+      {
+        name: "Aritree Saha",
+        role: "FANDOM QUIZ",
+        image:
+          "https://i.postimg.cc/6pYfjB47/20241124-190319-ARITREE-SAHA.jpg",
+      },
+      {
+        name: "Samprit Rup",
+        role: "CRACK THE INTERVIEW",
+        image:
+          "https://i.postimg.cc/CLCN8GFs/4eeef95f-4d93-4368-8c0d-eaf412043252-SAMPRIT-RUP.jpg",
+      },
+      {
+        name: "Aatreyee Misra",
+        role: "CRACK THE INTERVIEW",
+        image:
+          "https://i.postimg.cc/pXBfrPZ0/IMG20240128190241-AATREYEE-MISRA-AATREYEE-MISRA.avif",
+      },
+      {
+        name: "Sutanuka Chakraborty",
+        role: "SOFTWARE DEVELOPMENT - WEB/APP/WEB3",
+        image:
+          "https://i.postimg.cc/3JQ1WSHw/IMG-20250303-WA0020-SUTANUKA-CHAKRABORTY.jpg",
+      },
+      {
+        name: "Debayudh Basu",
+        role: "SOFTWARE DEVELOPMENT - WEB/APP/WEB3",
+        image: "https://i.postimg.cc/Fz3xDc0m/Snapchat-2057341535-DEBAYUDH-BASU.jpg",
+      },
+      {
+        name: "Shreya Shaw",
+        role: "SOFTWARE DEVELOPMENT - WEB/APP/WEB3",
+        image:
+          "https://i.postimg.cc/T2DQd8FS/1000079359-SHREYA-SHAW.jpg",
+      },
+      {
+        name: "Subhankar Chakrabarti",
+        role: "SOFTWARE DEVELOPMENT - AI/ML",
+        image:
+          "https://i.postimg.cc/nzs29NzX/IMG-20241010-WA0004-1-SUBHANKAR-CHAKRABARTI.jpg",
+      },
+      {
+        name: "Rishi Paul",
+        role: "SOFTWARE DEVELOPMENT - AI/ML",
+        image:
+          "https://i.postimg.cc/K8NJ6nw8/Screenshot-2025-03-03-08-19-25-57-965bbf4d18d205f782c6b8409c5773a4-RISHI-PAUL.jpg",
+      },
+      {
+        name: "Megha Sardar",
+        role: "MIND’S EYE",
+        image:
+          "https://i.postimg.cc/KY8Jx1hr/IMG-20250303-084755-MEGHA-SARDAR.png",
+      },
+      // {
+      //   name: "Swastika Pramanik",
+      //   role: "MIND’S EYE",
+      //   image:
+      //     "https://i.postimg.cc/zBjjtxdW/IMG-20240228-212849-836-SOUMITA-MUKHERJEE.webp",
+      // },
+      {
+        name: "Rajarshi Das",
+        role: "VALORANT",
+        image:
+          "https://i.postimg.cc/9Mvpd1RJ/IMG20241003154722-PRACHI-GHOSH.jpg",
+      },
+      {
+        name: "Monaj Barman",
+        role: "VALORANT",
+        image: "https://i.postimg.cc/BnkB95tF/IMG-20230529-140649-900-removebg-preview-1-MONAJ-BARMAN.png",
+      },
+      // {
+      //   name: "Sayandeep Sen",
+      //   role: "BGMI -  TDM & SQUAD",
+      //   image:
+      //     "https://i.postimg.cc/bwVhGj1D/IMG-20240906-190414-Sambit-Ganguly.jpg",
+      // },
+      {
+        name: "Sraman Pati",
+        role: "BGMI -  TDM & SQUAD",
+        image:
+          "https://i.postimg.cc/Dzp5Z72V/IMG-20241226-183057-SRAMAN-PATI.jpg",
+      },
+      {
+        name: "Omi Dhir",
+        role: "FIFA 24",
+        image:
+          "https://i.postimg.cc/T3zgHhY3/IMG-20250223-205826-OMI-DHIR.jpg",
+      },
+      {
+        name: "Binay Dhar",
+        role: "FIFA 24",
+        image:
+          "https://i.postimg.cc/T114r8Rh/Picsart-23-10-22-18-04-52-259-SOUMYADEEP-SARDAR.jpg",
+      },
+      {
+        name: "Kanchan Debnath",
+        role: "E-FOOTBALL",
+        image:
+          "https://i.postimg.cc/BQwxHMrD/1740307887266-KANCHAN-DEBNATH.jpg",
+      },
+      {
+        name: "Sayan Kumar Das",
+        role: "E-FOOTBALL",
+        image:
+          "https://i.postimg.cc/6p2C0CKP/IMG-20241124-WA0008-SAYAN-KUMAR-DAS.jpg",
+      },
+      {
+        name: "Raushan Pandey",
+        role: "MORTAL KOMBAT (8 KG)",
+        image:
+          "https://i.postimg.cc/R0wKr9NQ/IMG-3125-RAUSHAN-PANDEY.avif",
+      },
+      {
+        name: "Somsubhra Misra",
+        role: "MORTAL KOMBAT (8 KG)",
+        image:
+          "https://i.postimg.cc/sD2YMtNs/IMG-3331-SOMSUBHRA-MISRA.jpg",
+      },
+      {
+        name: "Tarif Chowdhury",
+        role: "MORTAL KOMBAT (8 KG)",
+        image:
+          "https://i.postimg.cc/52X2Ch4r/9b562a9e-eeb4-4170-b15c-694e8c584c30.jpg",
+      },
+      {
+        name: "Sagnik Bose",
+        role: "MORTAL KOMBAT (8 KG)",
+        image:
+          "https://i.postimg.cc/HsJJDHNc/IMG-20250303-WA0003-SAGNIK-BOSE.jpg",
+      },
+      {
+        name: "Rupam Mondal",
+        role: "ROBO SUMO (4 KG)",
+        image:
+          "https://i.postimg.cc/gjzvq5cy/IMG-20240518-093726-301-RUPAM-MONDAL.jpg",
+      },
+      {
+        name: "Somen Saha",
+        role: "ROBO SUMO (4 KG)",
+        image:
+          "https://i.postimg.cc/hjq8hvH5/IMG20250203162227-imresizer-SOMEN-SAHA.jpg",
+      },
+      {
+        name: "Sanket Deyasi",
+        role: "ROBO SOCCER",
+        image:
+          "https://i.postimg.cc/cHMR3ZW4/IMG-20250303-WA0007-SANKET-DEYASI.jpg",
+      },
+      {
+        name: "Sagnik Paul",
+        role: "ROBO SOCCER",
+        image:
+          "https://i.postimg.cc/tJBFr57K/Sagnik_-_SAGNIK_PAUL_(1).jpg",
+      },
+      {
+        name: "Adrika Mukherjee",
+        role: "ROBO SOCCER",
+        image:
+          "https://i.postimg.cc/BvFcqHwF/IMG-20241129-WA0071-2-ADRIKA-MUKHERJEE.jpg",
+      },
+      {
+        name: "Pratik Kharadhara",
+        role: "ROAD RASH",
+        image:
+          "https://i.postimg.cc/7ZfnWp3m/IMG-20241222-WA0010-PRATIK.jpg",
+      },
+      {
+        name: "Shriza Baidya",
+        role: "ROAD RASH",
+        image:
+          "https://i.postimg.cc/VLsRjSdy/IMG-20241208-WA0087-SHRIZA-BAIDYA.jpg",
+      },
+      // {
+      //   name: "Sourodeep Paul",
+      //   role: "ROAD RASH",
+      //   image:
+      //     "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
+      // },
+      // {
+      //   name: "Shreekant Pathak",
+      //   role: "ROAD RASH",
+      //   image:
+      //     "https://i.postimg.cc/TPvFBHcH/Whats-App-Image-2024-09-05-at-00-21-54-03e9d210-PRATIK.jpg",
+      // },
+      {
+        name: "Sayani Halder",
+        role: "NEED FOR SPEED",
+        image:
+          "https://i.postimg.cc/R00DPZkp/IMG-20241222-WA0024-SAYANI-HALDER.jpg",
+      },
+      {
+        name: "Aheli Saha",
+        role: "NEED FOR SPEED",
+        image:
+          "https://i.postimg.cc/ht61WpMg/20250303-194624-AHELI-SAHA.jpg",
+      },
+      {
+        name: "Aditya Chakraborty",
+        role: "NEED FOR SPEED",
+        image:
+          "https://i.postimg.cc/rsjNBTZY/IMG-20231128-WA0006-ADITYA-CHAKRABORTY.jpg",
+      },
+      {
+        name: "Diptish De",
+        role: "NEED FOR SPEED",
+        image:
+          "https://i.postimg.cc/1RrBn0Rc/IMG-20250303-153045-DIPTISH-DE.jpg",
+      },
+      {
+        name: "Anirban Majumder",
+        role: "MAZE SOLVER",
+        image:
+          "https://i.postimg.cc/pTNC8qnk/91-62966-13379-20250304-092842-ANIRBAN-MAJUMDER.jpg",
+      },
+      {
+        name: "Meghna Santra",
+        role: "MAZE SOLVER",
+        image:
+          "https://i.postimg.cc/rwRd51mf/B612-20250209-181129-486-MEGHNA-SANTRA-1-1.jpg",
+      },
+      {
+        name: "Turnab Roy",
+        role: "MAZE SOLVER",
+        image:
+          "https://i.postimg.cc/wTWkF6m1/IMG-20250220-205606-TURNAB-ROY.jpg",
+      },
+      {
+        name: "Archisha Upadhyaya",
+        role: "PACMAN",
+        image:
+          "https://i.postimg.cc/FzNxCzpL/20250207-151535-ARCHISHA-UPADHYAYA.jpg",
+      },
+      {
+        name: "Sirsho Biswas",
+        role: "PACMAN",
+        image:
+          "https://i.postimg.cc/PqKfvFcn/SIRSHO-BISWAS-SIRSHO-BISWAS.jpg",
+      },
+    ],
+  },
   //graphics team completed
   {
     category: 'Graphics Team',
@@ -909,28 +921,63 @@ export const teams = [
     ],
   },
   // coverage team completed
-  // {
-  //   category: "Coverage Team",
-  //   id: "coverage",
-  //   path: "/team/coverage",
-  //   members: [
-  //     {
-  //       name: "Rishav Pramanik",
-  //       role: "Coverage Team Lead",
-  //       image: "https://i.postimg.cc/C5PWtYj1/RISHAV-PRAMANIK.jpg",
-  //     },
-  //     {
-  //       name: "Soumya Das",
-  //       role: "Team Member",
-  //       image: "https://i.postimg.cc/7Z7W1SQb/Soumya-Das.jpg",
-  //     },
-  //     {
-  //       name: "Urjita Ray",
-  //       role: "Team Member",
-  //       image: "https://i.postimg.cc/XJN10mNy/Urjita-Ray.jpg",
-  //     },
-  //   ],
-  // },
+  {
+    category: "Coverage Team",
+    id: "coverage",
+    path: "/team/coverage",
+    members: [
+      {
+        name: "Sambit Sarkar",
+        role: "Coverage Team Co-Lead",
+        image: "https://i.postimg.cc/9fCz72NM/IMG-20230318-133918-244-Sambit-Sarkar.jpg",
+      },
+      {
+        name: "Shinjan Sarkar",
+        role: "Coverage Team Lead",
+        image: "https://i.postimg.cc/HxLx62m1/DSC-1347-Shinjan-Sarkar.jpg",
+      },
+      {
+        name: "Trinjan Dutta",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/jjc261Gh/IMG-20230424-WA0027-2-Trinjan-Dutta.jpg",
+      },
+      {
+        name: "Rishav Pramanik",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/T1z3YvDT/IMG-20241013-WA0036-Rishav-Pramanik.jpg",
+      },
+      {
+        name: "Rishav Pramanik",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/Vkjdvvgp/133485933-810756049471837-261084012297238844-n-Rishav-Pramanik.jpg",
+      },
+      {
+        name: "Shubham Paul",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/kG65mgDj/DSC-2534-1-Subham-Paul.jpg",
+      },
+      {
+        name: "Saikat Mondal",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/cC2rg8Vy/Untitled-design-SAIKAT-MONDAL.jpg",
+      },
+      {
+        name: "Ranit Sarkar",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/8z87TMRL/Whats-App-Image-2025-02-22-at-19-04-31-f0b88fad-Texh-Uf.jpg",
+      },
+      {
+        name: "Soumya Das",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/Jndhvk7D/PSX-20240308-115804-Soumya-Das.jpg",
+      },
+      {
+        name: "Bhumika Das",
+        role: "Coverage Team Member",
+        image: "https://i.postimg.cc/v8N1SpDq/IMG-20250125-WA0068-1-BHUMIKA-DAS.jpg",
+      },
+    ],
+  },
   //PR team completed
   {
     category: 'PR & Outreach Team',
@@ -1031,59 +1078,71 @@ export const teams = [
     ],
   },
   // logistics team completed
-  // {
-  //   category: "Logistics Team",
-  //   id: "logistics",
-  //   path: "/team/logistics",
-  //   members: [
-  //     {
-  //       name: "Arnab Dey",
-  //       role: "Logistics Team Lead",
-  //       image: "https://i.postimg.cc/26LRmwmJ/IMG-20240906-102027.jpg",
-  //     },
-  //     {
-  //       name: "Aditya Chakraborty",
-  //       role: "Logistics Team Member",
-  //       image: "https://i.postimg.cc/yx8wk6Nv/SOHOM-MITTER.jpg",
-  //     },
-  //     {
-  //       name: "Arnob Podder",
-  //       role: "Logistics Team Member",
-  //       image:
-  //         "https://i.postimg.cc/rspFzv9f/Whats-App-Image-2024-09-08-at-15-04-28.jpg",
-  //     },
-  //     {
-  //       name: "Ankan Ghosh",
-  //       role: "Logistics Team Member",
-  //       image:
-  //         "https://i.postimg.cc/sfW7wjXz/Whats-App-Image-2024-09-06-at-19-14-06.jpg",
-  //     },
-  //     {
-  //       name: "Mohit Chowdhury",
-  //       role: "Logistics Team Member",
-  //       image:
-  //         "https://i.postimg.cc/sfW7wjXz/Whats-App-Image-2024-09-06-at-19-14-06.jpg",
-  //     },
-  //     {
-  //       name: "Tarif Chowdhury",
-  //       role: "Logistics Team Member",
-  //       image:
-  //         "https://i.postimg.cc/sfW7wjXz/Whats-App-Image-2024-09-06-at-19-14-06.jpg",
-  //     },
-  //     {
-  //       name: "Pratik Chowdhury",
-  //       role: "Logistics Team Member",
-  //       image:
-  //         "https://i.postimg.cc/sfW7wjXz/Whats-App-Image-2024-09-06-at-19-14-06.jpg",
-  //     },
-  //     {
-  //       name: "Somen Saha",
-  //       role: "Logistics Team Member",
-  //       image:
-  //         "https://i.postimg.cc/sfW7wjXz/Whats-App-Image-2024-09-06-at-19-14-06.jpg",
-  //     },
-  //   ],
-  // },
+  {
+    category: "Logistics Team",
+    id: "logistics",
+    path: "/team/logistics",
+    members: [
+      {
+        name: "Arnab Dey",
+        role: "Logistics Team Lead",
+        image: "https://i.postimg.cc/0NGnY7ds/EjMuVkC.jpg",
+      },
+      {
+        name: "Aditya Chakraborty",
+        role: "Logistics Team Member",
+        image: "https://i.postimg.cc/rsjNBTZY/IMG-20231128-WA0006-ADITYA-CHAKRABORTY.jpg",
+      },
+      {
+        name: "Arnob Podder",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/3RcKn0YL/IMG-2897-ARNOB-PODDER.jpg",
+      },
+      {
+        name: "Ankan Ghosh",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/kXrypj1m/IMG-20250224-WA0046-ANKAN-GHOSH.jpg",
+      },
+      {
+        name: "Mohit Chowdhury",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/h4Xxg9zt/IMG-9828-MOHIT-CHOWDHURY.jpg",
+      },
+      {
+        name: "Tarif Chowdhury",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/52X2Ch4r/9b562a9e-eeb4-4170-b15c-694e8c584c30.jpg",
+      },
+      {
+        name: "Pratik Chowdhury",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/28v0jpby/20250304-142312-ANUSHKA-GHOSH.jpg",
+      },
+      {
+        name: "Somen Saha",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/hjq8hvH5/IMG20250203162227-imresizer-SOMEN-SAHA.jpg",
+      },
+      {
+        name: "Supratim Sen",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/kDr7drVK/IMG-20250305-020623-SUPRATIM-SEN.jpg",
+      },
+      {
+        name: "Sagar Raj Yadav",
+        role: "Logistics Team Member",
+        image:
+          "https://i.postimg.cc/nr9n5VLn/IMG20240710105920-SAGAR-RAJYADAV.jpg",
+      },
+    ],
+  },
   //sponsorship team completed
   {
     category: 'Sponsorship Team',
@@ -1124,6 +1183,30 @@ export const teams = [
         role: 'Sponsorship Team Member',
         image:
           'https://i.postimg.cc/JzxFck2B/IMG-20250125-WA0068-1-BHUMIKA-DAS.jpg',
+      },
+    ],
+  },
+  {
+    category: 'Security Team',
+    id: 'security',
+    path: '/team/security',
+    members: [
+      {
+        name: 'Bibasan Mitra',
+        role: 'Security Team Lead',
+        image:
+          'https://i.postimg.cc/m2cPtsTJ/IMG-20250303-091158-BIBASAN-MITRA.jpg',
+      },
+      {
+        name: 'Trideep Roy',
+        role: 'Security Team Member',
+        image:
+          'https://i.postimg.cc/j5pyB5hX/IMG-20250303-124708-TRIDEEP-ROY.jpg',
+      },
+      {
+        name: 'Imran Alam',
+        role: 'Security Team Member',
+        image: 'https://i.postimg.cc/Qt9p65cC/IMG-20250303-WA0011-IMRAN-ALAM.jpg',
       },
     ],
   },
