@@ -908,29 +908,64 @@ export const teams = [
       },
     ],
   },
-  // coverage team completed
-  // {
-  //   category: "Coverage Team",
-  //   id: "coverage",
-  //   path: "/team/coverage",
-  //   members: [
-  //     {
-  //       name: "Rishav Pramanik",
-  //       role: "Coverage Team Lead",
-  //       image: "https://i.postimg.cc/C5PWtYj1/RISHAV-PRAMANIK.jpg",
-  //     },
-  //     {
-  //       name: "Soumya Das",
-  //       role: "Team Member",
-  //       image: "https://i.postimg.cc/7Z7W1SQb/Soumya-Das.jpg",
-  //     },
-  //     {
-  //       name: "Urjita Ray",
-  //       role: "Team Member",
-  //       image: "https://i.postimg.cc/XJN10mNy/Urjita-Ray.jpg",
-  //     },
-  //   ],
-  // },
+  //coverage team completed
+  {
+    category: "Coverage Team",
+    id: "coverage",
+    path: "/team/coverage",
+    members: [
+      {
+        name: "Sambit Sarkar",
+        role: "Coverage Lead",
+        image: "https://i.postimg.cc/02wyv3Rg/IMG-20230318-133918-244-Sambit-Sarkar.jpg",
+      },
+      {
+        name: "Shinjan Sarkar ",
+        role: "Coverage Co Lead",
+        image: "https://i.postimg.cc/fy6WX7dg/DSC-1347-Shinjan-Sarkar.jpg",
+      },
+      {
+        name: "Trinjan Dutta",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/W314P1jS/IMG-20230424-WA0027-2-Trinjan-Dutta.jpg",
+      },
+      {
+        name: "Rishav Pramanik",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/7LVLc2vf/133485933-810756049471837-261084012297238844-n-Rishav-Pramanik.jpg",
+      },
+      {
+        name: "Rishav Pramanik",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/FFqH2v6g/IMG-20241013-WA0036-Rishav-Pramanik.jpg",
+      },
+      {
+        name: "Soumya Das",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/7Z7W1SQb/Soumya-Das.jpg",
+      },
+      {
+        name: "Subham Paul",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/XvVjwYZ3/DSC-2534-1-Subham-Paul.jpg",
+      },
+      {
+        name: "Bhumika Das",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/TwN32v3x/IMG-20250125-WA0068-1-BHUMIKA-DAS-1.jpg",
+      },
+      {
+        name: "Ranit Sarkar",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/qB2jxKtM/9bdb8710-ea76-43b3-bd67-c12369def4fb.jpg",
+      },
+      {
+        name: "Saikat Mondal",
+        role: "Coverage Team",
+        image: "https://i.postimg.cc/fy3TJqV9/Untitled-design-SAIKAT-MONDAL.jpg",
+      },
+    ],
+  },
   //PR team completed
   {
     category: 'PR & Outreach Team',
