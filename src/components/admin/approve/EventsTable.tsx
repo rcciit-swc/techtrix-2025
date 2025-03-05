@@ -6,6 +6,7 @@ import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { CSVLink } from "react-csv";
 import { Filter } from './EventFilters';
 import {
   Tooltip,
@@ -20,7 +21,7 @@ import { TeamMembersDialog } from './TeamMembersDialog';
 import TableSkeleton from './TableSkeleton';
 import { useEvents } from '@/lib/stores';
 import { toast } from 'sonner';
-import { approveRegistration, getRoles } from '@/utils/functions';
+import { approveRegistration, dateTime, getRoles } from '@/utils/functions';
 
 const COLUMN_WIDTHS = [
   100, 180, 400, 240, 220, 240, 240, 240, 360, 240, 320, 280,
@@ -145,6 +146,17 @@ export default function EventsTable() {
     setRegisteredAtFilter('');
   };
 
+  const [teamsWithMembers, setTeamsWithMembers] = useState([]);
+
+  useEffect(()=>{
+    console.log(filteredData)
+    // const  csvData =  filteredData.map((item)=>{
+    //   teamName: item.teamname,
+    //   // name:  
+    // })
+    // setTeamsWithMembers((members)=> )
+  },[filteredData])
+
   const Row = ({
     index,
     style,
@@ -159,6 +171,7 @@ export default function EventsTable() {
         style={{ ...style, width: TABLE_WIDTH }}
         className="flex items-center border-b border-gray-800 hover:bg-[#131926] transition-colors"
       >
+
         {COLUMN_WIDTHS.map((width, colIndex) => (
           <div
             key={colIndex}
@@ -285,6 +298,13 @@ export default function EventsTable() {
 
   return (
     <div className="space-y-4">
+              {/* <CSVLink
+            data={teamsWithMembers}
+            filename={`registrations-${dateTime()}.csv`}
+            className="w-fit-content rounded-md px-4 py-2 tracking-wider bg-regalia text-sm lg:text-lg font-semibold font-hollirood border-regalia text-black hover:border-regalia hover:text-regalia hover:bg-black border"
+          >
+            Download CSV
+          </CSVLink> */}
       <div className="relative">
         <div className="flex items-center space-x-2">
           <div className="relative flex-grow">
