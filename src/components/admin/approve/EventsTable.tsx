@@ -146,17 +146,36 @@ export default function EventsTable() {
     setRegisteredAtFilter('');
   };
 
-  const [teamsWithMembers, setTeamsWithMembers] = useState([]);
+  const [teamsWithMembers, setTeamsWithMembers] = useState<any[]>([]);
 
   useEffect(() => {
     if (filteredData.length > 0) {
-      const totalMembers = filteredData.reduce((sum, team) => {
-        return sum + (team.teammembers ? team.teammembers.length : 0);
-      }, 0);
-
-      console.log('Total team members:', totalMembers);
+      const teamsWithMembersData = filteredData.flatMap((team, index) =>
+        team.teammembers.map((member: any) => {
+          const row: Record<string, any> = {
+            'SL No.': index + 1,
+            'Event Name': team.eventname,
+            'Team Name': team.teamname || 'N/A',
+            'Name': member.name,
+            'Phone': member.phone,
+            'Email': member.email,
+            'College': team.college,
+            'College Roll (For RCCIIT Students)': '',
+            'Attendance': '',
+          };
+  
+          if (team.type === 'Individual') {
+            delete row['Team Name'];
+          }
+  
+          return row;
+        })
+      );
+      setTeamsWithMembers(teamsWithMembersData);
     }
   }, [filteredData]);
+  
+  
 
   const Row = ({
     index,
