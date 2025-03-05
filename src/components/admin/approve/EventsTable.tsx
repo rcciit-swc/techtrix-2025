@@ -303,7 +303,7 @@ export default function EventsTable() {
               {/* <CSVLink
             data={teamsWithMembers}
             filename={`registrations-${dateTime()}.csv`}
-            className="w-fit-content rounded-md px-4 py-2 tracking-wider bg-regalia text-sm lg:text-lg font-semibold font-hollirood border-regalia text-black hover:border-regalia hover:text-regalia hover:bg-black border"
+            className="w-fit-content rounded-md px-4 py-2 tracking-wider bg-regalia text-sm lg:text-lg font-semibold font-kagitingan border-yellow-200 text-white hover:border-regalia hover:text-regalia hover:bg-black border"
           >
             Download CSV
           </CSVLink> */}
