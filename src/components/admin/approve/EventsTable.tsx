@@ -6,7 +6,7 @@ import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CSVLink } from "react-csv";
+import { CSVLink } from 'react-csv';
 import { Filter } from './EventFilters';
 import {
   Tooltip,
@@ -153,11 +153,10 @@ export default function EventsTable() {
       const totalMembers = filteredData.reduce((sum, team) => {
         return sum + (team.teammembers ? team.teammembers.length : 0);
       }, 0);
-  
-      console.log("Total team members:", totalMembers);
+
+      console.log('Total team members:', totalMembers);
     }
   }, [filteredData]);
-  
 
   const Row = ({
     index,
@@ -173,7 +172,6 @@ export default function EventsTable() {
         style={{ ...style, width: TABLE_WIDTH }}
         className="flex items-center border-b border-gray-800 hover:bg-[#131926] transition-colors"
       >
-
         {COLUMN_WIDTHS.map((width, colIndex) => (
           <div
             key={colIndex}
@@ -300,13 +298,13 @@ export default function EventsTable() {
 
   return (
     <div className="space-y-4">
-              {/* <CSVLink
-            data={teamsWithMembers}
-            filename={`registrations-${dateTime()}.csv`}
-            className="w-fit-content rounded-md px-4 py-2 tracking-wider bg-regalia text-sm lg:text-lg font-semibold font-kagitingan border-yellow-200 text-white hover:border-regalia hover:text-regalia hover:bg-black border"
-          >
-            Download CSV
-          </CSVLink> */}
+      <CSVLink
+        data={teamsWithMembers}
+        filename={`registrations-${dateTime()}.csv`}
+        className="w-fit-content rounded-md px-4 py-2 tracking-wider bg-regalia text-sm lg:text-lg font-semibold font-kagitingan border-yellow-200 text-white hover:border-regalia hover:text-regalia hover:bg-black border"
+      >
+        Download CSV
+      </CSVLink>
       <div className="relative">
         <div className="flex items-center space-x-2">
           <div className="relative flex-grow">
