@@ -29,28 +29,28 @@ export async function middleware(req: NextRequest) {
       .eq('user_id', session.user?.id);
     const roles = userRoles!.map((role) => role.role);
     if (url.pathname.includes('/admin/manage-events/add-event')) {
-      if (roles.includes('super_admin')) {
+      if (roles.includes('super_admin') || roles.includes('coordinator')) {
         return NextResponse.next();
       } else {
         return NextResponse.redirect(new URL('/unauthorized', req.url));
       }
     }
-    if (userRoles && userRoles?.length > 0 && roles.includes('super_admin')) {
+    if (userRoles && userRoles?.length > 0 && (roles.includes('super_admin') || roles.includes('coordinator'))) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(new URL('/unauthorized', req.url));
     }
-  }else   if (url.pathname.startsWith('/registrar')) {
+  } else if (url.pathname.startsWith('/registrar')) {
     const { data: userRoles, error } = await supabase
       .from('roles')
       .select(`role`)
       .eq('user_id', session.user?.id);
     const roles = userRoles!.map((role) => role.role);
-      if (roles.includes('registrar') || roles.includes('super_admin') || roles.includes('coordinator')) {
-        return NextResponse.next();
-      } else {
-        return NextResponse.redirect(new URL('/unauthorized', req.url));
-      }
+    if (roles.includes('registrar') || roles.includes('super_admin') || roles.includes('coordinator')) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL('/unauthorized', req.url));
+    }
   }
 
   // Only make the DB call if the route is under '/admin'
