@@ -210,6 +210,12 @@ export const teams = [
         role: 'Tech Team Member',
         image: 'https://i.postimg.cc/zBVyKZny/7be2c20b-8d97-4bc2-9d98-c17432dcae92.jpg',
       },
+      {
+        name: "Anirban Majumder",
+        role: "Tech Team Member",
+        image:
+          "https://i.postimg.cc/pTNC8qnk/91-62966-13379-20250304-092842-ANIRBAN-MAJUMDER.jpg",
+      },
       // {
       //   name: 'Aditi Ghosh',
       //   role: 'Tech Team Member',
@@ -732,6 +738,12 @@ export const teams = [
         role: "MORTAL KOMBAT (8 KG)",
         image:
           "https://i.postimg.cc/HsJJDHNc/IMG-20250303-WA0003-SAGNIK-BOSE.jpg",
+      },
+      {
+        name: "Soumik Bag",
+        role: "MORTAL KOMBAT (8 KG)",
+        image:
+          "https://i.imgur.com/yOv5Xux.jpg",
       },
       {
         name: "Rupam Mondal",
