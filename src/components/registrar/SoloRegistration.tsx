@@ -172,7 +172,9 @@ export function SoloRegistration({
                       <SelectValue placeholder="Select payment mode" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="UPI">UPI</SelectItem>
+                    <SelectItem value="Google Pay">Google Pay</SelectItem>
+                      <SelectItem value="PhonePe">PhonePe</SelectItem>
+                      <SelectItem value="PayTM">PayTM</SelectItem>
                       <SelectItem value="CASH">Cash</SelectItem>
                       <SelectItem value="BANK">Bank Transfer</SelectItem>
                     </SelectContent>
