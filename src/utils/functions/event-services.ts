@@ -69,8 +69,8 @@ export const getEventsData = async (all: boolean = true) => {
     } else {
       // Determine the highest privileged role
       const roles = rolesData.map((role) => role.role);
-
-      if (roles.includes('super_admin')) {
+      console.log(roles)
+      if (roles.includes('super_admin') || roles.includes('registrar')) {
         ({ data, error } = await supabase.rpc('get_events_by_fest', {
           p_fest_id,
           p_user_id,

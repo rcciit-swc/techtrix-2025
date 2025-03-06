@@ -129,7 +129,8 @@ const Navbar = ({ className }: Props) => {
   useEffect(() => {
     const verifyRoles = async () => {
       const rolesData = await getRoles();
-      rolesData!.length > 0 && setIsAdmin(true);
+      const roles = rolesData?.map((role) => role.role);
+      rolesData!.length > 0 && roles?.includes('super_admin') && setIsAdmin(true);
     };
     verifyRoles();
     const handleScroll = () => setScrolled(window.scrollY > 100);

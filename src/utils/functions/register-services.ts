@@ -33,6 +33,8 @@ export interface RegisterSoloParams {
   transactionScreenshot: string | null;
   college: string;
   ref?: string;
+  paymentMode?: string;
+  regMode?: string;
 }
 
 export async function registerSoloEvent(
@@ -45,6 +47,8 @@ export async function registerSoloEvent(
     transactionScreenshot,
     college,
     ref,
+    paymentMode,
+    regMode
   } = params;
 
   // Call the RPC named 'register_solo_event' with the required parameters.
@@ -56,8 +60,8 @@ export async function registerSoloEvent(
       p_transaction_id: transactionId,
       p_transaction_screenshot: transactionScreenshot,
       p_college: college,
-      p_reg_mode: 'ONLINE',
-      p_payment_mode: 'UPI',
+      p_reg_mode: regMode || 'ONLINE',
+      p_payment_mode: paymentMode || 'UPI',
       p_referral_code: ref || 'TECHTRIX2025',
       p_attendance: false,
     }
@@ -90,6 +94,8 @@ export interface RegisterTeamParams {
   teamLeadEmail: string;
   teamMembers: TeamMember[];
   ref: string;
+  paymentMode?: string;
+  regMode?: string;
 }
 
 export async function registerTeamWithParticipants(
@@ -139,6 +145,8 @@ export async function registerTeamWithParticipants(
     teamLeadEmail,
     teamMembers,
     ref,
+    paymentMode,
+    regMode
   } = params;
 
   // Call the RPC function 'register_team_with_participants'
@@ -155,8 +163,8 @@ export async function registerTeamWithParticipants(
       p_team_lead_phone: teamLeadPhone,
       p_team_lead_email: teamLeadEmail,
       p_team_members: teamMembers || [],
-      p_reg_mode: 'ONLINE',
-      p_payment_mode: 'UPI',
+      p_reg_mode: paymentMode || 'ONLINE',
+      p_payment_mode: regMode || 'UPI',
       p_referral_code: ref || 'TECHTRIX2025',
       p_attendance: false,
     }
