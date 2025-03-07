@@ -81,5 +81,5 @@ export interface EventsActionsType {
   markEventAsRegistered: (eventId: string) => void;
   updateRegisterStatus: (id: string, status: boolean) => void;
   updateEventsData: (id: string, data: any) => void;
-  getApprovalDashboardData: () => void;
+  getApprovalDashboardData: (rangeStart:number, rangeEnd:number) => void;
 }

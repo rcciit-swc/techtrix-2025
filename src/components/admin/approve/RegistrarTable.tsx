@@ -44,7 +44,7 @@ export default function RegistrarTable() {
   } = useEvents();
 
   const refreshData = async () => {
-    getApprovalDashboardData();
+    getApprovalDashboardData(0, 1000);
   };
   useEffect(() => {
     refreshData();
@@ -222,7 +222,7 @@ export default function RegistrarTable() {
               </div>
             ) : (
               <span className="text-gray-400">
-                {item.registeredat.split('T')[0]}
+                {item.registeredat?.split('T')[0]}
               </span>
             )}
           </div>

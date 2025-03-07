@@ -114,7 +114,7 @@ function decryption(encryptedPayload: string): {
   }
   const key = crypto.createHash('sha256').update(secret).digest();
 
-  const parts = encryptedPayload.split('-');
+  const parts = encryptedPayload?.split('-');
   if (parts.length !== 2) {
     throw new Error('Invalid encrypted payload format');
   }

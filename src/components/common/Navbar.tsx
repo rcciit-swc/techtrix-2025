@@ -130,6 +130,7 @@ const Navbar = ({ className }: Props) => {
     const verifyRoles = async () => {
       const rolesData = await getRoles();
       const roles = rolesData?.map((role) => role.role);
+      
       rolesData!.length > 0 && (roles?.includes('super_admin') || roles?.includes('coordinator') || roles?.includes('convenor')) && setIsAdmin(true);
     };
     verifyRoles();

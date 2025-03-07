@@ -44,7 +44,7 @@ export default function EventsTable() {
   } = useEvents();
 
   const refreshData = async () => {
-    getApprovalDashboardData();
+    getApprovalDashboardData(0, 1000);
   };
   useEffect(() => {
     refreshData();
@@ -250,7 +250,7 @@ export default function EventsTable() {
               </div>
             ) : (
               <span className="text-gray-400">
-                {item.registeredat.split('T')[0]}
+                {item.registeredat?.split('T')[0]}
               </span>
             )}
           </div>
@@ -315,6 +315,16 @@ export default function EventsTable() {
 
   if (approvalDashboardLoading) return <TableSkeleton />;
 
+  // const [showNext, setShowNext] = useState(true);
+
+  // useEffect(()=>{
+  //   if(showNext){
+  //     getApprovalDashboardData(0, 1000);
+  //   }else  {
+  //     getApprovalDashboardData(1000,2000);
+  //   }
+  // },[showNext])
+  
   return (
     <div className="space-y-4">
       <CSVLink
@@ -324,6 +334,11 @@ export default function EventsTable() {
       >
         Download CSV
       </CSVLink>
+      {/* <Button onClick={()=>{
+        setShowNext(!showNext)
+      }} className="w-fit-content rounded-md px-4 py-2 tracking-wider bg-regalia text-sm lg:text-lg font-semibold font-kagitingan border-yellow-200 text-white hover:border-regalia hover:text-regalia hover:bg-black border">
+        {!showNext  ? "Back" : "Next"}
+      </Button> */}
       <div className="relative">
         <div className="flex items-center space-x-2">
           <div className="relative flex-grow">
@@ -438,3 +453,4 @@ export default function EventsTable() {
     </div>
   );
 }
+

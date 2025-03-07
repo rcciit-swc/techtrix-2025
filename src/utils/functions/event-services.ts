@@ -189,9 +189,10 @@ export const updateEventById = async (
   }
 };
 
-export const getApprovalDashboardData = async (): Promise<
-  EventData[] | null
-> => {
+export const getApprovalDashboardData = async (
+  rangeStart: number,
+  rangeEnd: number
+): Promise<EventData[] | null> => {
   try {
     const rolesData = await getRoles();
     const roleCategory = rolesData?.map((roles) =>
@@ -201,14 +202,13 @@ export const getApprovalDashboardData = async (): Promise<
       ?.map((role) => (role.event_id !== null ? role.event_id : null))
       .filter((id) => id !== null);
     const finalEventIds = eventIds!.length > 0 ? eventIds : null;
-    const { data, error } = await supabase.rpc(
-      'get_registrations_by_event_ids',
-      {
+    const { data, error } = await supabase
+      .rpc('get_registrations_by_event_ids', {
         p_fest_id: '44bb2093-d229-4385-8f08-3fe7da3521c8',
         p_event_category_id: roleCategory || null,
         p_event_id: finalEventIds || null,
-      }
-    );
+      })
+      .range(rangeStart, rangeEnd);
 
     if (error) {
       console.error('Error fetching event table data:', error);
@@ -223,6 +223,7 @@ export const getApprovalDashboardData = async (): Promise<
     return null;
   }
 };
+
 
 export const getEventByID = async (id: string): Promise<events | null> => {
   const serverClient = await supabaseServer();

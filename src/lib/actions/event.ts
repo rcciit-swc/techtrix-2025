@@ -54,10 +54,10 @@ export const updatePopulateEvents = async (set: any, id: string, data: any) => {
   set({ eventsData: updatedData, eventsLoading: false });
 };
 
-export const populateApprovalDashboard = async (set: any) => {
+export const populateApprovalDashboard = async (set: any, rangeStart:number, rangeEnd:number) => {
   try {
     set({ approvalDashboardLoading: true });
-    const res = await getApprovalDashboardData();
+    const res = await getApprovalDashboardData(rangeStart, rangeEnd);
     if (!res) {
       set({ approvalDashboardData: [], approvalDashboardLoading: false });
     } else {

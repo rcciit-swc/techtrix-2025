@@ -17,7 +17,7 @@ const EncryptButton = ({ title }: { title: string }) => {
 
     intervalRef.current = setInterval(() => {
       const scrambled = title
-        .split('')
+        ?.split('')
         .map((char, index) => {
           if (pos / CYCLES_PER_LETTER > index) {
             return char;
