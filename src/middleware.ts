@@ -35,7 +35,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL('/unauthorized', req.url));
       }
     }
-    if (userRoles && userRoles?.length > 0 && (roles.includes('super_admin') || roles.includes('coordinator'))) {
+    if (userRoles && userRoles?.length > 0 && (roles.includes('super_admin') || roles.includes('coordinator') || roles.includes('convenor'))) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(new URL('/unauthorized', req.url));
@@ -46,7 +46,7 @@ export async function middleware(req: NextRequest) {
       .select(`role`)
       .eq('user_id', session.user?.id);
     const roles = userRoles!.map((role) => role.role);
-    if (roles.includes('registrar') || roles.includes('super_admin') || roles.includes('coordinator')) {
+    if (roles.includes('registrar') || roles.includes('super_admin') || roles.includes('coordinator')  || roles.includes('convenor')) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(new URL('/unauthorized', req.url));
