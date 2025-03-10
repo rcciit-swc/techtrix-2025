@@ -216,11 +216,11 @@ export const teams = [
         image:
           "https://i.postimg.cc/pTNC8qnk/91-62966-13379-20250304-092842-ANIRBAN-MAJUMDER.jpg",
       },
-      // {
-      //   name: 'Aditi Ghosh',
-      //   role: 'Tech Team Member',
-      //   image: 'https://i.postimg.cc/7Y2yc7kh/IMG-20231016-215431-1.jpg',
-      // },
+      {
+        name: 'Aditi Ghosh',
+        role: 'Tech Team Member',
+        image: 'https://i.imgur.com/EFSVLDv.jpg',
+      },
     ],
   },
   {
